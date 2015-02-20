@@ -1,0 +1,94 @@
+########################
+# JavaScript
+########################
+'.source.js':
+
+  # Console
+  'Console log':
+    'prefix': 'log'
+    'body': """
+    console.log('${1}');
+    """
+
+  'Console group':
+    'prefix': 'group'
+    'body': """
+    console.group('${1}');
+    console.log('${2}');
+    console.groupEnd();
+    """
+
+  # DOM
+  'querySelector':
+    'prefix': 'select'
+    'body': """
+    ${1:document}.querySelector('{1:selector}');
+    """
+
+  'querySelectorAll':
+    'prefix': 'find'
+    'body': """
+    ${1:document}.querySelectorAll('${2:selector}');
+    """
+
+  'getElementById':
+    'prefix': 'gi'
+    'body': """
+    ${1:document}.getElementById('${2:selector}');
+    """
+
+  'getElementByTagName':
+    'prefix': 'gt'
+    'body': """
+    ${1:document}.getElementByTagName('{2:selector}');
+    """
+
+  # Functions
+  'IIFE':
+    'prefix': 'iife'
+    'body': """
+    (function (${1}) {
+      ${2}
+    })(${3});
+    """
+
+########################
+# Jade
+########################
+'.source.jade':
+
+  # Scaffold
+  'Scaffold-Jade':
+    'prefix': 'scaffold'
+    'body': """
+    doctype html
+    html(lang='en')
+    head
+      meta(charset='utf-8')
+      meta(name='viewport' content='width=device-width, initial-scale=1')
+      link(rel='author' content='David Zukowski' href='//zuko.me')
+    body
+      ${1}
+    """
+
+########################
+# HTML
+########################
+'.text.html':
+
+  # Scaffold
+  'Scaffold-HTML':
+    'prefix': 'scaffold'
+    'body': """
+    <!doctype html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <link rel="author" content="David Zukowski" href="//zuko.me" />
+    </head>
+    <body>
+      ${1}
+    </body>
+    </html>
+    """
