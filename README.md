@@ -6,5 +6,6 @@ Includes
 --------
 * Atom
 * Sublime
+  - Note: UI theme is Soda Dark. Only custom syntax theme is included.
 * Bash
 * NPM / NVM
