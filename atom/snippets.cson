@@ -20,13 +20,13 @@
 
   # DOM
   'querySelector':
-    'prefix': 'select'
+    'prefix': 'one'
     'body': """
-    ${1:document}.querySelector('{1:selector}');
+    ${1:document}.querySelector('${2:selector}');
     """
 
   'querySelectorAll':
-    'prefix': 'find'
+    'prefix': 'all'
     'body': """
     ${1:document}.querySelectorAll('${2:selector}');
     """
@@ -44,6 +44,21 @@
     """
 
   # Functions
+  'Function':
+    'prefix': 'fn'
+    'body': """
+    function ${1} (${2}) {
+      ${3}
+    }
+    """
+  'Anonymous Function':
+    'prefix': 'afn'
+    'body': """
+      function (${1}) {
+        ${2}
+      };
+    """
+
   'IIFE':
     'prefix': 'iife'
     'body': """
@@ -91,4 +106,15 @@
       ${1}
     </body>
     </html>
+    """
+
+########################
+# Markdown
+########################
+'.source.gfm':
+
+  'TODO Item':
+    'prefix': 'do'
+    'body': """
+    * [ ] ${1}
     """
