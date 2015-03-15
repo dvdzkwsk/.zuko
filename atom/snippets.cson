@@ -18,6 +18,12 @@
     console.groupEnd();
     """
 
+  'Console warn':
+    'prefix': 'warn'
+    'body': """
+    console.warn('${1}');
+    """
+
   # DOM
   'querySelector':
     'prefix': 'one'
@@ -56,7 +62,7 @@
     'body': """
       function (${1}) {
         ${2}
-      };
+      }
     """
 
   'IIFE':
@@ -117,4 +123,10 @@
     'prefix': 'do'
     'body': """
     * [ ] ${1}
+    """
+
+  'TODO Item (done)':
+    'prefix': 'did'
+    'body': """
+    * [x] ${1}
     """
