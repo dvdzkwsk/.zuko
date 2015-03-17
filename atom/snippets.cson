@@ -60,9 +60,9 @@
   'Anonymous Function':
     'prefix': 'afn'
     'body': """
-      function (${1}) {
-        ${2}
-      }
+    function (${1}) {
+      ${2}
+    }
     """
 
   'IIFE':
@@ -71,6 +71,40 @@
     (function (${1}) {
       ${2}
     })(${3});
+    """
+
+  # Testing
+  'Describe':
+    'prefix': 'de'
+    'body': """
+    describe('${1}', function () {
+      ${2}
+    });
+    """
+
+  'It':
+    'prefix': 'it'
+    'body': """
+    it('${1}', function () {
+      ${2}
+    });
+    """
+
+  'It Should':
+    'prefix': 'sh'
+    'body': """
+    it('Should ${1}.', function () {
+      ${2}
+    });
+    """
+
+  # Gulp
+  'Gulp Task':
+    'prefix': 'task'
+    'body': """
+    gulp.task('${1}', [${2}], function () {
+      ${3}
+    });
     """
 
 ########################
