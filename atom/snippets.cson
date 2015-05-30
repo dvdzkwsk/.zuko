@@ -7,14 +7,14 @@
   'Console log':
     'prefix': 'log'
     'body': """
-    console.log('${1}');
+    console.log(${1});
     """
 
   'Console group':
     'prefix': 'group'
     'body': """
     console.group('${1}');
-    console.log('${2}');
+    console.log(${2});
     console.groupEnd();
     """
 
@@ -28,25 +28,25 @@
   'querySelector':
     'prefix': 'one'
     'body': """
-    ${1:document}.querySelector('${2:selector}');
+    ${1:document}.querySelector('${2:selector}')
     """
 
   'querySelectorAll':
     'prefix': 'all'
     'body': """
-    ${1:document}.querySelectorAll('${2:selector}');
+    ${1:document}.querySelectorAll('${2:selector}')
     """
 
   'getElementById':
     'prefix': 'gi'
     'body': """
-    ${1:document}.getElementById('${2:selector}');
+    ${1:document}.getElementById('${2:selector}')
     """
 
   'getElementByTagName':
     'prefix': 'gt'
     'body': """
-    ${1:document}.getElementByTagName('{2:selector}');
+    ${1:document}.getElementByTagName('${2:selector}')
     """
 
   # Functions
@@ -105,6 +105,145 @@
     gulp.task('${1}', [${2}], function () {
       ${3}
     });
+    """
+
+  # React
+  'React: componentDidMount: fn() { ... }':
+    'prefix' : 'cdm'
+    'body' : """
+    componentDidMount : function () {
+      ${1}
+    }
+    """
+
+  'React: componentDidUpdate: fn(pp, ps) { ... }':
+    'prefix': 'cdup'
+    'body': """
+    componentDidUpdate : function (prevProps, prevState) {
+      ${1}
+    }
+    """
+
+  'React: componentWillMount: fn() { ... }':
+    'prefix': 'cwm'
+    'body': """
+    componentWillMount : function () {
+      ${1}
+    }
+    """
+
+  'React: componentWillReceiveProps: fn(np) { ... }':
+    'prefix': 'cwr'
+    'body': """
+    componentWillReceiveProps : function (nextProps) {
+      ${1}
+    }
+    """
+
+  'React: componentWillUnmount: fn() { ... }':
+    'prefix': 'cwun'
+    'body': """
+    componentWillUnmount : function() {
+      ${1}
+    }
+    """
+
+  'React: componentWillUpdate: fn(np, ns) { ... }':
+    'prefix': 'cwu'
+    'body': """
+    componentWillUpdate : function (nextProps, nextState) {
+      ${1}
+    }
+    """
+
+  'React: cx({ ... })':
+    'prefix': 'cx'
+    'body': """
+    cx({
+      $1 : $2
+    });
+    """
+
+  'React: forceUpdate(...)':
+    'prefix': 'fup'
+    'body': """
+    forceUpdate(${1:callback});
+    """
+
+  'React: getDefaultProps: fn() { return {...} } ':
+    'prefix': 'gdp'
+    'body': """
+    getDefaultProps : function () {
+      return {${1};
+    }
+    """
+
+  'React: getInitialState: fn() { return {...} } ':
+    'prefix': 'gis'
+    'body': """
+    getInitialState : function() {
+      return {
+        ${1} : ${2}
+      };
+    }
+    """
+
+  'React: isMounted()':
+    'prefix': 'ism'
+    'body': """
+    isMounted()
+    """
+
+  'React: propTypes { ... }':
+    'prefix': 'pt'
+    'body': """
+    propTypes: {
+      ${1} : React.PropTypes.${2:string}
+    }
+    """
+
+  'React: render: fn() { return ... }':
+    'prefix': 'ren'
+    'body': """
+    render : function () {
+      return (
+        ${1:<div />}
+      );
+    }
+    """
+
+  'React: setState({ ... })':
+    'prefix': 'sst'
+    'body': """
+    setState({
+      ${1} : ${2}
+    });
+    """
+
+  'React: shouldComponentUpdate: fn(np, ns) { ... }':
+    'prefix': 'scu'
+    'body': """
+    shouldComponentUpdate : function (nextProps, nextState) {
+      ${1}
+    }
+    """
+
+  'React: this.props.':
+    'prefix': 'props'
+    'body': """
+    this.props.${1}
+    """
+
+  'React: this.state.':
+    'prefix': 'state'
+    'body': """
+    this.state.${1}
+    """
+
+  'React: render(component, container, [callback])':
+    'prefix': 'rrc'
+    'body': """
+    React.render(${1:<$2 />}, ${3:document.body}${4:, ${5:callback}})
     """
 
 ########################

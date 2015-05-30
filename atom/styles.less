@@ -1,0 +1,59 @@
+atom-text-editor {
+
+  // Fix max-length wrap guide being too bright
+  &::shadow .wrap-guide {
+    background-color: #2f2f2f;
+  }
+
+  .vertical-scrollbar,
+  &::shadow .vertical-scrollbar {
+    opacity: 0;
+    width: 0;
+  }
+}
+
+// --------------------------
+// Isotope UI Fixes
+// --------------------------
+atom-pane.active {
+
+  // Fix active tab white background
+  .tab-bar .tab.active {
+    color: #FFFFFF;
+    background-color: #545454;
+
+    // Fix close icons being too faded
+    .close-icon,
+    &:hover .close-icon {
+      color: rgb(200,200,200);
+    }
+
+    &:hover .close-icon:hover {
+      color: #60EAFC;
+    }
+  }
+}
+
+// sue me, I'm lazy.
+.modified .close-icon,
+.close-icon:hover {
+  color: #60EAFC;
+}
+
+// --------------------------
+// JavaScript Styles
+// --------------------------
+.source.js {
+
+  .constant {
+
+  }
+
+  .meta.brace.curly {
+
+  }
+
+  .keyword.operator {
+
+  }
+}
