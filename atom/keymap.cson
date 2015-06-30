@@ -1,0 +1,9 @@
+# Keybindings for a Windows keyboard on Yosemite
+'body':
+  'cmd-up': 'core:move-up'
+  'cmd-down': 'core:move-down'
+  'cmd-shift-up': 'editor:add-selection-above'
+  'cmd-shift-down': 'editor:add-selection-below'
+  'cmd-alt-up': 'editor:move-line-up'
+  'cmd-alt-down': 'editor:move-line-down'
+
