@@ -98,116 +98,105 @@
     });
     """
 
-  # Gulp
-  'Gulp Task':
-    'prefix': 'task'
-    'body': """
-    gulp.task('${1}', [${2}], function () {
-      ${3}
-    });
+  # React
+  'React: component':
+    'prefix' : 'rcm'
+    'body' : """
+    class ${1} extends React.Component {
+      constructor () {
+        super();
+      }
+
+      render () {
+        ${2}
+      }
+    }
     """
 
-  # React
-  'React: componentDidMount: fn() { ... }':
+  'React: export default component':
+    'prefix' : 'expdrcm'
+    'body' : """
+    export default class ${1} extends React.Component {
+      constructor () {
+        super();
+      }
+
+      render () {
+        ${2}
+      }
+    }
+    """
+
+  'React: componentDidMount () { ... }':
     'prefix' : 'cdm'
     'body' : """
-    componentDidMount : function () {
+    componentDidMount () {
       ${1}
     }
     """
 
-  'React: componentDidUpdate: fn(pp, ps) { ... }':
+  'React: componentDidUpdate (pp, ps) { ... }':
     'prefix': 'cdup'
     'body': """
-    componentDidUpdate : function (prevProps, prevState) {
+    componentDidUpdate (prevProps, prevState) {
       ${1}
     }
     """
 
-  'React: componentWillMount: fn() { ... }':
+  'React: componentWillMount () { ... }':
     'prefix': 'cwm'
     'body': """
-    componentWillMount : function () {
+    componentWillMount () {
       ${1}
     }
     """
 
-  'React: componentWillReceiveProps: fn(np) { ... }':
+  'React: componentWillReceiveProps (np) { ... }':
     'prefix': 'cwr'
     'body': """
-    componentWillReceiveProps : function (nextProps) {
+    componentWillReceiveProps (nextProps) {
       ${1}
     }
     """
 
-  'React: componentWillUnmount: fn() { ... }':
+  'React: componentWillUnmount () { ... }':
     'prefix': 'cwun'
     'body': """
-    componentWillUnmount : function() {
+    componentWillUnmount () {
       ${1}
     }
     """
 
-  'React: componentWillUpdate: fn(np, ns) { ... }':
+  'React: componentWillUpdate (np, ns) { ... }':
     'prefix': 'cwu'
     'body': """
-    componentWillUpdate : function (nextProps, nextState) {
+    componentWillUpdate (nextProps, nextState) {
       ${1}
     }
     """
 
-  'React: cx({ ... })':
-    'prefix': 'cx'
+  'React: defaultProps { ... }':
+    'prefix': 'defprops'
     'body': """
-    cx({
-      $1 : $2
-    });
-    """
-
-  'React: forceUpdate(...)':
-    'prefix': 'fup'
-    'body': """
-    forceUpdate(${1:callback});
-    """
-
-  'React: getDefaultProps: fn() { return {...} } ':
-    'prefix': 'gdp'
-    'body': """
-    getDefaultProps : function () {
-      return {${1};
+    static defaultProps = {
+      ${1} : ${2}
     }
-    """
-
-  'React: getInitialState: fn() { return {...} } ':
-    'prefix': 'gis'
-    'body': """
-    getInitialState : function() {
-      return {
-        ${1} : ${2}
-      };
-    }
-    """
-
-  'React: isMounted()':
-    'prefix': 'ism'
-    'body': """
-    isMounted()
     """
 
   'React: propTypes { ... }':
     'prefix': 'pt'
     'body': """
-    propTypes: {
+    static propTypes = {
       ${1} : React.PropTypes.${2:string}
     }
     """
 
-  'React: render: fn() { return ... }':
+  'React: render () { return ... }':
     'prefix': 'ren'
     'body': """
-    render : function () {
+    render () {
       return (
-        ${1:<div />}
+        ${1}
       );
     }
     """
@@ -215,15 +204,15 @@
   'React: setState({ ... })':
     'prefix': 'sst'
     'body': """
-    setState({
+    this.setState({
       ${1} : ${2}
     });
     """
 
-  'React: shouldComponentUpdate: fn(np, ns) { ... }':
+  'React: shouldComponentUpdate (np, ns) { ... }':
     'prefix': 'scu'
     'body': """
-    shouldComponentUpdate : function (nextProps, nextState) {
+    shouldComponentUpdate (nextProps, nextState) {
       ${1}
     }
     """
@@ -243,7 +232,7 @@
   'React: render(component, container, [callback])':
     'prefix': 'rrc'
     'body': """
-    React.render(${1:<$2 />}, ${3:document.body}${4:, ${5:callback}})
+    React.render(${1:<$2 />}, ${3:document.body}${4:, ${5:callback}});
     """
 
 ########################
