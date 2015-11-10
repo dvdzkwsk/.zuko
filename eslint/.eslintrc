@@ -1,0 +1,63 @@
+{
+  "parser"  : "babel-eslint",
+  "plugins" : [
+    "react"
+  ],
+  "env" : {
+    "browser" : true,
+    "es6"     : true
+  },
+  "ecmaFeatures" : {
+    "classes" : true,
+    "jsx"     : true,
+    "modules" : true,
+    "experimentalObjectRestSpread" : true
+  },
+  "rules" : {
+    "comma-dangle"       : [2, "never"],
+    "key-spacing"        : 0,
+    "new-cap"            : 0,
+    "no-else-return"     : 0,
+    "no-trailing-spaces" : 0,
+    "prefer-const"       : 1,
+    "one-var"            : 0,
+    "padded-blocks"      : 0,
+    "no-var"             : 2,
+    "yoda"               : 0,
+    "space-before-function-paren" : [2, "always"],
+
+    "react/display-name"            : 0,
+    "react/jsx-boolean-value"       : 2,
+    "react/jsx-curly-spacing"       : 0,
+    "react/jsx-no-duplicate-props"  : 2,
+    "react/jsx-no-undef"            : 2,
+    "react/jsx-quotes"              : 2,
+    "react/jsx-sort-prop-types"     : 0,
+    "react/jsx-sort-props"          : 0,
+    "react/jsx-uses-react"          : 2,
+    "react/jsx-uses-vars"           : 2,
+    "react/no-danger"               : 0,
+    "react/no-did-mount-set-state"  : [2, "allow-in-func"],
+    "react/no-did-update-set-state" : 2,
+    "react/no-unknown-property"     : 2,
+    "react/prop-types"              : 2,
+    "react/react-in-jsx-scope"      : 2,
+    "react/require-extension"       : 0,
+    "react/self-closing-comp"       : 2,
+    "react/jsx-quotes"              : [2, "single"],
+    "react/sort-comp"               : [2, {
+      "order": [
+        "lifecycle",
+        "/^on.+$/",
+        "everything-else",
+        "render"
+      ],
+      "groups" : {
+        "rendering" : [
+          "/^render.+$/",
+          "render"
+        ]
+      }
+    }]
+  }
+}
