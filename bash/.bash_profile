@@ -18,10 +18,6 @@ export NODE_PATH="$NODE_PATH:$NODE_MODULES_PATH"
 ## Increase allowed open file limit
 ulimit -n 2000
 
-###### Ruby
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
 ###### functions
 function mcd {
   mkdir -p $1
