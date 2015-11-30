@@ -6,7 +6,7 @@ parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
-###### Node
+###### Node (based on an nvm install via Homebrew)
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
@@ -26,15 +26,6 @@ eval "$(rbenv init -)"
 function mcd {
   mkdir -p $1
   cd $1
-}
-
-function gitgb {
-  git clone git@bitbucket.org:gbase/$1
-  cd $1
-}
-
-function npmgb {
-  npm install $2 gstv-$1
 }
 
 ###### aliases
