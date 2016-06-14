@@ -2,6 +2,10 @@
 export PS1="zuko \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 
 ###### Git
+
+# Use https://github.com/github/hub
+eval "$(hub alias -s)"
+
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
@@ -24,17 +28,49 @@ function mcd {
   cd $1
 }
 
+function gcb() {
+  git rev-parse --abbrev-ref HEAD
+}
+
+function grb() {
+  git rebase $1
+}
+
+function grbi() {
+  git rebase -i $1
+}
+
+function gmb() {
+  if  [ "$#" = 1 ]; then
+    git rebase -i $(git merge-base $(gcb) $1)
+  else
+    git rebase -i $(git merge-base $1 $2)
+  fi
+}
+
+function mbr() {
+  git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative $1..$2
+}
+
+# ref: https://gist.github.com/dergachev/4627207
+function mkgif() {
+  ffmpeg -i $1 -s 600x400 -pix_fmt rgb24 -r 15 -f gif - | gifsicle --optimize=3 --delay=8 > $2
+}
+
 ###### aliases
+alias v="vim"
 alias ll="ls -la -Gfh"
 alias ls="ls -Gfh"
-alias npmclean="npm cache clean; rm ~/.npm/*.lock"
+alias http="python -m SimpleHTTPServer"
 
 ## git-specific
+alias gls="git branch -l"
 alias gco="git checkout"
 alias gup="git fetch; git pull"
 alias gcm="git commit -m "
 alias gall="git add --all"
-alias gcma="git add --all; git commit -m "
 alias gpo="git push origin "
 alias gcl="git clone "
 alias gst="git status"
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias gpr="git pull-request "
