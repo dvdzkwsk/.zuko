@@ -20,6 +20,11 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'pangloss/vim-javascript'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'junegunn/goyo.vim'
+Plugin 'junegunn/limelight.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'terryma/vim-multiple-cursors'
 
 " ==============================
 " General
@@ -40,6 +45,13 @@ set expandtab
 " ==============================
 " Toggle Nerdtree Open/Close
 map <C-n> :NERDTreeToggle<CR>
+
+" Multi cursor mappings
+let g:multi_cursor_use_default_mapping=0
+let g:multi_cursor_next_key='<C-d>'
+let g:multi_cursor_prev_key='<C-p>'
+let g:multi_cursor_skip_key='<C-x>'
+let g:multi_cursor_quit_key='<Esc>'
 
 " ==============================
 " End Vundle
@@ -71,3 +83,4 @@ colorscheme molokai
 " is enabled and that your terminal is configured to use a patched powerline
 " font for non-ascii characters. See: https://github.com/powerline/fonts
 let g:airline_powerline_fonts=1
+let g:vim_markdown_fenced_languages = ['js=javascript']
