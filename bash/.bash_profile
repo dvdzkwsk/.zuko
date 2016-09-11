@@ -1,3 +1,6 @@
+eval "$(rbenv init -)"
+RBENV_VERSION=2.3.1
+
 ###### Terminal Customization
 export PS1="zuko \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 
@@ -58,7 +61,8 @@ function mkgif() {
 }
 
 ###### aliases
-alias v="vim"
+alias c="code"
+alias v="nvim"
 alias vrc="v ~/.vimrc"
 alias brc="v ~/.bash_profile"
 alias brcs="source ~/.bash_profile"
@@ -77,6 +81,17 @@ alias gcl="git clone "
 alias gst="git status"
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gpr="git pull-request "
+alias gsu="git branch --set-upstream-to="
+alias grc="git rebase --continue"
+alias gbd="git branch -D "
+
+# https://github.com/morhetz/gruvbox/wiki/Terminal-specific
+source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 
 ####### External Configuration
-source ~/.bash_profile_ta
+source ~/.bash_private
+
+# Setting PATH for Python 3.5
+# The original version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
+export PATH
