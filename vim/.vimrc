@@ -107,7 +107,7 @@ filetype plugin indent on
 " =====================================
 " Theming
 " =====================================
-set background="dark"
+set background=light
 let use_solarized=1
 
 syntax enable
@@ -162,10 +162,10 @@ let g:paredit_mode=0
 " Rainbow Parentheses
 " -----------------------------
 let g:rainbow_active=1
-let lightcolors =  ['lightblue', 'lightyellow', 'red', 'darkgreen', 'darkyellow', 'lightred', 'yellow', 'cyan', 'magenta', 'white']
-let darkcolors = ['DarkBlue', 'Magenta', 'Black', 'Red', 'DarkGray', 'DarkGreen', 'DarkYellow']
+let rainbow_light =  ['lightblue', 'lightyellow', 'red', 'darkgreen', 'darkyellow', 'lightred', 'yellow', 'cyan', 'magenta', 'white']
+let rainbow_dark = ['DarkBlue', 'Magenta', 'Black', 'Red', 'DarkGray', 'DarkGreen', 'DarkYellow']
 let g:rainbow_conf = {
-\   'ctermfgs': (&background=="light"? darkcolors : lightcolors)
+\   'ctermfgs': (&background=='light' ? rainbow_dark : rainbow_light)
 \}
 
 " =====================================
