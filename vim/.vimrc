@@ -18,6 +18,7 @@ Plugin 'VundleVim/Vundle.vim'
 " File System
 " --------------------------
 Plugin 'scrooloose/nerdtree'
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " Theming
 " ---------------------------
@@ -51,18 +52,25 @@ endif
 
 " JavaScript
 " ---------------------------
-Plugin 'scrooloose/syntastic'
-Plugin 'pangloss/vim-javascript'
-Plugin 'othree/yajs.vim', { 'for': ['javascript', 'javascript.jsx'] }
-Plugin 'othree/es.next.syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
-Plugin 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
-Plugin 'othree/javascript-libraries-syntax.vim', { 'for': ['javascript', 'javascript.jsx'] }
-Plugin 'flowtype/vim-flow', { 'for': ['javascript', 'javascript.jsx'] }
+Plugin 'othree/yajs.vim'
+Plugin 'othree/es.next.syntax.vim'
+Plugin 'mxw/vim-jsx'
+Plugin 'othree/javascript-libraries-syntax.vim'
 
-" Lisp
+if has('nvim')
+  Plugin 'neomake/neomake'
+else
+  Plugin 'scrooloose/syntastic'
+endif
+
+" Clojure
 " ---------------------------
-Plugin 'guns/vim-sexp'
 Plugin 'luochen1990/rainbow'
+Plugin 'guns/vim-clojure-static'
+Plugin 'guns/vim-clojure-highlight'
+Plugin 'guns/vim-sexp'
+Plugin 'tpope/vim-fireplace'
+Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 
 " =====================================
 " General
@@ -99,35 +107,69 @@ filetype plugin indent on
 " =====================================
 " Theming
 " =====================================
+set background="dark"
+let use_solarized=1
+
 syntax enable
 set number
 set ruler
 set cursorline
 set laststatus=2 " https://github.com/vim-airline/vim-airline#configuration
-let g:rainbow_active=1
 
-" This is needed as a fallback when the terminal is not using
-" the solarized color scheme itself.
-" let g:solarized_termcolors=256
-colorscheme solarized
-set background=dark
-let g:airline_theme='solarized'
-
-" Color scheme override when I don't feel like using solarized
-" as my default terminal theme.
-"colorscheme gruvbox
-"set background=dark
-"let g:airline_theme='gruvbox'
-"let g:gruvbox_contrast_dark='medium'
-"let g:gruvbox_contrast_light='hard'
+if use_solarized
+  let g:solarized_contrast='high'
+  colorscheme solarized
+  let g:airline_theme='solarized'
+else
+  colorscheme gruvbox
+  let g:airline_theme='gruvbox'
+  let g:gruvbox_contrast_dark='medium'
+  let g:gruvbox_contrast_light='hard'
+endif
 
 " Fix arrows in airline status bar. If they are not working, make sure this
 " is enabled and that your terminal is configured to use a patched powerline
 " font for non-ascii characters. See: https://github.com/powerline/fonts
 let g:airline_powerline_fonts=1
+" let g:airline#extensions#tabline#enabled=1     " Enable the list of buffers
+" let g:airline#extensions#tabline#fnamemod=':t' " Show just the filename
 
 " =====================================
-" Autocomplete / Search
+" JavaScript
+" =====================================
+function! StrTrim(txt)
+  return substitute(a:txt, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
+endfunction
+
+let g:jsx_ext_required = 0
+let g:flow_path = StrTrim(system('PATH=$(npm bin):$PATH && which flow'))
+let g:flow#enable=0
+let g:flow#autoclose=1
+
+if has('nvim')
+  let g:deoplete#sources#flow#flow_bin = g:flow_path
+  let g:neomake_jsx_flow_exe = g:flow_path
+  let g:neomake_javascript_flow_exe = g:flow_path
+  let g:neomake_javascript_enabled_makers = ['eslint']
+  let g:neomake_jsx_enabled_makers = ['eslint']
+endif
+
+" =====================================
+" Clojure
+" =====================================
+let g:paredit_mode=0
+
+" Rainbow Parentheses
+" -----------------------------
+let g:rainbow_active=1
+let lightcolors =  ['lightblue', 'lightyellow', 'red', 'darkgreen', 'darkyellow', 'lightred', 'yellow', 'cyan', 'magenta', 'white']
+let darkcolors = ['DarkBlue', 'Magenta', 'Black', 'Red', 'DarkGray', 'DarkGreen', 'DarkYellow']
+let g:rainbow_conf = {
+\   'ctermfgs': (&background=="light"? darkcolors : lightcolors)
+\}
+
+" =====================================
+" Autocomplete + Search
 " =====================================
 nnoremap <C-T> :FZF<CR>
 inoremap <C-T> <ESC>:FZF<CR>i
@@ -135,13 +177,19 @@ inoremap <C-T> <ESC>:FZF<CR>i
 if has('nvim')
   let g:deoplete#enable_at_startup=1
   let g:SuperTabDefaultCompletionType="<c-n>"
+  let g:deoplete#enable_refresh_always=1
   let g:tern_request_timeout=1
   let g:tern_show_signature_in_pum=0
   set completeopt-=preview
-endif
 
-" =====================================
-" JavaScript
-" =====================================
-let g:flow#enable=0
-let g:flow#autoclose=1
+  let g:neomake_warning_sign = {
+  \ 'text': 'W',
+  \ 'texthl': 'WarningMsg',
+  \ }
+  let g:neomake_error_sign = {
+  \ 'text': 'E',
+  \ 'texthl': 'ErrorMsg',
+  \ }
+
+  autocmd! BufWritePost * Neomake
+endif
