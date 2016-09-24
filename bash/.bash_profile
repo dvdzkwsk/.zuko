@@ -2,7 +2,7 @@ eval "$(rbenv init -)"
 RBENV_VERSION=2.3.1
 
 ###### Terminal Customization
-export PS1="zuko \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
+export PS1="λ \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 
 ###### Git
 
