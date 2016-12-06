@@ -5,7 +5,6 @@ RBENV_VERSION=2.3.1
 export PS1="λ \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 
 ###### Git
-
 # Use https://github.com/github/hub
 eval "$(hub alias -s)"
 
@@ -43,6 +42,10 @@ function grbi() {
   git rebase -i $1
 }
 
+function gsu() {
+  git branch --set-upstream-to=$1
+}
+
 function gmb() {
   if  [ "$#" = 1 ]; then
     git rebase -i $(git merge-base $(gcb) $1)
@@ -61,16 +64,25 @@ function mkgif() {
 }
 
 ###### aliases
-alias c="code"
 alias v="nvim"
-alias vrc="v ~/.vimrc"
-alias brc="v ~/.bash_profile"
+alias c="nvim"
+alias ec="emacsclient"
+alias ecw="emacsclient -c -nw"
+alias ed="emacs --daemon"
+alias ekd="emacsclient -e '(kill-emacs)'"
+alias vrc="c ~/.vimrc"
+alias brc="c ~/.bash_profile"
 alias brcs="source ~/.bash_profile"
+alias erc="c ~/.spacemacs"
 alias ll="ls -la -Gfh"
 alias ls="ls -Gfh"
 alias http="python -m SimpleHTTPServer"
+alias size="stat -f%z"
 
 ## git-specific
+alias ga="git add"
+alias gm="git merge"
+alias gdf="git diff"
 alias gls="git branch -l"
 alias gco="git checkout"
 alias gup="git fetch; git pull"
@@ -81,12 +93,8 @@ alias gcl="git clone "
 alias gst="git status"
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gpr="git pull-request "
-alias gsu="git branch --set-upstream-to="
 alias grc="git rebase --continue"
 alias gbd="git branch -D "
-
-# https://github.com/morhetz/gruvbox/wiki/Terminal-specific
-source "$HOME/.vim/bundle/gruvbox/gruvbox_256palette.sh"
 
 ####### External Configuration
 source ~/.bash_private
