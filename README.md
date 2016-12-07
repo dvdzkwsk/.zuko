@@ -1,11 +1,3 @@
-Dev Environment
-===============
-Backs up personal configuration for development environment.
+## .zuko
 
-Includes
---------
-* Atom
-* Sublime
-  - Note: UI theme is Soda Dark. Only custom syntax theme is included.
-* Bash
-* NPM / NVM
+Settings for my personal development environment.
