@@ -65,9 +65,8 @@ function mkgif() {
 
 ###### aliases
 alias v="nvim"
-alias c="nvim"
-alias ec="emacsclient"
-alias ecw="emacsclient -c -nw"
+alias c="ec"
+alias ec="emacsclient -c -n"
 alias ed="emacs --daemon"
 alias ekd="emacsclient -e '(kill-emacs)'"
 alias vrc="c ~/.vimrc"
