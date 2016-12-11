@@ -18,27 +18,27 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
-     javascript
-     markdown
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ;; auto-completion
-     ;; better-defaults
+     auto-completion
+     better-defaults
      emacs-lisp
+     javascript
+     react
+     markdown
      git
      markdown
      org
      (ranger :variables
              ranger-show-preview t)
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
+     (shell :variables
+            shell-default-height 30
+            shell-default-position 'bottom)
      ;; spell-checking
      ;; syntax-checking
-     ;; version-control
      (version-control :variables
                       version-control-diff-tool 'git-gutter
                       version-control-global-margin t)
@@ -117,7 +117,7 @@ values."
                                :size 13
                                :weight normal
                                :width normal
-                               :powerline-scale 1.1)
+                               :powerline-scale 1.0) ;; previously 1.1
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
@@ -257,24 +257,27 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (defun set-indent (n)
-    (setq-local c-basic-offset n)
-    (setq-local javascript-indent-level n)
-    (setq-local js-indent-level n)
-    (setq-local js2-indent-level n)
-    (setq-local web-mode-markup-indent-level n)
-    (setq-local web-mode-css-indent-level n)
-    (setq-local web-mode-code-indent-level n)
-    (setq-local css-indent-offset n))
+    (setq c-basic-offset n)
+    (setq javascript-indent-level n)
+    (setq js-indent-level n)
+    (setq js2-basic-indent-level n)
+    (setq web-mode-indent-style n)
+    (setq web-mode-markup-indent-level n)
+    (setq web-mode-css-indent-level n)
+    (setq web-mode-code-indent-level n)
+    (setq css-indent-offset n))
+
 
   (defun personal-environment ()
     (interactive)
-    (message "My personal coding style")
-    ;; spaces instead of tabs
-    (setq-local indent-tabs-mode nil)
-    (set-indent 2))
+    (setq-local indent-tabs-mode nil) ;; spaces instead of tabs
+    (set-indent 2)
+    )
 
   (personal-environment)
-  (add-hook 'prog-mode-hook 'personal-environment)
+  (setq powerline-default-separator 'arrow)
+  ;; (setq ns-use-srgb-colorspace nil)
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -323,7 +326,7 @@ you should place your code here."
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (ranger git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter diff-hl smeargle orgit org-projectile org-present org org-pomodoro alert log4e gntp org-download magit-gitflow htmlize helm-gitignore gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit with-editor dash zenburn-theme monokai-theme solarized-theme web-beautify tern livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline restart-emacs request rainbow-delimiters quelpa popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text mmm-mode markdown-toc macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio gh-md flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+    (xterm-color shell-pop mwim multi-term helm-company helm-c-yasnippet eshell-z eshell-prompt-extras esh-help company-web web-completion-data company-tern dash-functional company-statistics company auto-yasnippet ac-ispell auto-complete web-mode tagedit slim-mode scss-mode sass-mode pug-mode less-css-mode helm-css-scss haml-mode emmet-mode ranger git-gutter-fringe+ git-gutter-fringe fringe-helper git-gutter+ git-gutter diff-hl smeargle orgit org-projectile org-present org org-pomodoro alert log4e gntp org-download magit-gitflow htmlize helm-gitignore gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link evil-magit magit magit-popup git-commit with-editor dash zenburn-theme monokai-theme solarized-theme web-beautify tern livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor yasnippet multiple-cursors js2-mode js-doc coffee-mode ws-butler window-numbering which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spacemacs-theme spaceline restart-emacs request rainbow-delimiters quelpa popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text mmm-mode markdown-toc macrostep lorem-ipsum linum-relative link-hint info+ indent-guide ido-vertical-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio gh-md flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
  '(pos-tip-background-color "#A6E22E")
  '(pos-tip-foreground-color "#272822")
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#073642" 0.2))
