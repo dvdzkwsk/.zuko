@@ -117,7 +117,7 @@ values."
                                :size 13
                                :weight normal
                                :width normal
-                               :powerline-scale 1.0) ;; previously 1.1
+                               :powerline-scale 1.1) ;; previously 1.1
    ;; The leader key
    dotspacemacs-leader-key "SPC"
    ;; The leader key accessible in `emacs state' and `insert state'
@@ -258,26 +258,27 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   (defun set-indent (n)
     (setq c-basic-offset n)
-    (setq javascript-indent-level n)
-    (setq js-indent-level n)
-    (setq js2-basic-indent-level n)
-    (setq web-mode-indent-style n)
-    (setq web-mode-markup-indent-level n)
-    (setq web-mode-css-indent-level n)
-    (setq web-mode-code-indent-level n)
     (setq css-indent-offset n))
-
 
   (defun personal-environment ()
     (interactive)
     (setq-local indent-tabs-mode nil) ;; spaces instead of tabs
+    ;; TODO(zuko): setq-default means the variable affects all buffers,
+    ;; not just the one in which it was activated. These should be
+    ;; setq with hooks for the appropriate modes.
+    (setq-default
+      js2-basic-offset 2
+      css-indent-offset 2
+      web-mode-markup-indent-offset 2
+      web-mode-css-indent-offset 2
+      web-mode-code-indent-offset 2
+      web-mode-attr-indent-offset 2)
     (set-indent 2)
     )
 
   (personal-environment)
   (setq powerline-default-separator 'arrow)
   ;; (setq ns-use-srgb-colorspace nil)
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . react-mode))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

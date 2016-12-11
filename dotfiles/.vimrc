@@ -46,7 +46,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'othree/es.next.syntax.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 
-" Lisp
+" (Lisp))))))))))
 " ---------------------------
 Plug 'guns/vim-clojure-static'
 Plug 'guns/vim-clojure-highlight'
