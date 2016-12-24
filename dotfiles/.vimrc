@@ -66,6 +66,7 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
+set modeline
 
 let g:multi_cursor_use_default_mapping=0
 let g:multi_cursor_next_key='<C-d>'
