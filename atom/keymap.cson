@@ -1,6 +1,0 @@
-# Keybindings for a Windows keyboard on Mac
-'atom-workspace atom-text-editor:not([mini])':
-  'cmd-shift-up': 'editor:add-selection-above'
-  'cmd-shift-down': 'editor:add-selection-below'
-  'cmd-ctrl-up': 'editor:move-line-up'
-  'cmd-ctrl-down': 'editor:move-line-down'
