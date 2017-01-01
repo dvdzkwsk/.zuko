@@ -1,5 +1,7 @@
 # vim: foldmethod=marker foldmarker=(((,)))
 
+set -o vi
+
 # File System (((
 ulimit -n 2000 # Increase allowed open file limit
 #)))
@@ -71,13 +73,13 @@ function mbr() {
 
 # Aliases (((
 alias v="nvim"
-alias c="ec"
+alias c="v"
 alias ec="emacsclient -c -n"
 alias ed="emacs --daemon"
 alias ekd="emacsclient -e '(kill-emacs)'"
 alias vrc="c ~/.vimrc"
-alias brc="c ~/.bash_profile"
-alias brcs="source ~/.bash_profile"
+alias brc="c ~/.bashrc"
+alias brcs="source ~/.bashrc"
 alias erc="c ~/.spacemacs"
 alias ll="ls -la -Gfh"
 alias ls="ls -Gfh"
@@ -90,12 +92,14 @@ alias gls="git branch -l"
 alias gco="git checkout"
 alias gup="git fetch; git pull"
 alias gcm="git commit -m "
+alias gad="git add -p"
 alias gall="git add --all"
 alias gpo="git push origin "
 alias gcl="git clone "
 alias gst="git status"
 alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 alias gpr="git pull-request "
+alias gr="git rebase "
 alias grc="git rebase --continue"
 alias gbd="git branch -D "
 #)))
