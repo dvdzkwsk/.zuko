@@ -11,7 +11,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 call plug#begin('~/.vim/plugged')
 
-" Editor Basics {{{
+" Core {{{
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'tpope/vim-commentary'
@@ -26,6 +26,7 @@ Plug 'godlygeek/tabular'
 Plug 'flazz/vim-colorschemes'
 Plug 'jnurmine/Zenburn'
 Plug 'zeis/vim-kolor'
+Plug 'w0ng/vim-hybrid'
 "}}}
 
 " Git {{{
@@ -59,7 +60,7 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
 call plug#end()
 "}}}
 
-" Editor Basics {{{
+" Core Settings {{{
 filetype plugin indent on
 set nohls
 set ttimeoutlen=50
@@ -72,6 +73,7 @@ set number
 set ruler
 set cursorline
 set laststatus=2 " https://github.com/vim-airline/vim-airline#configuration
+let g:airline_powerline_fonts=1
 
 let g:multi_cursor_use_default_mapping=0
 let g:multi_cursor_next_key='<C-d>'
@@ -101,16 +103,29 @@ nnoremap <C-T> :FZF<CR>
 inoremap <C-T> <ESC>:FZF<CR>i
 "}}}
 
-" Themes {{{
+" Theming {{{
 set t_Co=256
 syntax enable
 set background=dark
-let g:solarized_contrast='high'
-" color zenburn
+
+" TODO: figure out how to wrap these in a single function so that
+" I can easily toggle themes.
+" Solarized {{{
+" set background=dark
+" let g:solarized_contrast='high'
 " colorscheme solarized
 " let g:airline_theme='solarized'
-colorscheme kolor
-let g:airline_powerline_fonts=1
+"}}}
+
+" Kolor {{{
+" set background=dark
+" colorscheme kolor
+"}}}
+"
+" Hybrid {{{
+set background=dark
+colorscheme hybrid
+"}}}
 "}}}
 
 " JavaScript {{{
