@@ -17,15 +17,13 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'godlygeek/tabular'
 "}}}
 
-" Theming {{{
+" Themes {{{
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'godlygeek/tabular'
 Plug 'flazz/vim-colorschemes'
-Plug 'jnurmine/Zenburn'
-Plug 'zeis/vim-kolor'
 Plug 'w0ng/vim-hybrid'
 "}}}
 
@@ -76,17 +74,11 @@ set laststatus=2 " https://github.com/vim-airline/vim-airline#configuration
 set inccommand=nosplit
 let g:airline_powerline_fonts=1
 
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_next_key='<C-d>'
-let g:multi_cursor_prev_key='<C-p>'
-let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<Esc>'
-
 let g:paredit_mode=0
 let g:rainbow_active=1
 let rainbow_light =  ['lightblue', 'lightyellow', 'red', 'darkgreen', 'darkyellow', 'lightred', 'yellow', 'cyan', 'magenta', 'white']
 let rainbow_dark = ['DarkBlue', 'Magenta', 'Black', 'Red', 'DarkGray', 'DarkGreen', 'DarkYellow']
-" TODO(zuko): switch this durring SetTheme
+" TODO(zuko): switch this during SetTheme
 let g:rainbow_conf = {
 \   'ctermfgs': (&background=='light' ? rainbow_dark : rainbow_light)
 \}
@@ -120,8 +112,6 @@ function! SetTheme(theme, light)
     let g:solarized_contrast='high'
     colorscheme solarized
     let g:airline_theme='solarized'
-  elseif a:theme == "kolor"
-    colorscheme kolor
   elseif a:theme == "hybrid"
     colorscheme hybrid
   endif
