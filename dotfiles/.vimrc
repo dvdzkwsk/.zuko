@@ -69,10 +69,11 @@ set softtabstop=2
 set shiftwidth=2
 set expandtab
 set modeline
-set number
+set relativenumber
 set ruler
 set cursorline
 set laststatus=2 " https://github.com/vim-airline/vim-airline#configuration
+set inccommand=nosplit
 let g:airline_powerline_fonts=1
 
 let g:multi_cursor_use_default_mapping=0
@@ -85,6 +86,7 @@ let g:paredit_mode=0
 let g:rainbow_active=1
 let rainbow_light =  ['lightblue', 'lightyellow', 'red', 'darkgreen', 'darkyellow', 'lightred', 'yellow', 'cyan', 'magenta', 'white']
 let rainbow_dark = ['DarkBlue', 'Magenta', 'Black', 'Red', 'DarkGray', 'DarkGreen', 'DarkYellow']
+" TODO(zuko): switch this durring SetTheme
 let g:rainbow_conf = {
 \   'ctermfgs': (&background=='light' ? rainbow_dark : rainbow_light)
 \}
@@ -106,37 +108,24 @@ inoremap <C-T> <ESC>:FZF<CR>i
 " Theming {{{
 set t_Co=256
 syntax enable
-set background=dark
 
-" TODO: figure out how to wrap these in a single function so that
-" I can easily toggle themes.
-" Solarized {{{
-" set background=dark
-" let g:solarized_contrast='high'
-" colorscheme solarized
-" let g:airline_theme='solarized'
-"}}}
-
-" Kolor {{{
-" set background=dark
-" colorscheme kolor
-"}}}
-"
-" Hybrid {{{
-set background=dark
-colorscheme hybrid
-"}}}
-"}}}
-
-" JavaScript {{{
-function! StrTrim(txt)
-  return substitute(a:txt, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
+" ugh...
+function! SetTheme(theme, light)
+  if a:light
+    set background=light
+  else
+    set background=dark
+  endif
+  if a:theme == "solarized"
+    let g:solarized_contrast='high'
+    colorscheme solarized
+    let g:airline_theme='solarized'
+  elseif a:theme == "kolor"
+    colorscheme kolor
+  elseif a:theme == "hybrid"
+    colorscheme hybrid
+  endif
 endfunction
 
-let g:jsx_ext_required=0
-
-if has('nvim')
-  let g:neomake_javascript_enabled_makers = ['eslint']
-  let g:neomake_jsx_enabled_makers = ['eslint']
-endif
+:call SetTheme('hybrid', 0)
 "}}}
