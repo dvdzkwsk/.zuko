@@ -21,6 +21,9 @@ Plug 'tpope/vim-unimpaired'
 Plug 'godlygeek/tabular'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'benmills/vimux'
+Plug 'luochen1990/rainbow'
 "}}}
 
 " Themes {{{
@@ -56,32 +59,52 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
 call plug#end()
 "}}}
 
-" Core Settings {{{
+" Editor Basics {{{
 filetype plugin indent on
-set relativenumber
 set ttimeoutlen=50
+
+" Use both `number` and `relativenumber` for hybrid mode, where
+" the current line shows the actual line number, and all others
+" are relative to the current line.
+set number
+set relativenumber
+
+" Show that leader has been pressed and we are typing a command
+set showcmd
+
+" Convert tabs to spaces
+set expandtab
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
-set expandtab
+
+" Ignore case when searching, except when search starts with a capital letter.
+set ignorecase
+set smartcase
+set hlsearch
+
+" Airline
 set modeline
 set ruler
 set cursorline
 set laststatus=2 " https://github.com/vim-airline/vim-airline#configuration
 set incsearch
-set ignorecase
-set smartcase
-set hlsearch
 
 " Always copy to system clipboard with yank/delete
 if has('clipboard')
   set clipboard=unnamedplus
 endif
 
+" Display line length guide
+set textwidth=80
+if exists('+colorcolumn')
+  set colorcolumn=+0
+endif
+
 if has('nvim')
   let g:deoplete#enable_at_startup=1
-  let g:SuperTabDefaultCompletionType="<c-n>"
   let g:deoplete#enable_refresh_always=1
+  let g:SuperTabDefaultCompletionType="<c-n>"
   let g:tern_request_timeout=1
   let g:tern_show_signature_in_pum=0
   set completeopt-=preview
@@ -89,9 +112,12 @@ endif
 "}}}
 
 " Mappings {{{
+" Space(macs) as my leader. Keep \ as the leader and map space to that key.
+" Prefer this method over mapping space directly to the leader, so that there
+" is a visual indicator when a command is being entered.
 nnoremap <Space> <Nop>
 let mapleader='\'
-map <Space> <Leader>
+nmap <Space> <Leader>
 
 " http://statico.github.io/vim.html
 " Move up/down through visual lines, not logical lines
@@ -101,9 +127,17 @@ nnoremap <Up> g<Up>
 nnoremap <Down> g<Down>
 
 nmap \h :nohlsearch<CR>
+nnoremap <Leader>w :w<CR>
 nnoremap <Leader>pt :NERDTreeToggle<CR>
-nnoremap <C-T> :FZF<CR>
 nnoremap <Leader>ff :FZF<CR>
+nnoremap <Leader>gc :Gcommit<CR>
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gl :Glog<CR>
+map <Leader>rt :call VimuxRunCommand("clear; echo hello")<CR>
+map <Leader>rq :VimuxCloseRunner<CR>
+map <Leader>rc :VimuxInterruptRunner<CR>
+map <Leader>ri :VimuxInspectRunner<CR>
+map <Leader>rz :call VimuxZoomRunner()<CR>
 "}}}
 
 " Theming {{{
