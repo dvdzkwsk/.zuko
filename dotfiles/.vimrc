@@ -17,7 +17,10 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 Plug 'godlygeek/tabular'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 "}}}
 
 " Themes {{{
@@ -25,11 +28,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'flazz/vim-colorschemes'
 Plug 'w0ng/vim-hybrid'
-"}}}
-
-" Git {{{
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
 "}}}
 
 " Autocomplete {{{
@@ -60,28 +58,25 @@ call plug#end()
 
 " Core Settings {{{
 filetype plugin indent on
-set nohls
+set relativenumber
 set ttimeoutlen=50
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set expandtab
 set modeline
-set relativenumber
 set ruler
 set cursorline
 set laststatus=2 " https://github.com/vim-airline/vim-airline#configuration
-set inccommand=nosplit
-let g:airline_powerline_fonts=1
+set incsearch
+set ignorecase
+set smartcase
+set hlsearch
 
-let g:paredit_mode=0
-let g:rainbow_active=1
-let rainbow_light =  ['lightblue', 'lightyellow', 'red', 'darkgreen', 'darkyellow', 'lightred', 'yellow', 'cyan', 'magenta', 'white']
-let rainbow_dark = ['DarkBlue', 'Magenta', 'Black', 'Red', 'DarkGray', 'DarkGreen', 'DarkYellow']
-" TODO(zuko): switch this during SetTheme
-let g:rainbow_conf = {
-\   'ctermfgs': (&background=='light' ? rainbow_dark : rainbow_light)
-\}
+" Always copy to system clipboard with yank/delete
+if has('clipboard')
+  set clipboard=unnamedplus
+endif
 
 if has('nvim')
   let g:deoplete#enable_at_startup=1
@@ -91,23 +86,38 @@ if has('nvim')
   let g:tern_show_signature_in_pum=0
   set completeopt-=preview
 endif
+"}}}
 
-map <C-n> :NERDTreeToggle<CR>
+" Mappings {{{
+let mapleader=" "
+
+" http://statico.github.io/vim.html
+" Move up/down through visual lines, not logical lines
+nnoremap k gk
+nnoremap j gj
+nnoremap <Up> g<Up>
+nnoremap <Down> g<Down>
+
+nmap \q :nohlsearch<CR>
+nnoremap <Leader>pt :NERDTreeToggle<CR>
 nnoremap <C-T> :FZF<CR>
-inoremap <C-T> <ESC>:FZF<CR>i
+nnoremap <Leader>ff :FZF<CR>
 "}}}
 
 " Theming {{{
 set t_Co=256
 syntax enable
+let g:airline_powerline_fonts=1
+let g:rainbow_active=1
 
-" ugh...
+" Somebody teach me vimscript...
 function! SetTheme(theme, light)
   if a:light
     set background=light
   else
     set background=dark
   endif
+  let g:airline_theme='bubblegum'
   if a:theme == "solarized"
     let g:solarized_contrast='high'
     colorscheme solarized
@@ -115,6 +125,13 @@ function! SetTheme(theme, light)
   elseif a:theme == "hybrid"
     colorscheme hybrid
   endif
+
+  " Adjust rainbow parens color based on theme
+  let rainbow_light = ['lightblue', 'lightyellow', 'red', 'darkgreen', 'darkyellow', 'lightred', 'yellow', 'cyan', 'magenta', 'white']
+  let rainbow_dark = ['DarkBlue', 'Magenta', 'Black', 'Red', 'DarkGray', 'DarkGreen', 'DarkYellow']
+  let g:rainbow_conf = {
+  \   'ctermfgs': (&background=='light' ? rainbow_dark : rainbow_light)
+  \}
 endfunction
 
 :call SetTheme('hybrid', 0)
