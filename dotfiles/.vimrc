@@ -89,7 +89,9 @@ endif
 "}}}
 
 " Mappings {{{
-let mapleader=" "
+nnoremap <Space> <Nop>
+let mapleader='\'
+map <Space> <Leader>
 
 " http://statico.github.io/vim.html
 " Move up/down through visual lines, not logical lines
@@ -98,7 +100,7 @@ nnoremap j gj
 nnoremap <Up> g<Up>
 nnoremap <Down> g<Down>
 
-nmap \q :nohlsearch<CR>
+nmap \h :nohlsearch<CR>
 nnoremap <Leader>pt :NERDTreeToggle<CR>
 nnoremap <C-T> :FZF<CR>
 nnoremap <Leader>ff :FZF<CR>
