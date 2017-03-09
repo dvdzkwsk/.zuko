@@ -147,12 +147,8 @@ let g:airline_powerline_fonts=1
 let g:rainbow_active=1
 
 " Somebody teach me vimscript...
-function! SetTheme(theme, light)
-  if a:light
-    set background=light
-  else
-    set background=dark
-  endif
+function! SetTheme(theme, background)
+  set background=dark
   let g:airline_theme='bubblegum'
   if a:theme == "solarized"
     let g:solarized_contrast='high'
