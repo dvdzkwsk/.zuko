@@ -62,6 +62,7 @@ call plug#end()
 " Editor Basics {{{
 filetype plugin indent on
 set ttimeoutlen=50
+set noswapfile
 
 " Use both `number` and `relativenumber` for hybrid mode, where
 " the current line shows the actual line number, and all others
@@ -127,17 +128,27 @@ nnoremap <Up> g<Up>
 nnoremap <Down> g<Down>
 
 nmap \h :nohlsearch<CR>
-nnoremap <Leader>w :w<CR>
-nnoremap <Leader>pt :NERDTreeToggle<CR>
+
+" Mnemonic Commands {{{
+" Filesystem
 nnoremap <Leader>ff :FZF<CR>
+
+" Project
+nnoremap <Leader>pt :NERDTreeToggle<CR>
+
+" Git
+nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gl :Glog<CR>
+
+" Tmux / Vimux
 map <Leader>rt :call VimuxRunCommand("clear; echo hello")<CR>
 map <Leader>rq :VimuxCloseRunner<CR>
 map <Leader>rc :VimuxInterruptRunner<CR>
 map <Leader>ri :VimuxInspectRunner<CR>
 map <Leader>rz :call VimuxZoomRunner()<CR>
+"}}}
 "}}}
 
 " Theming {{{
