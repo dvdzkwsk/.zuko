@@ -115,6 +115,8 @@ alias gpr="git pull-request "
 alias gr="git rebase "
 alias grc="git rebase --continue"
 alias gbd="git branch -D "
+alias ghide="git update-index --assume-unchanged "
+alias ghidels="git ls-files -v | grep -e \"^[hsmrck]\""
 #)))
 
 # Externals (((
