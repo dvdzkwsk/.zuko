@@ -24,6 +24,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'benmills/vimux'
 Plug 'luochen1990/rainbow'
+Plug 'ervandew/supertab'
 "}}}
 
 " Themes {{{
@@ -93,7 +94,7 @@ set incsearch
 
 " Always copy to system clipboard with yank/delete
 if has('clipboard')
-  set clipboard=unnamedplus
+  " set clipboard=unnamedplus
 endif
 
 " Display line length guide
