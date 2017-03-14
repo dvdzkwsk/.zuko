@@ -3,6 +3,8 @@
 " Plugins {{{
 set nocompatible
 filetype off
+
+" Plugin Manager {{{
 " Automatically install vim-plug if it does not exist
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -10,6 +12,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 call plug#begin('~/.vim/plugged')
+"}}}
 
 " Core {{{
 Plug 'scrooloose/nerdtree'
@@ -98,7 +101,6 @@ if has('clipboard')
 endif
 
 " Display line length guide
-set textwidth=80
 if exists('+colorcolumn')
   set colorcolumn=+0
 endif
@@ -150,16 +152,24 @@ map <Leader>rc :VimuxInterruptRunner<CR>
 map <Leader>ri :VimuxInspectRunner<CR>
 map <Leader>rz :call VimuxZoomRunner()<CR>
 "}}}
+
+" Window
+map <Leader>ws :split<CR>
+map <Leader>wv :vsplit<CR>
+map <Leader>w<Left> <C-W><C-H>
+map <Leader>w<Up> <C-W><C-J>
+map <Leader>w<Down> <C-W><C-K>
+map <Leader>w<Right> <C-W><C-L>
+"}}}
 "}}}
 
 " Theming {{{
-set t_Co=256
 syntax enable
 let g:airline_powerline_fonts=1
 let g:rainbow_active=1
 
 " Somebody teach me vimscript...
-function! SetTheme(theme, background)
+function! SetTheme(theme)
   set background=dark
   let g:airline_theme='bubblegum'
   if a:theme == "solarized"
@@ -178,5 +188,5 @@ function! SetTheme(theme, background)
   \}
 endfunction
 
-:call SetTheme('hybrid', 0)
+:call SetTheme('hybrid')
 "}}}
