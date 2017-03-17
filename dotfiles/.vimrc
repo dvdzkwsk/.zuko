@@ -136,7 +136,8 @@ nnoremap <Up> g<Up>
 nnoremap <Down> g<Down>
 
 " Clear higlights on escape
-nnoremap <esc> :noh<return><esc>
+nnoremap <esc> :nohlsearch<return><esc>
+nnoremap <esc>^[ <esc>^[
 
 " Mnemonic Commands {{{
 " Filesystem
