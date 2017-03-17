@@ -135,7 +135,7 @@ nnoremap j gj
 nnoremap <Up> g<Up>
 nnoremap <Down> g<Down>
 
-" Clear higlights on escape
+" Clear search highlights on ESC
 nnoremap <esc> :nohlsearch<return><esc>
 nnoremap <esc>^[ <esc>^[
 
