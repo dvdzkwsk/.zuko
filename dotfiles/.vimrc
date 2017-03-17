@@ -25,9 +25,9 @@ Plug 'godlygeek/tabular'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'benmills/vimux'
-Plug 'luochen1990/rainbow'
 Plug 'ervandew/supertab'
+Plug 'luochen1990/rainbow'
+Plug 'benmills/vimux'
 "}}}
 
 " Themes {{{
@@ -63,9 +63,11 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
 call plug#end()
 "}}}
 
-" Editor Basics {{{
+" Core Settings {{{
 filetype plugin indent on
 set ttimeoutlen=50
+
+" Don't create swap files
 set noswapfile
 
 " Use both `number` and `relativenumber` for hybrid mode, where
@@ -79,11 +81,24 @@ set showcmd
 
 " Convert tabs to spaces
 set expandtab
+
+" Set global tab width to 2
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 
-" Ignore case when searching, except when search starts with a capital letter.
+" Enable visual wrapping, but disable physical wrapping (where line breaks
+" are automatically inserted)
+set wrap
+set textwidth=0
+set wrapmargin=0
+
+" Display line length guide
+if exists('+colorcolumn')
+  set colorcolumn=80
+endif
+
+" Ignore case when searching, except when search starts with a capital letter
 set ignorecase
 set smartcase
 set hlsearch
@@ -97,12 +112,7 @@ set incsearch
 
 " Always copy to system clipboard with yank/delete
 if has('clipboard')
-  " set clipboard=unnamedplus
-endif
-
-" Display line length guide
-if exists('+colorcolumn')
-  set colorcolumn=+0
+  set clipboard=unnamedplus
 endif
 
 if has('nvim')
@@ -113,6 +123,9 @@ if has('nvim')
   let g:tern_show_signature_in_pum=0
   set completeopt-=preview
 endif
+
+" Remove trailing whitespace on save
+autocmd BufWritePre * %s/\s\+$//e
 "}}}
 
 " Mappings {{{
@@ -130,7 +143,8 @@ nnoremap j gj
 nnoremap <Up> g<Up>
 nnoremap <Down> g<Down>
 
-nmap \h :nohlsearch<CR>
+" Clear higlights on escape
+nnoremap <esc> :noh<return><esc>
 
 " Mnemonic Commands {{{
 " Filesystem
@@ -145,13 +159,22 @@ nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gl :Glog<CR>
 
-" Tmux / Vimux
-map <Leader>rt :call VimuxRunCommand("clear; echo hello")<CR>
-map <Leader>rq :VimuxCloseRunner<CR>
-map <Leader>rc :VimuxInterruptRunner<CR>
-map <Leader>ri :VimuxInspectRunner<CR>
-map <Leader>rz :call VimuxZoomRunner()<CR>
-"}}}
+" Vimux
+function! VimuxOpenREPL()
+  call VimuxOpenRunner()
+  call VimuxSendText("node")
+  call VimuxSendKeys("Enter")
+endfunction
+
+function! VimuxSlime()
+  call VimuxSendText(@v)
+  call VimuxSendKeys("Enter")
+endfunction
+
+vnoremap <Space> <NOP>
+nnoremap <Leader>vo :call VimuxOpenREPL()<CR>
+vnoremap <Space>vr "vy:call VimuxSlime()<CR>
+nnoremap <Leader>vr vip"vy:call VimuxSlime()<CR>
 
 " Window
 map <Leader>ws :split<CR>
