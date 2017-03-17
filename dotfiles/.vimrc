@@ -52,14 +52,6 @@ Plug 'othree/es.next.syntax.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
 "}}}
 
-" ((Lisp)))) {{{
-Plug 'guns/vim-clojure-static'
-Plug 'guns/vim-clojure-highlight'
-Plug 'guns/vim-sexp'
-Plug 'tpope/vim-fireplace'
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
-"}}}
-
 call plug#end()
 "}}}
 
