@@ -125,8 +125,10 @@ autocmd BufWritePre * %s/\s\+$//e
 " Prefer this method over mapping space directly to the leader, so that there
 " is a visual indicator when a command is being entered.
 nnoremap <Space> <Nop>
+vnoremap <Space> <NOP>
 let mapleader='\'
 nmap <Space> <Leader>
+vmap <Space> <Leader>
 
 " http://statico.github.io/vim.html
 " Move up/down through visual lines, not logical lines
@@ -140,6 +142,14 @@ nnoremap <esc> :nohlsearch<return><esc>
 nnoremap <esc>^[ <esc>^[
 
 " Mnemonic Commands {{{
+" Alignment
+if exists(":Tabularize")
+  nmap <Leader>a= :Tabularize /=<CR>
+  vmap <Leader>a= :Tabularize /=<CR>
+  nmap <Leader>a: :Tabularize /:zs<CR>
+  vmap <Leader>a: :Tabularize /:zs<CR>
+endif
+
 " Filesystem
 nnoremap <Leader>ff :FZF<CR>
 
@@ -164,9 +174,8 @@ function! VimuxSlime()
   call VimuxSendKeys("Enter")
 endfunction
 
-vnoremap <Space> <NOP>
 nnoremap <Leader>vo :call VimuxOpenREPL()<CR>
-vnoremap <Space>vr "vy:call VimuxSlime()<CR>
+vnoremap <Leader>vr "vy:call VimuxSlime()<CR>
 nnoremap <Leader>vr vip"vy:call VimuxSlime()<CR>
 
 " Window
@@ -204,5 +213,5 @@ function! SetTheme(theme)
   \}
 endfunction
 
-:call SetTheme('hybrid')
+:call SetTheme('solarized')
 "}}}
