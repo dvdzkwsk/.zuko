@@ -1,29 +1,17 @@
 # vim: foldmethod=marker foldmarker=(((,)))
 set -o vi
 
-if [ "$DEBUG" == 'true' ]; then
-  set -x
-else
-  set +x
-fi
-
-# Terminal Prompt (((
+# Core (((
+ulimit -n 2000 # Increase allowed open file limit
 eval "$(hub alias -s)"
-parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-}
+#)))
 
+# Prompt (((
 prompt_git() {
   local s='';
   local branchName='';
-
-  # Check if the current directory is in a Git repository.
   if [ $(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == '0' ]; then
-
-    # check if the current directory is in .git before running git checks
     if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == 'false' ]; then
-
-      # Ensure the index is up to date.
       git update-index --really-refresh -q &>/dev/null;
 
       # Check for uncommitted changes in the index.
@@ -45,18 +33,12 @@ prompt_git() {
       if $(git rev-parse --verify refs/stash &>/dev/null); then
         s+='$';
       fi;
-
     fi;
-
-    # Get the short symbolic ref.
-    # If HEAD isn’t a symbolic ref, get the short SHA for the latest commit
-    # Otherwise, just give up.
     branchName="$(git symbolic-ref --quiet --short HEAD 2> /dev/null || \
       git rev-parse --short HEAD 2> /dev/null || \
       echo '(unknown)')";
 
     [ -n "${s}" ] && s=" [${s}]";
-
     echo -e "${1}${branchName}${2}${s}";
   else
     return;
@@ -100,23 +82,16 @@ PS1+="\[${cyan}\]\w"; # working directory full path
 
 # Highlight the hostname when connected via SSH.
 if [[ "${SSH_TTY}" ]]; then
-  hostStyle="${bold}${red}";
-  PS1+="\[${white}\] in \[${hostStyle}\]\h"; # host
-else
-  hostStyle="${yellow}";
+  PS1+="\[${white}\] in \[${bold}${red}\]\h"; # host
 fi;
+
 PS1+="\$(prompt_git \"\[${white}\] on \[${green}\]\" \"\[${yellow}\]\")"; # Git repository details
-PS1+="\n";
-PS1+="\[${red}\]λ \[${reset}\]"; # `$` (and reset color)
+PS1+="\n\[${orange}\]λ \[${reset}\]"; # `$` (and reset color)
 export PS1;
 
 PS2="\[${yellow}\]→ \[${reset}\]";
 export PS2;
 # export PS1="λ \W\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
-#)))
-
-# File System (((
-ulimit -n 2000 # Increase allowed open file limit
 #)))
 
 # Functions (((
@@ -164,6 +139,11 @@ function mbr() {
 }
 #)))
 
+# Path (((
+pathadd "/Library/Frameworks/Python.framework/Versions/3.5/bin"
+pathadd "/Applications/Racket v6.5/bin"
+#)))
+
 # Node (((
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
@@ -177,11 +157,6 @@ export NODE_PATH="$NODE_PATH:$NODE_MODULES_PATH"
 # Freaking Ruby (((
 eval "$(rbenv init -)"
 RBENV_VERSION=2.3.1
-#)))
-
-# Path (((
-pathadd "/Library/Frameworks/Python.framework/Versions/3.5/bin"
-pathadd "/Applications/Racket v6.5/bin"
 #)))
 
 # Aliases (((
