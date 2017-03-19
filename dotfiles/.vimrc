@@ -59,7 +59,7 @@ call plug#end()
 filetype plugin indent on
 set ttimeoutlen=50
 
-" Don't create swap files
+" Don't create swap files. I'm not hardcore enough, yet, apparently.
 set noswapfile
 
 " Use both `number` and `relativenumber` for hybrid mode, where
@@ -68,13 +68,11 @@ set noswapfile
 set number
 set relativenumber
 
-" Show that leader has been pressed and we are typing a command
+" Show that the leader key has been pressed when we are entering a command
 set showcmd
 
-" Convert tabs to spaces
+" Convert tabs to spaces, and set global tab width to 2
 set expandtab
-
-" Set global tab width to 2
 set tabstop=2
 set softtabstop=2
 set shiftwidth=2
@@ -85,6 +83,9 @@ set wrap
 set textwidth=0
 set wrapmargin=0
 
+" Highlight the currently selected line
+set cursorline
+
 " Display line length guide
 if exists('+colorcolumn')
   set colorcolumn=80
@@ -93,14 +94,15 @@ endif
 " Ignore case when searching, except when search starts with a capital letter
 set ignorecase
 set smartcase
-set hlsearch
 
-" Airline
+" Incrementally highlight text matching search in realtime
+set hlsearch
+set incsearch
+
+" Airline Status Bar
 set modeline
 set ruler
-set cursorline
-set laststatus=2 " https://github.com/vim-airline/vim-airline#configuration
-set incsearch
+set laststatus=2
 
 " Always copy to system clipboard with yank/delete
 if has('clipboard')
