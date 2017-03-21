@@ -18,3 +18,4 @@ Settings for my personal development environment.
 
 #### Iterm
 * Swap left Command and Left Control (Better Tmux)
+* Add action "don't remap modifier keys" for command + shift left/right so I can still navigate between windows
