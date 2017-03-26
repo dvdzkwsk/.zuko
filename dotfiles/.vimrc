@@ -66,7 +66,7 @@ set noswapfile
 " the current line shows the actual line number, and all others
 " are relative to the current line.
 set number
-set relativenumber
+" set relativenumber
 
 " Show that the leader key has been pressed when we are entering a command
 set showcmd
@@ -98,6 +98,9 @@ set smartcase
 " Incrementally highlight text matching search in realtime
 set hlsearch
 set incsearch
+if exists('&inccommand')
+  set inccommand=nosplit
+endif
 
 " Airline Status Bar
 set modeline
@@ -108,6 +111,9 @@ set laststatus=2
 if has('clipboard')
   set clipboard=unnamedplus
 endif
+
+set wildignore+=.git
+set wildignore+=*.jpg,*.jpeg,*.png,*.svg
 
 if has('nvim')
   let g:deoplete#enable_at_startup=1
@@ -127,8 +133,8 @@ autocmd BufWritePre * %s/\s\+$//e
 " Prefer this method over mapping space directly to the leader, so that there
 " is a visual indicator when a command is being entered.
 nnoremap <Space> <Nop>
-vnoremap <Space> <NOP>
-let mapleader='\'
+vnoremap <Space> <Nop>
+let g:mapleader='\'
 nmap <Space> <Leader>
 vmap <Space> <Leader>
 
@@ -138,6 +144,10 @@ nnoremap k gk
 nnoremap j gj
 nnoremap <Up> g<Up>
 nnoremap <Down> g<Down>
+
+" Center screen during jump movements
+nnoremap n nzz
+nnoremap } }zz
 
 " Clear search highlights on ESC
 nnoremap <esc> :nohlsearch<return><esc>
@@ -151,6 +161,9 @@ if exists(":Tabularize")
   nmap <Leader>a: :Tabularize /:zs<CR>
   vmap <Leader>a: :Tabularize /:zs<CR>
 endif
+
+" Buffer
+nnoremap <Leader>bl :b#<CR>
 
 " Filesystem
 nnoremap <Leader>ff :FZF<CR>
@@ -181,17 +194,24 @@ vnoremap <Leader>vr "vy:call VimuxSlime()<CR>
 nnoremap <Leader>vr vip"vy:call VimuxSlime()<CR>
 
 " Window
-map <Leader>ws :split<CR>
-map <Leader>wv :vsplit<CR>
-map <Leader>w<Left> <C-W><C-H>
-map <Leader>w<Up> <C-W><C-J>
-map <Leader>w<Down> <C-W><C-K>
-map <Leader>w<Right> <C-W><C-L>
+noremap <Leader>ws :split<CR>
+noremap <Leader>wv :vsplit<CR>
+
+" Move between panes
+noremap <Leader>wh <C-W><C-H>
+noremap <Leader>wk <C-W><C-K>
+noremap <Leader>wj <C-W><C-J>
+noremap <Leader>wl <C-W><C-L>
+noremap <Leader>w<Left> <C-W><C-H>
+noremap <Leader>w<Up> <C-W><C-K>
+noremap <Leader>w<Down> <C-W><C-J>
+noremap <Leader>w<Right> <C-W><C-L>
 "}}}
 "}}}
 
 " Theming {{{
 syntax enable
+" let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 let g:airline_powerline_fonts=1
 let g:rainbow_active=1
 
