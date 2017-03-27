@@ -1,40 +1,5 @@
-prompt_git() {
-  local s='';
-  local branchName='';
-  if [ $(git rev-parse --is-inside-work-tree &>/dev/null; echo "${?}") == '0' ]; then
-    if [ "$(git rev-parse --is-inside-git-dir 2> /dev/null)" == 'false' ]; then
-      git update-index --really-refresh -q &>/dev/null;
-
-      # Check for uncommitted changes in the index.
-      if ! $(git diff --quiet --ignore-submodules --cached); then
-        s+='+';
-      fi;
-
-      # Check for unstaged changes.
-      if ! $(git diff-files --quiet --ignore-submodules --); then
-        s+='!';
-      fi;
-
-      # Check for untracked files.
-      if [ -n "$(git ls-files --others --exclude-standard)" ]; then
-        s+='?';
-      fi;
-
-      # Check for stashed files.
-      if $(git rev-parse --verify refs/stash &>/dev/null); then
-        s+='$';
-      fi;
-    fi;
-    branchName="$(git symbolic-ref --quiet --short HEAD 2> /dev/null || \
-      git rev-parse --short HEAD 2> /dev/null || \
-      echo '(unknown)')";
-
-    [ -n "${s}" ] && s=" [${s}]";
-    echo -e "${1}${branchName}${2}${s}";
-  else
-    return;
-  fi;
-}
+# https://github.com/git/git/blob/v1.8.4/contrib/completion/git-prompt.sh
+source ~/.git-prompt.sh
 
 if tput setaf 1 &> /dev/null; then
   tput sgr0; # reset colors
@@ -67,19 +32,19 @@ else
 fi;
 
 # Set the terminal title and prompt.
-PS1="\[\033]0;\W\007\]";               # working directory base name
-PS1+="\[${bold}\]\n";                  # newline
-PS1+="\[${cyan}\]\w"; # working directory full path
+prompt_pre="\[\033]0;\W\007\]";  # working directory base name
+prompt_pre+="\[${bold}\]\n";     # bold + newline
+prompt_pre+="\[${cyan}\]\w";     # working directory full path
 
 # Highlight the hostname when connected via SSH.
 if [[ "${SSH_TTY}" ]]; then
-  PS1+="\[${white}\] in \[${bold}${red}\]\h"; # host
+  prompt_pre+="\[${white}\] in \[${bold}${red}\]\h"; # host
 fi;
-
-PS1+="\$(prompt_git \"\[${white}\] on \[${green}\]\" \"\[${yellow}\]\")"; # Git repository details
-PS1+="\n\[${orange}\]λ \[${reset}\]";
-export PS1;
-
-PS2="\[${yellow}\]→ \[${reset}\]";
-export PS2;
-
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUPSTREAM=1
+# prompt_pre+="${white} on \${green}\$(__git_ps1 \"%s\")"
+prompt_pre+="\[${green}\]"
+prompt_post="\n\[${bold}${orange}\]λ \[${reset}\]";
+PROMPT_COMMAND='__git_ps1 "${prompt_pre}" "${prompt_post}"'
