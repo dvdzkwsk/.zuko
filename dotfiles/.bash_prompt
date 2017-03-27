@@ -40,8 +40,8 @@ prompt_pre+="\[${cyan}\]\w";     # working directory full path
 if [[ "${SSH_TTY}" ]]; then
   prompt_pre+="\[${white}\] in \[${bold}${red}\]\h"; # host
 fi;
-GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_SHOWUNTRACKEDFILES=1
+# GIT_PS1_SHOWDIRTYSTATE=1
+# GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUPSTREAM=1
 # prompt_pre+="${white} on \${green}\$(__git_ps1 \"%s\")"
