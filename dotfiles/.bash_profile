@@ -105,6 +105,8 @@ alias gbd="git branch -D "
 alias ghide="git update-index --assume-unchanged "
 alias ghidels="git ls-files -v | grep -e \"^[hsmrck]\""
 alias weather="curl wttr.in"
+alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+alias path='echo -e ${PATH//:/\\n}'
 #)))
 
 # Externals (((
