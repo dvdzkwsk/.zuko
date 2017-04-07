@@ -28,6 +28,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'ervandew/supertab'
 Plug 'luochen1990/rainbow'
 Plug 'benmills/vimux'
+Plug 'junegunn/goyo.vim'
 "}}}
 
 " Themes {{{
@@ -35,6 +36,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'flazz/vim-colorschemes'
 Plug 'w0ng/vim-hybrid'
+Plug 'colepeters/spacemacs-theme.vim'
 "}}}
 
 " Autocomplete {{{
@@ -50,6 +52,7 @@ endif
 Plug 'pangloss/vim-javascript'
 Plug 'othree/es.next.syntax.vim'
 Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'mxw/vim-jsx'
 "}}}
 
 call plug#end()
@@ -88,7 +91,7 @@ set cursorline
 
 " Display line length guide
 if exists('+colorcolumn')
-  set colorcolumn=80
+  " set colorcolumn=80
 endif
 
 " Ignore case when searching, except when search starts with a capital letter
@@ -126,6 +129,34 @@ endif
 
 " Remove trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
+
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --no-heading
+  set grepformat=%f:%l:%c:%m
+
+  " prevent grep from automatically opening the first matching file.
+  ca grep grep!
+endif
+
+" Automatically open the quickfix list when it is populated.
+augroup autoOpenQuickFixList
+  autocmd!
+  autocmd QuickFixCmdPost [^l]* cwindow
+  autocmd QuickFixCmdPost l*    lwindow
+augroup END
+"}}}
+
+" JavaScript {{{
+let g:jsx_ext_required=0
+"}}}
+
+" Functions {{{
+function! OpenMatchingTest()
+  let filename = expand('%:t:r')
+  let extension = expand('%:e')
+  let pattern = filename . '.spec.' . extension
+  execute "find **/" . l:pattern
+endfunction
 "}}}
 
 " Mappings {{{
@@ -166,6 +197,7 @@ endif
 nnoremap <Leader>bl :b#<CR>
 
 " Filesystem
+nnoremap <Leader>ft :call OpenMatchingTest()<CR>
 nnoremap <Leader>ff :FZF<CR>
 
 " Project
@@ -176,6 +208,9 @@ nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gl :Glog<CR>
+
+" QuickFix List
+nnoremap <Leader>ql :copen<CR>
 
 " Vimux
 function! VimuxOpenREPL()
@@ -225,6 +260,12 @@ function! SetTheme(theme)
     let g:airline_theme='solarized'
   elseif a:theme == "hybrid"
     colorscheme hybrid
+  elseif a:theme == "spacemacs"
+    if (has("termguicolors"))
+      set termguicolors
+    endif
+    colorscheme spacemacs-theme
+    let g:airline_theme='bubblegum'
   endif
 
   " Adjust rainbow parens color based on theme
@@ -235,5 +276,5 @@ function! SetTheme(theme)
   \}
 endfunction
 
-:call SetTheme('solarized')
+:call SetTheme('spacemacs')
 "}}}
