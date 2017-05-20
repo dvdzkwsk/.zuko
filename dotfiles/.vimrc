@@ -13,51 +13,31 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 call plug#begin('~/.vim/plugged')
 "}}}
-
 " Core {{{
 Plug 'scrooloose/nerdtree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'godlygeek/tabular'
 Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'ervandew/supertab'
 Plug 'luochen1990/rainbow'
-Plug 'benmills/vimux'
-Plug 'junegunn/goyo.vim'
 "}}}
-
 " Themes {{{
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'flazz/vim-colorschemes'
 Plug 'w0ng/vim-hybrid'
-Plug 'colepeters/spacemacs-theme.vim'
 "}}}
-
-" Autocomplete {{{
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins'  }
-  Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern', 'for': ['javascript', 'javascript.jsx'] }
-else
-  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
-endif
-"}}}
-
 " JavaScript {{{
 Plug 'pangloss/vim-javascript'
 Plug 'othree/es.next.syntax.vim'
-Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'mxw/vim-jsx'
 "}}}
-
 call plug#end()
 "}}}
-
 " Core Settings {{{
 filetype plugin indent on
 set ttimeoutlen=50
@@ -69,7 +49,7 @@ set noswapfile
 " the current line shows the actual line number, and all others
 " are relative to the current line.
 set number
-" set relativenumber
+set relativenumber
 
 " Show that the leader key has been pressed when we are entering a command
 set showcmd
@@ -80,8 +60,8 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 
-" Enable visual wrapping, but disable physical wrapping (where line breaks
-" are automatically inserted)
+" Enable visual line wrapping, but disable physical wrapping (where actual
+" line breaks are automatically inserted)
 set wrap
 set textwidth=0
 set wrapmargin=0
@@ -91,7 +71,7 @@ set cursorline
 
 " Display line length guide
 if exists('+colorcolumn')
-  " set colorcolumn=80
+  set colorcolumn=80
 endif
 
 " Ignore case when searching, except when search starts with a capital letter
@@ -105,7 +85,7 @@ if exists('&inccommand')
   set inccommand=nosplit
 endif
 
-" Airline Status Bar
+" Airline Configuration
 set modeline
 set ruler
 set laststatus=2
@@ -115,21 +95,18 @@ if has('clipboard')
   set clipboard=unnamedplus
 endif
 
+" Autocompletion / search
 set wildignore+=.git
 set wildignore+=*.jpg,*.jpeg,*.png,*.svg
 
 if has('nvim')
-  let g:deoplete#enable_at_startup=1
-  let g:deoplete#enable_refresh_always=1
-  let g:SuperTabDefaultCompletionType="<c-n>"
-  let g:tern_request_timeout=1
-  let g:tern_show_signature_in_pum=0
   set completeopt-=preview
 endif
 
 " Remove trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
+" Prefer ripgrep over grep when it is available
 if executable('rg')
   set grepprg=rg\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m
@@ -145,20 +122,9 @@ augroup autoOpenQuickFixList
   autocmd QuickFixCmdPost l*    lwindow
 augroup END
 "}}}
-
-" JavaScript {{{
+" Language Support {{{
 let g:jsx_ext_required=0
 "}}}
-
-" Functions {{{
-function! OpenMatchingTest()
-  let filename = expand('%:t:r')
-  let extension = expand('%:e')
-  let pattern = filename . '.spec.' . extension
-  execute "find **/" . l:pattern
-endfunction
-"}}}
-
 " Mappings {{{
 " Space(macs) as my leader. Keep \ as the leader and map space to that key.
 " Prefer this method over mapping space directly to the leader, so that there
@@ -184,24 +150,14 @@ nnoremap } }zz
 nnoremap <esc> :nohlsearch<return><esc>
 nnoremap <esc>^[ <esc>^[
 
-" Mnemonic Commands {{{
-" Alignment
-if exists(":Tabularize")
-  nmap <Leader>a= :Tabularize /=<CR>
-  vmap <Leader>a= :Tabularize /=<CR>
-  nmap <Leader>a: :Tabularize /:zs<CR>
-  vmap <Leader>a: :Tabularize /:zs<CR>
-endif
-
 " Buffer
 nnoremap <Leader>bl :b#<CR>
 
 " Filesystem
-nnoremap <Leader>ft :call OpenMatchingTest()<CR>
 nnoremap <Leader>ff :FZF<CR>
 
 " Project
-nnoremap <Leader>pt :NERDTreeToggle<CR>
+" nnoremap <Leader>pt :NERDTreeToggle<CR>
 
 " Git
 nnoremap <Leader>gb :Gblame<CR>
@@ -211,22 +167,6 @@ nnoremap <Leader>gl :Glog<CR>
 
 " QuickFix List
 nnoremap <Leader>ql :copen<CR>
-
-" Vimux
-function! VimuxOpenREPL()
-  call VimuxOpenRunner()
-  call VimuxSendText("node")
-  call VimuxSendKeys("Enter")
-endfunction
-
-function! VimuxSlime()
-  call VimuxSendText(@v)
-  call VimuxSendKeys("Enter")
-endfunction
-
-nnoremap <Leader>vo :call VimuxOpenREPL()<CR>
-vnoremap <Leader>vr "vy:call VimuxSlime()<CR>
-nnoremap <Leader>vr vip"vy:call VimuxSlime()<CR>
 
 " Window
 noremap <Leader>ws :split<CR>
@@ -242,39 +182,16 @@ noremap <Leader>w<Up> <C-W><C-K>
 noremap <Leader>w<Down> <C-W><C-J>
 noremap <Leader>w<Right> <C-W><C-L>
 "}}}
-"}}}
-
 " Theming {{{
 syntax enable
-" let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+colorscheme hybrid
+set background=dark
+let g:airline_theme='bubblegum'
 let g:airline_powerline_fonts=1
 let g:rainbow_active=1
-
-" Somebody teach me vimscript...
-function! SetTheme(theme)
-  set background=dark
-  let g:airline_theme='bubblegum'
-  if a:theme == "solarized"
-    let g:solarized_contrast='high'
-    colorscheme solarized
-    let g:airline_theme='solarized'
-  elseif a:theme == "hybrid"
-    colorscheme hybrid
-  elseif a:theme == "spacemacs"
-    if (has("termguicolors"))
-      set termguicolors
-    endif
-    colorscheme spacemacs-theme
-    let g:airline_theme='bubblegum'
-  endif
-
-  " Adjust rainbow parens color based on theme
-  let rainbow_light = ['lightblue', 'lightyellow', 'red', 'darkgreen', 'darkyellow', 'lightred', 'yellow', 'cyan', 'magenta', 'white']
-  let rainbow_dark = ['DarkBlue', 'Magenta', 'Black', 'Red', 'DarkGray', 'DarkGreen', 'DarkYellow']
-  let g:rainbow_conf = {
-  \   'ctermfgs': (&background=='light' ? rainbow_dark : rainbow_light)
-  \}
-endfunction
-
-:call SetTheme('spacemacs')
+let rainbow_light = ['lightblue', 'lightyellow', 'red', 'darkgreen', 'darkyellow', 'lightred', 'yellow', 'cyan', 'magenta', 'white']
+let rainbow_dark = ['DarkBlue', 'Magenta', 'Black', 'Red', 'DarkGray', 'DarkGreen', 'DarkYellow']
+let g:rainbow_conf = {
+\   'ctermfgs': (&background=='light' ? rainbow_dark : rainbow_light)
+\}
 "}}}
