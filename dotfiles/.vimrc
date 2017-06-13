@@ -38,7 +38,7 @@ Plug 'mxw/vim-jsx'
 "}}}
 call plug#end()
 "}}}
-" Core Settings {{{
+" Main Settings {{{
 filetype plugin indent on
 set ttimeoutlen=50
 
@@ -122,10 +122,7 @@ augroup autoOpenQuickFixList
   autocmd QuickFixCmdPost l*    lwindow
 augroup END
 "}}}
-" Language Support {{{
-let g:jsx_ext_required=0
-"}}}
-" Mappings {{{
+" Key Map {{{
 " Space(macs) as my leader. Keep \ as the leader and map space to that key.
 " Prefer this method over mapping space directly to the leader, so that there
 " is a visual indicator when a command is being entered.
@@ -194,4 +191,7 @@ let rainbow_dark = ['DarkBlue', 'Magenta', 'Black', 'Red', 'DarkGray', 'DarkGree
 let g:rainbow_conf = {
 \   'ctermfgs': (&background=='light' ? rainbow_dark : rainbow_light)
 \}
+"}}}
+" Language Support {{{
+let g:jsx_ext_required=0
 "}}}
