@@ -1,7 +1,7 @@
 # vim: foldmethod=marker foldmarker=(((,)))
 set -o vi
 
-# Core (((
+# Main Settings (((
 ulimit -n 2000 # Increase allowed open file limit
 eval "$(hub alias -s)"
 #)))
@@ -37,38 +37,20 @@ function grbi() {
 function gsu() {
   git branch --set-upstream-to=$1
 }
-
-function gmb() {
-  if  [ "$#" = 1 ]; then
-    git rebase -i $(git merge-base $(gcb) $1)
-  else
-    git rebase -i $(git merge-base $1 $2)
-  fi
-}
-
-function mbr() {
-  git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative $1..$2
-}
 #)))
 
 # Path (((
-pathadd "/Library/Frameworks/Python.framework/Versions/3.5/bin"
-pathadd "/Applications/Racket v6.5/bin"
 #)))
 
 # Node (((
 export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 NODE_VERSION=$(which node)
 NODE_BIN_PATH=${NODE_VERSION%bin/node}
 NODE_MODULES_PATH="${NODE_BIN_PATH}lib/node_modules"
 export NODE_PATH="$NODE_PATH:$NODE_MODULES_PATH"
-#)))
-
-# Freaking Ruby (((
-eval "$(rbenv init -)"
-RBENV_VERSION=2.3.1
 #)))
 
 # Aliases (((
