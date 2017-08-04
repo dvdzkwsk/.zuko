@@ -1,3 +1,5 @@
+[url "ssh://git@github.com/"]
+	insteadOf = https://github.com/
 [user]
 	email = zukoweb@gmail.com
 	name = David Zukowski
@@ -6,4 +8,6 @@
 	excludesfiles = /Users/zuko/.gitignore_global
 	excludesfile = ~/.gitignore
 [color]
-	ui = true
+	ui = auto
+[hub]
+	protocol = ssh
