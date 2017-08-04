@@ -4,6 +4,7 @@
 " Reference:
 " - http://statico.github.io/vim.html
 "}}}
+
 " Plugins -------------------------------------------------- {{{
 set termguicolors
 set nocompatible
@@ -17,6 +18,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 call plug#begin('~/.vim/plugged')
 "}}}
+
 " Core ----------------------------------------------------- {{{
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'tpope/vim-commentary'
@@ -26,6 +28,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
 "}}}
+
 " Themes --------------------------------------------------- {{{
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -33,6 +36,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'w0ng/vim-hybrid'
 Plug 'lifepillar/vim-solarized8'
 "}}}
+
 " JavaScript ----------------------------------------------- {{{
 Plug 'pangloss/vim-javascript'
 Plug 'othree/es.next.syntax.vim'
@@ -40,6 +44,7 @@ Plug 'othree/es.next.syntax.vim'
 call plug#end()
 filetype plugin indent on
 "}}}
+
 " Main Settings -------------------------------------------- {{{
 set ttimeoutlen=50
 set tabstop=2                      " 2 spaces for tabs
@@ -92,6 +97,7 @@ augroup autoOpenQuickFixList
   autocmd QuickFixCmdPost l*    lwindow
 augroup END
 "}}}
+
 " Theming -------------------------------------------------- {{{
 syntax enable
 set background=dark
@@ -106,6 +112,7 @@ endf
 
 call Solarized8Contrast(0)
 "}}}
+
 " Custom Keybindings --------------------------------------- {{{
 " Space(macs) as my leader. Keep \ as the leader and map space to that key.
 " Prefer this method over mapping space directly to the leader, so that there
