@@ -6,7 +6,6 @@
 "}}}
 
 " Plugins -------------------------------------------------- {{{
-set termguicolors
 set nocompatible
 filetype off
 " Plugin Manager {{{
@@ -27,6 +26,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'airblade/vim-gitgutter'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'francoiscabrol/ranger.vim'
+Plug 'rbgrouleff/bclose.vim' " ranger dependency for neovim
 "}}}
 
 " Themes --------------------------------------------------- {{{
@@ -99,6 +100,10 @@ augroup END
 "}}}
 
 " Theming -------------------------------------------------- {{{
+if (has("termguicolors"))
+  set termguicolors
+endif
+
 syntax enable
 set background=dark
 colorscheme solarized8_dark
@@ -129,11 +134,17 @@ nnoremap j gj
 nnoremap <Up> g<Up>
 nnoremap <Down> g<Down>
 
+" Easy movement between panes
+noremap <Leader>w<Left> <C-W><C-H>
+noremap <Leader>w<Up> <C-W><C-K>
+noremap <Leader>w<Down> <C-W><C-J>
+noremap <Leader>w<Right> <C-W><C-L>
+
 " Center screen during jump movements
 nnoremap n nzz
 nnoremap } }zz
 
-" Clear search highlights on ESC
+" Clear search highlights on ESCAPE
 nnoremap <esc> :nohlsearch<return><esc>
 nnoremap <esc>^[ <esc>^[
 
@@ -149,10 +160,4 @@ nnoremap <Leader>ql :copen<CR>
 " [W]indow
 noremap <Leader>ws :split<CR>
 noremap <Leader>wv :vsplit<CR>
-
-" [M]ove between panes
-noremap <Leader>w<Left> <C-W><C-H>
-noremap <Leader>w<Up> <C-W><C-K>
-noremap <Leader>w<Down> <C-W><C-J>
-noremap <Leader>w<Right> <C-W><C-L>
 "}}}
