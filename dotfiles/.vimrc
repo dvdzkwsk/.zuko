@@ -8,15 +8,12 @@
 " Plugins -------------------------------------------------- {{{
 set nocompatible
 filetype off
-" Plugin Manager {{{
-" Automatically install vim-plug if it does not exist
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 call plug#begin('~/.vim/plugged')
-"}}}
 
 " Core ----------------------------------------------------- {{{
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -42,6 +39,7 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'pangloss/vim-javascript'
 Plug 'othree/es.next.syntax.vim'
 "}}}
+
 call plug#end()
 filetype plugin indent on
 "}}}
