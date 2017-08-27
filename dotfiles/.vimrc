@@ -3,6 +3,7 @@
 " Documentation -------------------------------------------- {{{
 " Reference:
 " - http://statico.github.io/vim.html
+" - http://www.oliversherouse.com/2017/08/21/vim_zero.html
 "}}}
 
 " Plugins -------------------------------------------------- {{{
@@ -98,15 +99,15 @@ augroup END
 "}}}
 
 " Theming -------------------------------------------------- {{{
-if (has("termguicolors"))
-  set termguicolors
-endif
-
 syntax enable
 set background=dark
 colorscheme solarized8_dark
 let g:airline_theme='solarized'
 let g:airline_powerline_fonts=1
+
+if (has("termguicolors"))
+  set termguicolors
+endif
 
 fun! Solarized8Contrast(delta)
   let l:schemes = map(["_low", "_flat", "", "_high"], '"solarized8_".(&background).v:val')
@@ -116,7 +117,7 @@ endf
 call Solarized8Contrast(0)
 "}}}
 
-" Custom Keybindings --------------------------------------- {{{
+" Keybindings --------------------------------------- {{{
 " Space(macs) as my leader. Keep \ as the leader and map space to that key.
 " Prefer this method over mapping space directly to the leader, so that there
 " is a visual indicator when a command is being entered.
@@ -131,6 +132,8 @@ nnoremap k gk
 nnoremap j gj
 nnoremap <Up> g<Up>
 nnoremap <Down> g<Down>
+nnoremap <M-Up> :m .-2<CR>==
+nnoremap <M-Down> :m .+1<CR>==
 
 " Easy movement between panes
 noremap <Leader>w<Left> <C-W><C-H>
@@ -147,10 +150,11 @@ nnoremap <esc> :nohlsearch<return><esc>
 nnoremap <esc>^[ <esc>^[
 
 " [B]uffer
-nnoremap <Leader>bl :b#<CR>
+nnoremap <Leader>bl :ls<CR>
 
 " [F]ilesystem
 nnoremap <Leader>ff :FZF<CR>
+nnoremap <Leader>fr :Ranger<CR>
 
 " [Q]uickFix List
 nnoremap <Leader>ql :copen<CR>
