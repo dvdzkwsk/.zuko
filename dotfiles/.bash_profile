@@ -76,7 +76,7 @@ alias gcp="git cherry-pick"
 alias gup="git fetch; git pull"
 alias gc="git commit "
 alias gca="git commit --amend"
-alias gcs="git commit --amend squash"
+alias gcs="git commit --amend --no-edit"
 alias gcm="git commit -m "
 alias gpo="git push origin "
 alias gcl="git clone "
@@ -90,7 +90,8 @@ alias ghide="git update-index --assume-unchanged "
 alias ghidels="git ls-files -v | grep -e \"^[hsmrck]\""
 alias weather="curl wttr.in"
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-alias path='echo -e ${PATH//:/\\n}'
+alias path="echo -e ${PATH//:/\\n}"
+alias r="ranger"
 #)))
 
 # Externals (((
