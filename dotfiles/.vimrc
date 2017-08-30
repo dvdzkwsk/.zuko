@@ -9,6 +9,8 @@
 " Plugins -------------------------------------------------- {{{
 set nocompatible
 filetype off
+
+" Install plugin manager if it does not exist.
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -18,27 +20,27 @@ call plug#begin('~/.vim/plugged')
 
 " Core ----------------------------------------------------- {{{
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'airblade/vim-gitgutter'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'francoiscabrol/ranger.vim'
-Plug 'rbgrouleff/bclose.vim' " ranger dependency for neovim
+Plug 'tpope/vim-commentary'          " Easy commenting
+Plug 'tpope/vim-repeat'              " Make `.` work better
+Plug 'tpope/vim-surround'            " Easy surround commands
+Plug 'tpope/vim-unimpaired'          " More symmetrical mappings
+Plug 'tpope/vim-fugitive'            " Sweet Git integration
+Plug 'airblade/vim-gitgutter'        " Sidebar Git integration
+Plug 'editorconfig/editorconfig-vim' " Use .editorconfig settings when found
+Plug 'francoiscabrol/ranger.vim'     " Awesome file navigator
+Plug 'rbgrouleff/bclose.vim'         " Ranger dependency for neovim
 "}}}
 
 " Themes --------------------------------------------------- {{{
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'flazz/vim-colorschemes'
-Plug 'w0ng/vim-hybrid'
-Plug 'lifepillar/vim-solarized8'
+Plug 'chriskempson/base16-vim'
 "}}}
 
-" JavaScript ----------------------------------------------- {{{
+" Languages ------------------------------------------------ {{{
 Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
 Plug 'othree/es.next.syntax.vim'
+Plug 'leafgarland/typescript-vim'
+Plug 'cakebaker/scss-syntax.vim'
 "}}}
 
 call plug#end()
@@ -47,27 +49,25 @@ filetype plugin indent on
 
 " Main Settings -------------------------------------------- {{{
 set ttimeoutlen=50
+set noswapfile                     " Don't create swap files
 set tabstop=2                      " 2 spaces for tabs
 set softtabstop=2                  " ibid
 set shiftwidth=2                   " ibid
 set expandtab                      " Convert tabs to spaces
-set noswapfile                     " Don't create swap files
 set number                         " Show line numbers
+set ruler                          " Show current column and line number
 set cursorline                     " Highlight the currently selected line
 set showcmd                        " Show when leader key has been pressed
-set wrap                           " Enable visual line wrapping
-set textwidth=0
-set wrapmargin=0
+set wrap                           " Enable visual line wrapping...
+set textwidth=0                    " ...only when text reaches the end of the window
+set wrapmargin=0                   " ibid
 set ignorecase                     " Ignore case when searching...
 set smartcase                      " ...except when search term starts with a capital
-set hlsearch                       " highlight active search
-set incsearch                      " show search/replace in real time
-set modeline
-set ruler
-set laststatus=2
+set hlsearch                       " Highlight active search
+set incsearch                      " Show search/replace in real time
+set modeline                       " Enable modeline
+set laststatus=2                   " Always show the status line
 set wildignore+=.git,*.jpg,*.jpeg,*.png,*.svg
-
-autocmd BufWritePre * %s/\s\+$//e  " Remove trailing whitespace on save
 
 if has('clipboard')
   set clipboard=unnamedplus        " Always copy to system clipboard with yank/delete
@@ -82,13 +82,17 @@ if has('nvim')
   set completeopt-=preview
 endif
 
+" Prevent grep from automatically opening the first matching file.
+ca grep grep!
+
 " Prefer ripgrep over grep
 if executable('rg')
   set grepprg=rg\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m
-  " prevent grep from automatically opening the first matching file.
-  ca grep grep!
 endif
+
+" Remove trailing whitespace on save
+autocmd BufWritePre * %s/\s\+$//e
 
 " Automatically open the quickfix list when it is populated.
 augroup autoOpenQuickFixList
@@ -101,20 +105,12 @@ augroup END
 " Theming -------------------------------------------------- {{{
 syntax enable
 set background=dark
-colorscheme solarized8_dark
-let g:airline_theme='solarized'
+colorscheme base16-spacemacs
 let g:airline_powerline_fonts=1
 
 if (has("termguicolors"))
   set termguicolors
 endif
-
-fun! Solarized8Contrast(delta)
-  let l:schemes = map(["_low", "_flat", "", "_high"], '"solarized8_".(&background).v:val')
-  exe "colors" l:schemes[((a:delta+index(l:schemes, g:colors_name)) % 4 + 4) % 4]
-endf
-
-call Solarized8Contrast(0)
 "}}}
 
 " Keybindings --------------------------------------- {{{
@@ -127,13 +123,15 @@ let g:mapleader='\'
 nmap <Space> <Leader>
 vmap <Space> <Leader>
 
-" Move up/down through visual lines, not logical lines
+" Move vertically through visual lines, not logical lines
 nnoremap k gk
 nnoremap j gj
 nnoremap <Up> g<Up>
 nnoremap <Down> g<Down>
-nnoremap <M-Up> :m .-2<CR>==
-nnoremap <M-Down> :m .+1<CR>==
+
+" Easy line movement
+nnoremap <C-Up> :m .-2<CR>==
+nnoremap <C-Down> :m .+1<CR>==
 
 " Easy movement between panes
 noremap <Leader>w<Left> <C-W><C-H>
@@ -151,6 +149,8 @@ nnoremap <esc>^[ <esc>^[
 
 " [B]uffer
 nnoremap <Leader>bl :ls<CR>
+nnoremap <Leader>bn :bn<CR>
+nnoremap <Leader>bp :bp<CR>
 
 " [F]ilesystem
 nnoremap <Leader>ff :FZF<CR>
