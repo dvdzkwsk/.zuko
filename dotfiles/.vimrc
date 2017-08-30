@@ -106,7 +106,6 @@ augroup END
 syntax enable
 set background=dark
 colorscheme base16-spacemacs
-let g:airline_powerline_fonts=1
 
 if (has("termguicolors"))
   set termguicolors
@@ -148,6 +147,7 @@ nnoremap <esc> :nohlsearch<return><esc>
 nnoremap <esc>^[ <esc>^[
 
 " [B]uffer
+nnoremap <Leader><Tab> :b#<CR>
 nnoremap <Leader>bl :ls<CR>
 nnoremap <Leader>bn :bn<CR>
 nnoremap <Leader>bp :bp<CR>
