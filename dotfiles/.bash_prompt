@@ -5,13 +5,12 @@ if tput setaf 1 &> /dev/null; then
   tput sgr0; # reset colors
   bold=$(tput bold);
   reset=$(tput sgr0);
-  # Solarized colors, taken from http://git.io/solarized-colors.
   black=$(tput setaf 0);
   blue=$(tput setaf 33);
   cyan=$(tput setaf 37);
-  green=$(tput setaf 64);
+  green=$(tput setaf 70);
   orange=$(tput setaf 166);
-  purple=$(tput setaf 125);
+  purple=$(tput setaf 171);
   red=$(tput setaf 124);
   violet=$(tput setaf 61);
   white=$(tput setaf 15);
@@ -31,20 +30,20 @@ else
   yellow="\e[1;33m";
 fi;
 
-# Set the terminal title and prompt.
-prompt_pre="\[\033]0;\W\007\]";  # working directory base name
-prompt_pre+="\[${bold}\]\n";     # bold + newline
-prompt_pre+="\[${cyan}\]\w";     # working directory full path
+prompt_pre=""                 # reset prompt
+prompt_pre+="\[${bold}\]\n";  # bold + newline
+prompt_pre+="\[${cyan}\]\w";  # current directory
 
 # Highlight the hostname when connected via SSH.
 if [[ "${SSH_TTY}" ]]; then
   prompt_pre+="\[${white}\] in \[${bold}${red}\]\h"; # host
 fi;
-# GIT_PS1_SHOWDIRTYSTATE=1
-# GIT_PS1_SHOWUNTRACKEDFILES=1
+
+# Git Status
+# GIT_PS1_SHOWDIRTYSTATE=0
+# GIT_PS1_SHOWUNTRACKEDFILES=0
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUPSTREAM=1
-# prompt_pre+="${white} on \${green}\$(__git_ps1 \"%s\")"
 prompt_pre+="\[${green}\]"
-prompt_post="\n\[${bold}${orange}\]λ \[${reset}\]";
-PROMPT_COMMAND='__git_ps1 "${prompt_pre}" "${prompt_post}"'
+prompt_post="\n\[${bold}${purple}\]λ \[${reset}\]";
+PROMPT_COMMAND='__git_ps1 "${prompt_pre} " "${prompt_post}"'
