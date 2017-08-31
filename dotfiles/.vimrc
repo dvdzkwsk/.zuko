@@ -20,6 +20,8 @@ call plug#begin('~/.vim/plugged')
 
 " Core ----------------------------------------------------- {{{
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'vim-airline/vim-airline'       " Prettier statusline
 Plug 'tpope/vim-commentary'          " Easy commenting
 Plug 'tpope/vim-repeat'              " Make `.` work better
 Plug 'tpope/vim-surround'            " Easy surround commands
@@ -32,6 +34,7 @@ Plug 'rbgrouleff/bclose.vim'         " Ranger dependency for neovim
 "}}}
 
 " Themes --------------------------------------------------- {{{
+Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
 "}}}
 
@@ -48,7 +51,7 @@ filetype plugin indent on
 "}}}
 
 " Main Settings -------------------------------------------- {{{
-set ttimeoutlen=50
+set ttimeoutlen=50                 " Reduce input delay when entering normal mode
 set noswapfile                     " Don't create swap files
 set tabstop=2                      " 2 spaces for tabs
 set softtabstop=2                  " ibid
@@ -67,7 +70,14 @@ set hlsearch                       " Highlight active search
 set incsearch                      " Show search/replace in real time
 set modeline                       " Enable modeline
 set laststatus=2                   " Always show the status line
-set wildignore+=.git,*.jpg,*.jpeg,*.png,*.svg
+set wildignore+=.git
+set wildignore+=*.jpg
+set wildignore+=*.jpeg
+set wildignore+=*.png
+set wildignore+=*.svg
+set wildignore+=node_modules/**
+set wildignore+=*.lock
+let g:deoplete#enable_at_startup=1
 
 if has('clipboard')
   set clipboard=unnamedplus        " Always copy to system clipboard with yank/delete
@@ -76,7 +86,7 @@ if exists('+colorcolumn')
   set colorcolumn=80               " Show line length guide
 endif
 if exists('&inccommand')
-  set inccommand=nosplit
+  set inccommand=nosplit           " Show substitutions in place
 endif
 if has('nvim')
   set completeopt-=preview
@@ -105,7 +115,9 @@ augroup END
 " Theming -------------------------------------------------- {{{
 syntax enable
 set background=dark
-colorscheme base16-spacemacs
+colorscheme base16-material
+let g:airline_theme='base16_spacemacs'
+let g:airline_powerline_fonts=1
 
 if (has("termguicolors"))
   set termguicolors
@@ -114,11 +126,11 @@ endif
 
 " Keybindings --------------------------------------- {{{
 " Space(macs) as my leader. Keep \ as the leader and map space to that key.
-" Prefer this method over mapping space directly to the leader, so that there
+" Prefer this method over mapping space directly as the leader so that there
 " is a visual indicator when a command is being entered.
+let g:mapleader='\'
 nnoremap <Space> <Nop>
 vnoremap <Space> <Nop>
-let g:mapleader='\'
 nmap <Space> <Leader>
 vmap <Space> <Leader>
 
@@ -142,9 +154,15 @@ noremap <Leader>w<Right> <C-W><C-L>
 nnoremap n nzz
 nnoremap } }zz
 
-" Clear search highlights on ESCAPE
+" Clear search highlights on Escape
 nnoremap <esc> :nohlsearch<return><esc>
 nnoremap <esc>^[ <esc>^[
+
+" Enable Tab completion for deoplete
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+
+" Grep word under cursor
+noremap <Leader>g :grep! "<cword>"<cr>
 
 " [B]uffer
 nnoremap <Leader><Tab> :b#<CR>
