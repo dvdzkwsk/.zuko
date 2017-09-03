@@ -4,6 +4,8 @@
 " Reference:
 " - http://statico.github.io/vim.html
 " - http://www.oliversherouse.com/2017/08/21/vim_zero.html
+"
+" [1] https://stackoverflow.com/questions/11940801/mapping-esc-in-vimrc-causes-bizzare-arrow-behaviour
 "}}}
 
 " Plugins -------------------------------------------------- {{{
@@ -40,9 +42,10 @@ Plug 'chriskempson/base16-vim'
 
 " Languages ------------------------------------------------ {{{
 Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
 Plug 'othree/es.next.syntax.vim'
 Plug 'leafgarland/typescript-vim'
+Plug 'mxw/vim-jsx'
+Plug 'peitalin/vim-jsx-typescript'
 Plug 'cakebaker/scss-syntax.vim'
 "}}}
 
@@ -78,6 +81,18 @@ set wildignore+=*.svg
 set wildignore+=node_modules/**
 set wildignore+=*.lock
 let g:deoplete#enable_at_startup=1
+let g:jsx_ext_required=0
+
+" Fix vim-jsx not coloring closing tags. Seriously?
+" https://github.com/mxw/vim-jsx/issues/124
+hi Tag        ctermfg=04
+hi xmlTag     ctermfg=04
+hi xmlTagName ctermfg=04
+hi xmlEndTag  ctermfg=04
+
+hi xmlTagName guifg=#59ACE5
+hi xmlTag guifg=#59ACE5
+hi xmlEndTag guifg=#2974a1
 
 if has('clipboard')
   set clipboard=unnamedplus        " Always copy to system clipboard with yank/delete
@@ -104,6 +119,8 @@ endif
 " Remove trailing whitespace on save
 autocmd BufWritePre * %s/\s\+$//e
 
+autocmd BufNewFile,BufRead *.tsx set filetype=typescript.jsx
+
 " Automatically open the quickfix list when it is populated.
 augroup autoOpenQuickFixList
   autocmd!
@@ -116,8 +133,10 @@ augroup END
 syntax enable
 set background=dark
 colorscheme base16-material
-let g:airline_theme='base16_spacemacs'
-let g:airline_powerline_fonts=1
+let g:airline_theme='bubblegum'
+let g:airline_powerline_fonts=0
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 
 if (has("termguicolors"))
   set termguicolors
@@ -140,6 +159,9 @@ nnoremap j gj
 nnoremap <Up> g<Up>
 nnoremap <Down> g<Down>
 
+" Don't insert certain deletions into the default register
+nnoremap x "_x
+
 " Easy line movement
 nnoremap <C-Up> :m .-2<CR>==
 nnoremap <C-Down> :m .+1<CR>==
@@ -156,12 +178,14 @@ nnoremap } }zz
 
 " Clear search highlights on Escape
 nnoremap <esc> :nohlsearch<return><esc>
+
+" But mapping Escape causes weird arrow key behavior[1], so fix that
 nnoremap <esc>^[ <esc>^[
 
 " Enable Tab completion for deoplete
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
-" Grep word under cursor
+" Grep for word under cursor
 noremap <Leader>g :grep! "<cword>"<cr>
 
 " [B]uffer
