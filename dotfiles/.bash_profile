@@ -1,9 +1,10 @@
 # vim: foldmethod=marker
 
 # Main Settings -------------------------------------------- {{{
-set -o vi                # Allow vi-like movements in the terminal
-ulimit -n 2000           # Increase allowed open file limit
-eval "$(hub alias -s)"   # Enable git extensions
+set -o vi                    # Allow vi-like movements in the terminal
+ulimit -n 2000               # Increase allowed open file limit
+eval "$(hub alias -s)"       # Enable git extensions
+RANGER_LOAD_DEFAULT_RC=FALSE # Only use ~/.config/ranger/rc.conf
 #}}}
 
 # Functions ------------------------------------------------ {{{
