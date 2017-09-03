@@ -6,13 +6,13 @@ if tput setaf 1 &> /dev/null; then
   bold=$(tput bold);
   reset=$(tput sgr0);
   black=$(tput setaf 0);
-  blue=$(tput setaf 33);
-  cyan=$(tput setaf 37);
-  green=$(tput setaf 70);
-  orange=$(tput setaf 166);
-  purple=$(tput setaf 171);
+  blue=$(tput setaf 39);
+  cyan=$(tput setaf 45);
+  green=$(tput setaf 155);
+  orange=$(tput setaf 214);
+  purple=$(tput setaf 212);
   red=$(tput setaf 124);
-  violet=$(tput setaf 61);
+  violet=$(tput setaf 62);
   white=$(tput setaf 15);
   yellow=$(tput setaf 136);
 else
@@ -30,9 +30,11 @@ else
   yellow="\e[1;33m";
 fi;
 
-prompt_pre=""                 # reset prompt
-prompt_pre+="\[${bold}\]\n";  # bold + newline
-prompt_pre+="\[${cyan}\]\w";  # current directory
+prompt_pre="";
+# prompt_pre+="\[${bold}\]";
+prompt_pre+="\n";
+prompt_pre+="\[${cyan}\]\u\[${white}\]:"; # current user
+prompt_pre+="\[${blue}\]\W";              # current directory
 
 # Highlight the hostname when connected via SSH.
 if [[ "${SSH_TTY}" ]]; then
@@ -44,6 +46,5 @@ fi;
 # GIT_PS1_SHOWUNTRACKEDFILES=0
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUPSTREAM=1
-prompt_pre+="\[${green}\]"
-prompt_post="\n\[${bold}${purple}\]λ \[${reset}\]";
-PROMPT_COMMAND='__git_ps1 "${prompt_pre} " "${prompt_post}"'
+prompt_post="\[${purple}\]λ \[${reset}\]";
+PROMPT_COMMAND='__git_ps1 "${prompt_pre}" " ${prompt_post}"'
