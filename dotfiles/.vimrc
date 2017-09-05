@@ -22,7 +22,6 @@ call plug#begin('~/.vim/plugged')
 
 " Core ----------------------------------------------------- {{{
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'vim-airline/vim-airline'       " Prettier statusline
 Plug 'tpope/vim-commentary'          " Easy commenting
 Plug 'tpope/vim-repeat'              " Make `.` work better
@@ -33,6 +32,12 @@ Plug 'airblade/vim-gitgutter'        " Sidebar Git integration
 Plug 'editorconfig/editorconfig-vim' " Use .editorconfig settings when found
 Plug 'francoiscabrol/ranger.vim'     " Awesome file navigator
 Plug 'rbgrouleff/bclose.vim'         " Ranger dependency for neovim
+"}}}
+
+" NeoVim ----------------------------------------------------- {{{
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+endif
 "}}}
 
 " Themes --------------------------------------------------- {{{
