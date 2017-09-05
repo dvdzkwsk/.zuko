@@ -4,7 +4,6 @@
 	email = zukoweb@gmail.com
 	name = David Zukowski
 [core]
-	editor = vim
 	excludesfiles = /Users/zuko/.gitignore_global
 	excludesfile = ~/.gitignore
 [color]
