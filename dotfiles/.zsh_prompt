@@ -1,0 +1,18 @@
+source ~/.git_prompt.sh
+autoload colors && colors
+
+# GIT_PS1_SHOWDIRTYSTATE=0
+# GIT_PS1_SHOWUNTRACKEDFILES=0
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUPSTREAM="auto"
+GIT_PS1_DESCRIBE_STYLE="branch"
+
+precmd () {
+  user="%F{blue}%n"
+  cwd="%F{cyan}%1d"
+  prompt="%F{magenta}λ%F{reset_color}"
+
+  __git_ps1 "
+${user}%F{white}:${cwd}%F{green}" " ${prompt} " "(%s)"
+}
+
