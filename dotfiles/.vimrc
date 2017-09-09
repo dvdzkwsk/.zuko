@@ -31,12 +31,12 @@ Plug 'tpope/vim-fugitive'            " Sweet Git integration
 Plug 'airblade/vim-gitgutter'        " Sidebar Git integration
 Plug 'editorconfig/editorconfig-vim' " Use .editorconfig settings when found
 Plug 'francoiscabrol/ranger.vim'     " Awesome file navigator
-Plug 'rbgrouleff/bclose.vim'         " Ranger dependency for neovim
 "}}}
 
 " NeoVim ----------------------------------------------------- {{{
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  Plug 'rbgrouleff/bclose.vim'         " Ranger dependency for neovim
 endif
 "}}}
 
