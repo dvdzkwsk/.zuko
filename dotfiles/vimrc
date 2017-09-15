@@ -9,7 +9,9 @@
 "}}}
 
 " Plugins -------------------------------------------------- {{{
-set nocompatible
+if &compatible
+  set nocompatible
+endif
 filetype off
 
 " Install plugin manager if it does not exist.
@@ -61,8 +63,10 @@ filetype plugin indent on
 " Main Settings -------------------------------------------- {{{
 set ttimeoutlen=50                 " Reduce input delay when entering normal mode
 set noswapfile                     " Don't create swap files
-set tabstop=2                      " 2 spaces for tabs
-set softtabstop=2                  " ibid
+set hidden                         " Allow unsaved buffers
+set autoread                       " Automatically reload files changes outside of vim
+set tabstop=2                      " Number of spaces for a tab
+set softtabstop=2                  " Replace tabs with this number of spaces
 set shiftwidth=2                   " ibid
 set expandtab                      " Convert tabs to spaces
 set number                         " Show line numbers
@@ -135,7 +139,12 @@ augroup END
 "}}}
 
 " Theming -------------------------------------------------- {{{
-syntax enable
+" Do not clobber existing syntax highlighting if `syntax enable` is called
+" multiple times (i.e. when the .vimrc is re-sourced).
+" https://stackoverflow.com/questions/33380451/is-there-a-difference-between-syntax-on-and-syntax-enable-in-vimscript
+if !exists('g:syntax_on')
+  syntax enable
+endif
 set background=dark
 colorscheme base16-material
 let g:airline_theme='bubblegum'
@@ -149,6 +158,33 @@ endif
 "}}}
 
 " Keybindings --------------------------------------- {{{
+" Move vertically through visual lines, not logical lines
+nnoremap k gk
+nnoremap j gj
+nnoremap <Up> g<Up>
+nnoremap <Down> g<Down>
+
+" Center screen during jump movements
+nnoremap n nzz
+nnoremap } }zz
+
+" Don't insert certain deletions into the default register
+nnoremap x "_x
+
+" Clear search highlights on Escape...
+nnoremap <esc> :nohlsearch<return><esc>
+" ...but mapping Escape causes weird arrow key behavior[1], so fix that
+nnoremap <esc>^[ <esc>^[
+
+" Easy line movement
+nnoremap <C-Up> :m .-2<CR>==
+nnoremap <C-Down> :m .+1<CR>==
+
+" Enable Tab completion for deoplete
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+"}}}
+"
+" SpaceVim ----------------------------------------- {{{
 " Space(macs) as my leader. Keep \ as the leader and map space to that key.
 " Prefer this method over mapping space directly as the leader so that there
 " is a visual indicator when a command is being entered.
@@ -158,37 +194,11 @@ vnoremap <Space> <Nop>
 nmap <Space> <Leader>
 vmap <Space> <Leader>
 
-" Move vertically through visual lines, not logical lines
-nnoremap k gk
-nnoremap j gj
-nnoremap <Up> g<Up>
-nnoremap <Down> g<Down>
-
-" Don't insert certain deletions into the default register
-nnoremap x "_x
-
-" Easy line movement
-nnoremap <C-Up> :m .-2<CR>==
-nnoremap <C-Down> :m .+1<CR>==
-
 " Easy movement between panes
 noremap <Leader>w<Left> <C-W><C-H>
 noremap <Leader>w<Up> <C-W><C-K>
 noremap <Leader>w<Down> <C-W><C-J>
 noremap <Leader>w<Right> <C-W><C-L>
-
-" Center screen during jump movements
-nnoremap n nzz
-nnoremap } }zz
-
-" Clear search highlights on Escape
-nnoremap <esc> :nohlsearch<return><esc>
-
-" But mapping Escape causes weird arrow key behavior[1], so fix that
-nnoremap <esc>^[ <esc>^[
-
-" Enable Tab completion for deoplete
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 " Grep for word under cursor
 noremap <Leader>g :grep! "<cword>"<cr>
