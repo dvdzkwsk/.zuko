@@ -62,12 +62,14 @@ filetype plugin indent on
 
 " Main Settings -------------------------------------------- {{{
 set ttimeoutlen=50                 " Reduce input delay when entering normal mode
+set undofile                       " Remember undo history between sessions
+set undodir=~/.vim/undo
 set noswapfile                     " Don't create swap files
 set hidden                         " Allow unsaved buffers
 set autoread                       " Automatically reload files changes outside of vim
 set tabstop=2                      " Number of spaces for a tab
 set softtabstop=2                  " Replace tabs with this number of spaces
-set shiftwidth=2                   " ibid
+set shiftwidth=2
 set expandtab                      " Convert tabs to spaces
 set number                         " Show line numbers
 set ruler                          " Show current column and line number
