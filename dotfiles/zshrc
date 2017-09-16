@@ -4,3 +4,5 @@ source ~/.zsh_aliases
 source ~/.zsh_prompt
 
 fpath=(/usr/local/share/zsh-completions $fpath)
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
