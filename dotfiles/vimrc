@@ -26,6 +26,7 @@ Plug 'tpope/vim-fugitive'            " Sweet Git integration
 Plug 'airblade/vim-gitgutter'        " Sidebar Git integration
 Plug 'editorconfig/editorconfig-vim' " Use .editorconfig settings when found
 Plug 'francoiscabrol/ranger.vim'     " Awesome file navigator
+Plug 'w0rp/ale'                      " Asynchronous linter
 "}}}
 
 " NeoVim ----------------------------------------------------- {{{
@@ -38,6 +39,8 @@ endif
 " Themes --------------------------------------------------- {{{
 Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
+Plug 'lifepillar/vim-solarized8'
+Plug 'luochen1990/rainbow'           " Rainbow parentheses
 "}}}
 
 " Languages ------------------------------------------------ {{{
@@ -56,7 +59,7 @@ filetype plugin indent on
 " Main Settings -------------------------------------------- {{{
 set ttimeoutlen=50                   " Reduce input delay when entering normal mode
 set undofile                         " Remember undo history between sessions
-set undodir=~/.vim/undo
+set undodir=~/.vim/undo              " Where to store the undo history
 set noswapfile                       " Don't create swap files
 set hidden                           " Allow unsaved buffers
 set autoread                         " Automatically reload files changes outside of vim
@@ -64,13 +67,14 @@ set expandtab                        " Convert tabs to spaces
 set tabstop=2                        " Number of spaces for a tab
 set softtabstop=2                    " Replace tabs with this number of spaces
 set shiftwidth=2                     " Use this number of spaces for shift motions (e.g. indent, dedent)
+set backspace=indent,eol,start       " Allow backspacing over the following regions (for backwards compat)
 set number                           " Show line numbers
 set ruler                            " Show current column and line number
 set cursorline                       " Highlight the currently selected line
 set showcmd                          " Show when leader key has been pressed
 set wrap                             " Enable visual line wrapping...
 set textwidth=0                      " ...only when text reaches the end of the window
-set wrapmargin=0                     " ibid
+set wrapmargin=0                     " Number of characters from the window edge to start wrapping
 set ignorecase                       " Ignore case when searching...
 set smartcase                        " ...except when search term starts with a capital
 set hlsearch                         " Highlight active search
@@ -108,9 +112,14 @@ if executable('rg')
   set grepprg=rg\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m
 endif
+"}}}
 
+" Auto Commands -------------------------------------------- {{{
 " Remove trailing whitespace on save
-autocmd BufWritePre * %s/\s\+$//e
+augroup autoTrimWhitespace
+  autocmd!
+  autocmd BufWritePre * %s/\s\+$//e
+augroup END
 
 " Automatically open the quickfix list when it is populated.
 augroup autoOpenQuickFixList
@@ -119,18 +128,11 @@ augroup autoOpenQuickFixList
   autocmd QuickFixCmdPost l*    lwindow
 augroup END
 
-" TypeScript Support
-autocmd BufNewFile,BufRead *.tsx set filetype=typescript.jsx
-
-" Fix vim-jsx not coloring closing tags. Seriously?
-" https://github.com/mxw/vim-jsx/issues/124
-hi Tag        ctermfg=04
-hi xmlTag     ctermfg=04
-hi xmlTagName ctermfg=04
-hi xmlEndTag  ctermfg=04
-hi xmlTagName guifg=#59ACE5
-hi xmlTag     guifg=#59ACE5
-hi xmlEndTag  guifg=#2974a1
+" Language Support
+augroup autoCheckFileType
+  autocmd!
+  autocmd BufNewFile,BufRead *.tsx set filetype=typescript.jsx
+augroup END
 "}}}
 
 " Theming -------------------------------------------------- {{{
@@ -141,15 +143,36 @@ if !exists('g:syntax_on')
   syntax enable
 endif
 set background=dark
-colorscheme base16-material
-let g:airline_theme='bubblegum'
-let g:airline_powerline_fonts=0
-let g:airline_left_sep=''
-let g:airline_right_sep=''
+colorscheme solarized8_dark_high
 
-if (has("termguicolors"))
+if has("termguicolors")
   set termguicolors
 endif
+
+" Airline
+let g:airline_theme='solarized' " bubblegum is a good x-theme default
+let g:airline_powerline_fonts=1
+" let g:airline_left_sep=''
+" let g:airline_right_sep=''
+let g:airline#extensions#ale#enabled=1
+
+" Rainbow Parentheses
+let g:rainbow_active=1
+let rainbow_colors_light =['lightblue', 'lightyellow', 'red', 'darkgreen', 'darkyellow', 'lightred', 'yellow', 'cyan', 'magenta', 'white']
+let rainbow_colors_dark = ['DarkBlue', 'Magenta', 'Black', 'Red', 'DarkGray', 'DarkGreen', 'DarkYellow']
+let g:rainbow_conf = {
+\ 'ctermfgs': (&background == 'light' ? rainbow_colors_dark : rainbow_colors_light)
+\}
+
+" Fix vim-jsx not coloring closing tags. Seriously?
+" https://github.com/mxw/vim-jsx/issues/124
+hi Tag        ctermfg=04
+hi xmlTag     ctermfg=04
+hi xmlTagName ctermfg=04
+hi xmlEndTag  ctermfg=04
+hi xmlTagName guifg=#59ACE5
+hi xmlTag     guifg=#59ACE5
+hi xmlEndTag  guifg=#2974a1
 "}}}
 
 " Keybindings --------------------------------------- {{{
@@ -185,6 +208,10 @@ nnoremap <esc> :nohlsearch<return><esc>
 " ...but mapping Escape causes weird arrow key behavior, so fix that
 " https://stackoverflow.com/questions/11940801/mapping-esc-in-vimrc-causes-bizzare-arrow-behaviour
 nnoremap <esc>^[ <esc>^[
+
+" Easy error navigation
+nmap <silent> <C-Left> <Plug>(ale_previous_wrap)
+nmap <silent> <C-Right> <Plug>(ale_next_wrap)
 
 " Easy line movement
 nnoremap <C-Up> :m .-2<CR>==
