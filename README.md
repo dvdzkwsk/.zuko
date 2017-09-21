@@ -60,6 +60,7 @@ Import VPN connection configurations into client from PIA
 ### ITerm2
 * Grab [ITerm Themes](https://github.com/chriskempson/base16-iterm2) for [Base 16](https://github.com/chriskempson/base16)
     * Current Favorite: Base 16 Spacemacs
+* Disable `CMD + R` (avoid accidentally resetting the terminal, vim, et al.)
 
 For better Tmux integration...
 * Swap left Command and Left Control
