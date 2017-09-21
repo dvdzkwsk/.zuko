@@ -81,6 +81,7 @@ set hlsearch                         " Highlight active search
 set incsearch                        " Show search/replace in real time
 set modeline                         " Enable modeline
 set laststatus=2                     " Always show the status line
+set diffopt+=vertical                " Split diffs vertically (left/right pane)
 set wildignore+=.git
 set wildignore+=*.jpg
 set wildignore+=*.jpeg
@@ -175,7 +176,7 @@ hi xmlTag     guifg=#59ACE5
 hi xmlEndTag  guifg=#2974a1
 "}}}
 
-" Keybindings --------------------------------------- {{{
+" Keybindings ---------------------------------------------- {{{
 " Space(macs) as my leader. Keep \ as the leader and map space to that key.
 " Prefer this method over mapping space directly as the leader so that there
 " is a visual indicator when a command is being entered.
@@ -235,7 +236,11 @@ nnoremap <Leader>bp :bp<CR>
 " [F]ilesystem
 nnoremap <Leader>ff :FZF<CR>
 nnoremap <Leader>fr :Ranger<CR>
-nnoremap <Leader>fg :grep! "<cword>"<cr>
+nnoremap <Leader>fw :grep! "<cword>"<CR>
+
+" [G]it
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gd :Gdiff<CR>
 
 " [Q]uickFix List
 nnoremap <Leader>ql :copen<CR>
