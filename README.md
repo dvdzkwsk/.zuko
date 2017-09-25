@@ -61,6 +61,7 @@ Import VPN connection configurations into client from PIA
 * Grab [ITerm Themes](https://github.com/chriskempson/base16-iterm2) for [Base 16](https://github.com/chriskempson/base16)
     * Current Favorite: Base 16 Spacemacs
 * Disable `CMD + R` (avoid accidentally resetting the terminal, vim, et al.)
+* [Enable Italics Support in Vim](https://alexpearce.me/2014/05/italics-in-iterm2-vim-tmux/)
 
 For better Tmux integration...
 * Swap left Command and Left Control

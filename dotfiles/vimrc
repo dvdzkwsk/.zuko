@@ -4,6 +4,7 @@
 " Reference:
 " - http://statico.github.io/vim.html
 " - http://www.oliversherouse.com/2017/08/21/vim_zero.html
+" - https://alexpearce.me/2014/05/italics-in-iterm2-vim-tmux
 "}}}
 
 " Plugins -------------------------------------------------- {{{
@@ -27,9 +28,10 @@ Plug 'airblade/vim-gitgutter'        " Sidebar Git integration
 Plug 'editorconfig/editorconfig-vim' " Use .editorconfig settings when found
 Plug 'francoiscabrol/ranger.vim'     " Awesome file navigator
 Plug 'w0rp/ale'                      " Asynchronous linter
+Plug 'luochen1990/rainbow'           " Rainbow parentheses
 "}}}
 
-" NeoVim ----------------------------------------------------- {{{
+" NeoVim --------------------------------------------------- {{{
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'rbgrouleff/bclose.vim'       " Ranger dependency for neovim
@@ -40,7 +42,8 @@ endif
 Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
 Plug 'lifepillar/vim-solarized8'
-Plug 'luochen1990/rainbow'           " Rainbow parentheses
+Plug 'liuchengxu/space-vim-dark'
+
 "}}}
 
 " Languages ------------------------------------------------ {{{
@@ -70,7 +73,7 @@ set shiftwidth=2                     " Use this number of spaces for shift motio
 set backspace=indent,eol,start       " Allow backspacing over the following regions (for backwards compat)
 set number                           " Show line numbers
 set ruler                            " Show current column and line number
-set cursorline                       " Highlight the currently selected line
+set nocursorline                     " Do not highlight the current line
 set showcmd                          " Show when leader key has been pressed
 set wrap                             " Enable visual line wrapping...
 set textwidth=0                      " ...only when text reaches the end of the window
@@ -92,6 +95,9 @@ set wildignore+=*.lock
 let g:deoplete#enable_at_startup=1
 let g:jsx_ext_required=0
 
+if !has("gui_macvim")
+  set nocursorline                   " cursorline is laggy outside of MacVim, so disable it
+endif
 if has('clipboard')
   set clipboard=unnamedplus          " Always copy to system clipboard with yank/delete
 endif
@@ -139,30 +145,31 @@ augroup END
 " Theming -------------------------------------------------- {{{
 " Do not clobber existing syntax highlighting if `syntax enable` is called
 " multiple times (i.e. when the .vimrc is re-sourced).
-" https://stackoverflow.com/questions/33380451/is-there-a-difference-between-syntax-on-and-syntax-enable-in-vimscript
 if !exists('g:syntax_on')
   syntax enable
 endif
-set background=dark
-colorscheme solarized8_dark_high
-
 if has("termguicolors")
   set termguicolors
 endif
 
+set background=dark
+colorscheme space-vim-dark
+hi Comment cterm=italic
+
 " Airline
-let g:airline_theme='solarized' " bubblegum is a good x-theme default
-let g:airline_powerline_fonts=1
-" let g:airline_left_sep=''
-" let g:airline_right_sep=''
+let g:airline_theme='bubblegum'
+let g:airline_powerline_fonts=!has("gui_macvim")
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 let g:airline#extensions#ale#enabled=1
 
 " Rainbow Parentheses
-let g:rainbow_active=1
-let rainbow_colors_light =['lightblue', 'lightyellow', 'red', 'darkgreen', 'darkyellow', 'lightred', 'yellow', 'cyan', 'magenta', 'white']
-let rainbow_colors_dark = ['DarkBlue', 'Magenta', 'Black', 'Red', 'DarkGray', 'DarkGreen', 'DarkYellow']
-let g:rainbow_conf = {
-\ 'ctermfgs': (&background == 'light' ? rainbow_colors_dark : rainbow_colors_light)
+let g:rainbow_active=0
+let rainbow_colors_light=['#06e5ff', '#e806ff', '#06ff72', '#ffa406']
+let rainbow_colors_dark=['DarkBlue', 'Magenta', 'Black', 'Red', 'DarkGray', 'DarkGreen', 'DarkYellow']
+let g:rainbow_conf={
+\	'guifgs': (&background == 'light' ? rainbow_colors_dark : rainbow_colors_light),
+\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
 \}
 
 " Fix vim-jsx not coloring closing tags. Seriously?
