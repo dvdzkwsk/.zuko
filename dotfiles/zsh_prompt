@@ -13,6 +13,6 @@ precmd () {
   cwd="%F{cyan}%(3~|.../%2~|%~)"
   prompt="%F{magenta}λ%F{reset_color}"
 
-  __git_ps1 "${NEWLINE}${user}%F{white}:${cwd}%F{green}" " ${prompt} " "(%s)"
+  __git_ps1 "${NEWLINE}${user}%F{white}:${cwd}%F{green}" " ${prompt} "
 }
 

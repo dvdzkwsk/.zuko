@@ -28,6 +28,7 @@ Plug 'airblade/vim-gitgutter'        " Sidebar Git integration
 Plug 'editorconfig/editorconfig-vim' " Use .editorconfig settings when found
 Plug 'francoiscabrol/ranger.vim'     " Awesome file navigator
 Plug 'w0rp/ale'                      " Asynchronous linter
+Plug 'mhinz/vim-startify'            " Improved startup screen
 Plug 'luochen1990/rainbow'           " Rainbow parentheses
 "}}}
 
@@ -73,7 +74,7 @@ set shiftwidth=2                     " Use this number of spaces for shift motio
 set backspace=indent,eol,start       " Allow backspacing over the following regions (for backwards compat)
 set number                           " Show line numbers
 set ruler                            " Show current column and line number
-set nocursorline                     " Do not highlight the current line
+set cursorline                       " Highlight the current line
 set showcmd                          " Show when leader key has been pressed
 set wrap                             " Enable visual line wrapping...
 set textwidth=0                      " ...only when text reaches the end of the window
@@ -95,9 +96,6 @@ set wildignore+=*.lock
 let g:deoplete#enable_at_startup=1
 let g:jsx_ext_required=0
 
-if !has("gui_macvim")
-  set nocursorline                   " cursorline is laggy outside of MacVim, so disable it
-endif
 if has('clipboard')
   set clipboard=unnamedplus          " Always copy to system clipboard with yank/delete
 endif
@@ -110,7 +108,6 @@ endif
 if has('nvim')
   set completeopt-=preview
 endif
-
 " Prevent grep from automatically opening the first matching file.
 ca grep grep!
 
