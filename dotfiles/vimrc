@@ -201,6 +201,9 @@ nnoremap <Down> g<Down>
 vnoremap <S-Up> <NOP>
 vnoremap <S-Down> <NOP>
 
+" More Efficient File Saving
+map <Esc><Esc> :w<CR>
+
 " Center screen during jump movements
 nnoremap n nzz
 nnoremap } }zz
