@@ -24,6 +24,7 @@ Plug 'tpope/vim-repeat'              " Make `.` work better
 Plug 'tpope/vim-surround'            " Easy surround commands
 Plug 'tpope/vim-unimpaired'          " More symmetrical mappings
 Plug 'tpope/vim-fugitive'            " Sweet Git integration
+Plug 'tpope/vim-rhubarb'             " Extensions for fugitive
 Plug 'airblade/vim-gitgutter'        " Sidebar Git integration
 Plug 'editorconfig/editorconfig-vim' " Use .editorconfig settings when found
 Plug 'francoiscabrol/ranger.vim'     " Awesome file navigator
@@ -160,8 +161,13 @@ let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline#extensions#ale#enabled=1
 
+" Git Gutter
+let g:gitgutter_sign_added='●'
+let g:gitgutter_sign_modified='●'
+let g:gitgutter_sign_removed='●'
+
 " Rainbow Parentheses
-let g:rainbow_active=0
+let g:rainbow_active=1
 let rainbow_colors_light=['#06e5ff', '#e806ff', '#06ff72', '#ffa406']
 let rainbow_colors_dark=['DarkBlue', 'Magenta', 'Black', 'Red', 'DarkGray', 'DarkGreen', 'DarkYellow']
 let g:rainbow_conf={
@@ -248,6 +254,7 @@ nnoremap <Leader>fw :grep! "<cword>"<CR>
 " [G]it
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gd :Gdiff<CR>
+nnoremap <Leader>gb :Gbrowse<CR>
 
 " [Q]uickFix List
 nnoremap <Leader>ql :copen<CR>
