@@ -6,3 +6,10 @@ source ~/.zsh_prompt
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[[ -f /Users/zuko/projects/technologyadvice/partners-lambda/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/zuko/projects/technologyadvice/partners-lambda/node_modules/tabtab/.completions/serverless.zsh
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[[ -f /Users/zuko/projects/technologyadvice/partners-lambda/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/zuko/projects/technologyadvice/partners-lambda/node_modules/tabtab/.completions/sls.zsh
