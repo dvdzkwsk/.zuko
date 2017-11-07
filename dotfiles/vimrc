@@ -5,6 +5,7 @@
 " - http://statico.github.io/vim.html
 " - http://www.oliversherouse.com/2017/08/21/vim_zero.html
 " - https://alexpearce.me/2014/05/italics-in-iterm2-vim-tmux
+" - https://statico.github.io/vim3.html
 "}}}
 
 " Plugins -------------------------------------------------- {{{
@@ -17,7 +18,8 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Core ----------------------------------------------------- {{{
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug '/usr/local/opt/fzf'            " Import native FZF binary (brew install fzf)
+Plug 'junegunn/fzf.vim'              " FuzzyFind integration
 Plug 'vim-airline/vim-airline'       " Prettier statusline
 Plug 'tpope/vim-commentary'          " Easy commenting
 Plug 'tpope/vim-repeat'              " Make `.` work better
@@ -30,6 +32,8 @@ Plug 'editorconfig/editorconfig-vim' " Use .editorconfig settings when found
 Plug 'francoiscabrol/ranger.vim'     " Awesome file navigator
 Plug 'w0rp/ale'                      " Asynchronous linter
 Plug 'mhinz/vim-startify'            " Improved startup screen
+Plug 'mbbill/undotree'               " Undo tree visualizer
+Plug 'sheerun/vim-polyglot'          " Language support
 Plug 'luochen1990/rainbow'           " Rainbow parentheses
 "}}}
 
@@ -45,16 +49,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
 Plug 'lifepillar/vim-solarized8'
 Plug 'liuchengxu/space-vim-dark'
-
-"}}}
-
-" Languages ------------------------------------------------ {{{
-Plug 'pangloss/vim-javascript'
-Plug 'othree/es.next.syntax.vim'
-Plug 'leafgarland/typescript-vim'
-Plug 'mxw/vim-jsx'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'cakebaker/scss-syntax.vim'
 "}}}
 
 call plug#end()
@@ -87,13 +81,7 @@ set incsearch                        " Show search/replace in real time
 set modeline                         " Enable modeline
 set laststatus=2                     " Always show the status line
 set diffopt+=vertical                " Split diffs vertically (left/right pane)
-set wildignore+=.git
-set wildignore+=*.jpg
-set wildignore+=*.jpeg
-set wildignore+=*.png
-set wildignore+=*.svg
-set wildignore+=node_modules/**
-set wildignore+=*.lock
+set wildignore+=*.jpg,*.jpeg,*.png,*.svg
 let g:deoplete#enable_at_startup=1
 let g:jsx_ext_required=0
 
@@ -109,10 +97,10 @@ endif
 if has('nvim')
   set completeopt-=preview
 endif
-" Prevent grep from automatically opening the first matching file.
-ca grep grep!
 
-" Prefer ripgrep over grep
+" Prevent grep from automatically opening the first matching file, and replace
+" grep with ripgrep for speed.
+ca grep grep!
 if executable('rg')
   set grepprg=rg\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m
@@ -202,8 +190,8 @@ nnoremap j gj
 nnoremap <Up> g<Up>
 nnoremap <Down> g<Down>
 
-" Disable Shift-Up/Down in visual mode, which 99% is me accidentally jumping
-" up to the top or bottom of the screen.
+" Disable Shift-Up/Down in visual mode, which 99% of the time is me
+" accidentally jumping up to the top or bottom of the screen.
 vnoremap <S-Up> <NOP>
 vnoremap <S-Down> <NOP>
 
@@ -223,6 +211,9 @@ nnoremap <esc> :nohlsearch<return><esc>
 " https://stackoverflow.com/questions/11940801/mapping-esc-in-vimrc-causes-bizzare-arrow-behaviour
 nnoremap <esc>^[ <esc>^[
 
+" Do not automatically jump to next match for current word
+nnoremap * *<c-o>
+
 " Easy error navigation
 nmap <silent> <C-Left> <Plug>(ale_previous_wrap)
 nmap <silent> <C-Right> <Plug>(ale_next_wrap)
@@ -239,7 +230,9 @@ noremap <Leader>w<Left> <C-W><C-H>
 noremap <Leader>w<Up> <C-W><C-K>
 noremap <Leader>w<Down> <C-W><C-J>
 noremap <Leader>w<Right> <C-W><C-L>
+"}}}
 
+" Mnemonics ------------------------------------------------ {{{
 " [B]uffer
 nnoremap <Leader><Tab> :b#<CR>
 nnoremap <Leader>bl :ls<CR>
