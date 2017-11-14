@@ -20,6 +20,7 @@ call plug#begin('~/.vim/plugged')
 " Core ----------------------------------------------------- {{{
 Plug '/usr/local/opt/fzf'            " Import native FZF binary (brew install fzf)
 Plug 'junegunn/fzf.vim'              " FuzzyFind integration
+Plug 'scrooloose/nerdtree'           " File explorer
 Plug 'vim-airline/vim-airline'       " Prettier statusline
 Plug 'tpope/vim-commentary'          " Easy commenting
 Plug 'tpope/vim-repeat'              " Make `.` work better
@@ -35,7 +36,7 @@ Plug 'mhinz/vim-startify'            " Improved startup screen
 Plug 'mbbill/undotree'               " Undo tree visualizer
 Plug 'sheerun/vim-polyglot'          " Language support
 Plug 'luochen1990/rainbow'           " Rainbow parentheses
-Plug 'jpalardy/vim-slime'
+Plug 'jpalardy/vim-slime'            " REPL integration
 "}}}
 
 " NeoVim --------------------------------------------------- {{{
@@ -232,9 +233,6 @@ noremap <Leader>w<Left> <C-W><C-H>
 noremap <Leader>w<Up> <C-W><C-K>
 noremap <Leader>w<Down> <C-W><C-J>
 noremap <Leader>w<Right> <C-W><C-L>
-
-" Terminal Mode
-tnoremap <Esc> <C-\><C-n>
 "}}}
 
 " Mnemonics ------------------------------------------------ {{{
@@ -254,6 +252,9 @@ nnoremap <Leader>fw :grep! "<cword>"<CR>
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gb :Gbrowse<CR>
+
+" [P]roject
+nnoremap <Leader>pt :NERDTreeToggle<CR>
 
 " [Q]uickFix List
 nnoremap <Leader>ql :copen<CR>
