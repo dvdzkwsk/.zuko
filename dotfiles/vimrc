@@ -6,6 +6,11 @@
 " - http://www.oliversherouse.com/2017/08/21/vim_zero.html
 " - https://alexpearce.me/2014/05/italics-in-iterm2-vim-tmux
 " - https://statico.github.io/vim3.html
+"
+" Plugins to remember:
+" - https://github.com/bling/vim-bufferline
+" - https://github.com/francoiscabrol/ranger.vim
+" - https://github.com/mbbill/undotree
 "}}}
 
 " Plugins -------------------------------------------------- {{{
@@ -17,41 +22,33 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 call plug#begin('~/.vim/plugged')
 
-" Core ----------------------------------------------------- {{{
 Plug '/usr/local/opt/fzf'            " Import native FZF binary (brew install fzf)
 Plug 'junegunn/fzf.vim'              " FuzzyFind integration
-Plug 'scrooloose/nerdtree'           " File explorer
 Plug 'vim-airline/vim-airline'       " Prettier statusline
 Plug 'tpope/vim-commentary'          " Easy commenting
 Plug 'tpope/vim-repeat'              " Make `.` work better
-Plug 'tpope/vim-surround'            " Easy surround commands
 Plug 'tpope/vim-unimpaired'          " More symmetrical mappings
 Plug 'tpope/vim-fugitive'            " Sweet Git integration
 Plug 'tpope/vim-rhubarb'             " Extensions for fugitive
+Plug 'machakann/vim-sandwich'        " Easy surround commands
 Plug 'airblade/vim-gitgutter'        " Sidebar Git integration
 Plug 'editorconfig/editorconfig-vim' " Use .editorconfig settings when found
-Plug 'francoiscabrol/ranger.vim'     " Awesome file navigator
+Plug 'scrooloose/nerdtree'           " File explorer
 Plug 'w0rp/ale'                      " Asynchronous linter
 Plug 'mhinz/vim-startify'            " Improved startup screen
-Plug 'mbbill/undotree'               " Undo tree visualizer
 Plug 'sheerun/vim-polyglot'          " Language support
 Plug 'luochen1990/rainbow'           " Rainbow parentheses
 Plug 'jpalardy/vim-slime'            " REPL integration
-"}}}
 
-" NeoVim --------------------------------------------------- {{{
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  Plug 'rbgrouleff/bclose.vim'       " Ranger dependency for neovim
 endif
-"}}}
 
-" Themes --------------------------------------------------- {{{
+" Themes
 Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
 Plug 'lifepillar/vim-solarized8'
 Plug 'liuchengxu/space-vim-dark'
-"}}}
 
 call plug#end()
 filetype plugin indent on
@@ -84,9 +81,13 @@ set modeline                         " Enable modeline
 set laststatus=2                     " Always show the status line
 set diffopt+=vertical                " Split diffs vertically (left/right pane)
 set wildignore+=*.jpg,*.jpeg,*.png,*.svg
+
 let g:deoplete#enable_at_startup=1
 let g:jsx_ext_required=0
 let g:slime_target="neovim"
+
+" Disable vim-sandwich action animation
+call operator#sandwich#set('all', 'all', 'highlight', 0)
 
 if has('clipboard')
   set clipboard=unnamedplus          " Always copy to system clipboard with yank/delete
@@ -125,7 +126,7 @@ augroup autoOpenQuickFixList
 augroup END
 
 " Language Support
-augroup autoCheckFileType
+augroup autoSetFileType
   autocmd!
   autocmd BufNewFile,BufRead *.tsx set filetype=typescript.jsx
 augroup END
@@ -209,10 +210,10 @@ nnoremap } }zz
 nnoremap x "_x
 
 " Clear search highlights on Escape...
-nnoremap <esc> :nohlsearch<return><esc>
+nnoremap <Esc> :nohlsearch<return><Esc>
 " ...but mapping Escape causes weird arrow key behavior, so fix that
 " https://stackoverflow.com/questions/11940801/mapping-esc-in-vimrc-causes-bizzare-arrow-behaviour
-nnoremap <esc>^[ <esc>^[
+nnoremap <Esc>^[ <Esc>^[
 
 " Do not automatically jump to next match for current word
 nnoremap * *<c-o>
