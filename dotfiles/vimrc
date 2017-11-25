@@ -39,6 +39,7 @@ Plug 'mhinz/vim-startify'            " Improved startup screen
 Plug 'sheerun/vim-polyglot'          " Language support
 Plug 'luochen1990/rainbow'           " Rainbow parentheses
 Plug 'jpalardy/vim-slime'            " REPL integration
+Plug 'tpope/vim-fireplace'           " Clojure Integration
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -231,8 +232,8 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 " Easy movement between panes
 noremap <Leader>w<Left> <C-W><C-H>
-noremap <Leader>w<Up> <C-W><C-K>
 noremap <Leader>w<Down> <C-W><C-J>
+noremap <Leader>w<Up> <C-W><C-K>
 noremap <Leader>w<Right> <C-W><C-L>
 "}}}
 
