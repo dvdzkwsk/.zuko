@@ -8,6 +8,7 @@ Settings for my personal development environment.
     * [Fonts](#fonts)
 1. [Applications](#applications)
     * [ITerm2](#iterm2)
+    * [Alacritty](#alacritty)
 
 ## System
 
@@ -66,3 +67,39 @@ Import VPN connection configurations into client from PIA
 For better Tmux integration...
 * Swap left Command and Left Control
 * Add action "don't remap modifier keys" for command + shift left/right so I can still navigate between windows
+
+### Alacritty
+
+Install Rust (and the toochain) with rustup, see: https://www.rustup.rs/, follow the instructions there.
+
+```sh
+# Clone the repo:
+git clone https://github.com/jwilm/alacritty.git
+cd alacritty
+
+# Ensure Rust is configured correctly:
+rustup override set stable
+rustup update stable
+
+# Build:
+cargo build --release
+
+# Create Application for Spotlight
+make app
+cp -r target/release/osx/Alacritty.app /Applications/Alacritty.app
+```
+
+To update:
+
+```sh
+cd ~/path/to/alacritty && git pull && rustup update stable && cargo build --release && make app && cp -r target/release/osx/Alacritty.app /
+```
+
+If `$PATH` is missing entries, update `~/.config/alacritty/alacritty.yml`:
+
+```yml
+shell:
+ program: /usr/local/bin/zsh
+ args:
+   - --login
+```
