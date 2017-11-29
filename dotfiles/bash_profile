@@ -1,3 +1,5 @@
 source ~/.bash_main
 source ~/.bash_prompt
 source ~/.bash_private
+
+export PATH="$HOME/.cargo/bin:$PATH"
