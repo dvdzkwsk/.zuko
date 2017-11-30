@@ -1,2 +1,4 @@
 alias brc="vi ~/.zshrc"
 alias brcs="source ~/.zshrc"
+alias history="history 1"
+alias h="history"
