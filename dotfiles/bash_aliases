@@ -2,6 +2,7 @@
 alias ..="cd .."
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 alias size="stat -f%z"
+alias serve="python -m SimpleHTTPServer"
 alias weather="curl wttr.in"
 
 # Mnemonic
@@ -37,9 +38,6 @@ alias gpr="git pull-request"
 alias gr="git rebase"
 alias grc="git rebase --continue"
 alias gbd="git branch -D"
-
-# [H]ttp
-alias http="python -m SimpleHTTPServer"
 
 # [L]ist
 alias ll="ls -la -Gfh"
