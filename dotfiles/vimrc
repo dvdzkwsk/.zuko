@@ -22,29 +22,36 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 call plug#begin('~/.vim/plugged')
 
-Plug '/usr/local/opt/fzf'            " Import native FZF binary (brew install fzf)
-Plug 'junegunn/fzf.vim'              " FuzzyFind integration
-Plug 'vim-airline/vim-airline'       " Prettier statusline
-Plug 'tpope/vim-commentary'          " Easy commenting
-Plug 'tpope/vim-repeat'              " Make `.` work better
-Plug 'tpope/vim-unimpaired'          " More symmetrical mappings
-Plug 'tpope/vim-fugitive'            " Sweet Git integration
-Plug 'tpope/vim-rhubarb'             " Extensions for fugitive
-Plug 'machakann/vim-sandwich'        " Easy surround commands
-Plug 'airblade/vim-gitgutter'        " Sidebar Git integration
-Plug 'editorconfig/editorconfig-vim' " Use .editorconfig settings when found
-Plug 'scrooloose/nerdtree'           " File explorer
-Plug 'w0rp/ale'                      " Asynchronous linter
-Plug 'mhinz/vim-startify'            " Improved startup screen
-Plug 'sheerun/vim-polyglot'          " Language support
-Plug 'luochen1990/rainbow'           " Rainbow parentheses
-Plug 'jpalardy/vim-slime'            " REPL integration
-Plug 'tpope/vim-fireplace'           " Clojure Integration
-Plug 'christoomey/vim-tmux-navigator'
+" Basics
+Plug 'mhinz/vim-startify'             " Improved startup screen
+Plug 'editorconfig/editorconfig-vim'  " Use .editorconfig settings when found
+Plug '/usr/local/opt/fzf'             " Import native FZF binary (brew install fzf)
+Plug 'junegunn/fzf.vim'               " FuzzyFind integration
+Plug 'w0rp/ale'                       " Asynchronous linter
+Plug 'scrooloose/nerdtree'            " File explorer
+Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between tmux and vim
+Plug 'vim-airline/vim-airline'        " Prettier statusline
+Plug 'luochen1990/rainbow'            " Rainbow parentheses
 
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 endif
+
+" IMproved Editing
+Plug 'tpope/vim-commentary'           " Easier commenting
+Plug 'tpope/vim-repeat'               " Make `.` work better
+Plug 'tpope/vim-unimpaired'           " More symmetrical mappings
+Plug 'machakann/vim-sandwich'         " Intuitive surround commands
+
+" Version Control
+Plug 'tpope/vim-fugitive'             " Sweet Git integration
+Plug 'tpope/vim-rhubarb'              " Extensions for fugitive
+Plug 'airblade/vim-gitgutter'         " Sidebar Git integration
+
+" Language Support
+Plug 'sheerun/vim-polyglot'           " Suite of language packages
+Plug 'jpalardy/vim-slime'             " REPL integration
+Plug 'tpope/vim-fireplace'            " Clojure integration
 
 " Themes
 Plug 'vim-airline/vim-airline-themes'
