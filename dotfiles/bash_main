@@ -5,9 +5,6 @@ eval "$(hub alias -s)"        # Enable git extensions
 export HISTSIZE=500           # Increase the default history size
 export SAVEHIST=500           # ibid
 export HISTCONTROL=erasedups  # Remove duplicates in history
-setopt sharehistory           # Share history across terminals
-setopt appendhistory          # Persist history across sessions
-setopt incappendhistory       # Immediately append to history file
 export VISUAL=nvim            # Global default editor
 export EDITOR="$VISUAL"       # ibid
 #}}}
