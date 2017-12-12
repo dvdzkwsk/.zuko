@@ -1,5 +1,10 @@
 source ~/.zsh_aliases
 source ~/.zsh_prompt
+
+setopt sharehistory           # Share history across terminals
+setopt appendhistory          # Persist history across sessions
+setopt incappendhistory       # Immediately append to history file
+
 autoload -U edit-command-line
 
 # Mirror bash's Ctrl + x + e functionality to edit the current command with $EDITOR.
@@ -10,4 +15,3 @@ bindkey '^x^e' edit-command-line
 bindkey -M vicmd v edit-command-line
 
 fpath=(/usr/local/share/zsh-completions $fpath)
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
