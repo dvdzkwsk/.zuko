@@ -89,6 +89,8 @@ set incsearch                        " Show search/replace in real time
 set modeline                         " Enable modeline
 set laststatus=2                     " Always show the status line
 set diffopt+=vertical                " Split diffs vertically (left/right pane)
+set splitright                       " Open new vertical splits to the right
+set splitbelow                       " Open new horizontal splits below
 set wildignore+=*.jpg,*.jpeg,*.png,*.svg
 
 let g:deoplete#enable_at_startup=1
@@ -250,6 +252,9 @@ noremap <C-Right> <C-W><C-L>
 " Persist selection in visual mode after indent
 vnoremap > >gv
 vnoremap < <gv
+
+" Option to go to file in vertical split
+nnoremap gF :vertical wincmd f<CR>
 "}}}
 
 " Mnemonics ------------------------------------------------ {{{
@@ -259,11 +264,13 @@ nmap <Leader>af <Plug>(ale_fix)
 " [B]uffer
 nnoremap <Leader><Tab> :b#<CR>
 nnoremap <Leader>bl :ls<CR>
+nnoremap <Leader>bd :bd<CR>
 nnoremap <Leader>bn :bn<CR>
 nnoremap <Leader>bp :bp<CR>
 nnoremap <Leader>bi :echo b:terminal_job_id<CR>
 
 " [F]ile system
+nnoremap <Leader>fb :Buffers<CR>
 nnoremap <Leader>ff :FZF<CR>
 nnoremap <Leader>fw :grep! "<cword>"<CR>
 
