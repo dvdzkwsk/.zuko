@@ -66,50 +66,43 @@ filetype plugin indent on
 "}}}
 
 " Main Settings -------------------------------------------- {{{
-set ttimeoutlen=50                   " Reduce input delay when entering normal mode
-set undofile                         " Remember undo history between sessions
-set undodir=~/.vim/undo              " Where to store the undo history
-set noswapfile                       " Don't create swap files
-set hidden                           " Allow unsaved buffers
-set autoread                         " Automatically reload files changes outside of vim
-set expandtab                        " Convert tabs to spaces
-set tabstop=2                        " Number of spaces for a tab
-set softtabstop=2                    " Replace tabs with this number of spaces
-set shiftwidth=2                     " Use this number of spaces for shift motions (e.g. indent, dedent)
-set backspace=indent,eol,start       " Allow backspacing over the following regions (for backwards compat)
-set number                           " Show line numbers
-set ruler                            " Show current column and line number
-set cursorline                       " Highlight the current line
-set showcmd                          " Show when leader key has been pressed
-set wrap                             " Enable visual line wrapping...
-set textwidth=0                      " ...only when text reaches the end of the window
-set wrapmargin=0                     " Number of characters from the window edge to start wrapping
-set ignorecase                       " Ignore case when searching...
-set smartcase                        " ...except when search term starts with a capital
-set hlsearch                         " Highlight active search
-set incsearch                        " Show search/replace in real time
-set modeline                         " Enable modeline
-set laststatus=2                     " Always show the status line
-set diffopt+=vertical                " Split diffs vertically (left/right pane)
-set splitright                       " Open new vertical splits to the right
-set splitbelow                       " Open new horizontal splits below
+set ttimeoutlen=50                    " Reduce input delay when entering normal mode
+set undofile                          " Remember undo history between sessions
+set undodir=~/.vim/undo               " Where to store the undo history
+set noswapfile                        " Don't create swap files
+set hidden                            " Allow unsaved buffers
+set autoread                          " Automatically reload files changes outside of vim
+set expandtab                         " Convert tabs to spaces
+set tabstop=2                         " Number of spaces for a tab
+set softtabstop=2                     " Replace tabs with this number of spaces
+set shiftwidth=2                      " Use this number of spaces for shift motions (e.g. indent, dedent)
+set backspace=indent,eol,start        " Allow backspacing over the following regions (for backwards compat)
+set number                            " Show line numbers
+set ruler                             " Show current column and line number
+set cursorline                        " Highlight the current line
+set showcmd                           " Show when leader key has been pressed
+set wrap                              " Enable visual line wrapping...
+set textwidth=0                       " ...only when text reaches the end of the window
+set wrapmargin=0                      " Number of characters from the window edge to start wrapping
+set ignorecase                        " Ignore case when searching...
+set smartcase                         " ...except when search term starts with a capital
+set hlsearch                          " Highlight active search
+set incsearch                         " Show search/replace in real time
+set modeline                          " Enable modeline
+set laststatus=2                      " Always show the status line
+set diffopt+=vertical                 " Split diffs vertically (left/right pane)
+set splitright                        " Open new vertical splits to the right
+set splitbelow                        " Open new horizontal splits below
 set wildignore+=*.jpg,*.jpeg,*.png,*.svg
 
-let g:deoplete#enable_at_startup=1
-let g:jsx_ext_required=0
-let g:slime_target="neovim"
-
-" Disable vim-sandwich action animation
-call operator#sandwich#set('all', 'all', 'highlight', 0)
-
 if has('clipboard')
-  set clipboard=unnamedplus          " Always copy to system clipboard with yank/delete
+  set clipboard=unnamedplus           " Always copy to system clipboard with yank/delete
 endif
 if exists('+colorcolumn')
-  set colorcolumn=80                 " Show line length guide
+  set colorcolumn=80                  " Show line length guide
 endif
 if exists('&inccommand')
-  set inccommand=nosplit             " Show substitutions in place
+  set inccommand=nosplit              " Show substitutions in place
 endif
 if has('nvim')
   set completeopt-=preview
@@ -123,6 +116,19 @@ if executable('rg')
   set grepformat=%f:%l:%c:%m
 endif
 
+" Plugin Configuration
+let g:deoplete#enable_at_startup=1
+let g:jsx_ext_required=0
+let g:slime_target="neovim"
+
+" vim-sandwich
+" Disable vim-sandwich action animation
+call operator#sandwich#set('all', 'all', 'highlight', 0)
+
+" vim-http-client
+let g:http_client_focus_output_window=0
+
+" Ale
 let g:ale_fix_on_save=0
 let g:ale_fixers={
 \  'javascript': ['prettier'],
