@@ -48,4 +48,4 @@ GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUPSTREAM="auto"
 GIT_PS1_DESCRIBE_STYLE="branch"
 prompt_post="\[${purple}\]λ \[${reset}\]";
-PROMPT_COMMAND='__git_ps1 "${prompt_pre}" " ${prompt_post}"'
+PROMPT_COMMAND='__git_ps1 "${prompt_pre}${reset}${green}" " ${prompt_post}"'
