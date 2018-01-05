@@ -8,6 +8,7 @@ export SAVEHIST=500           # ibid
 export HISTCONTROL=erasedups  # Remove duplicates in history
 export VISUAL=nvim            # Global default editor
 export EDITOR="$VISUAL"       # ibid
+export GPG_TTY=$(tty)
 #}}}
 
 # Node ----------------------------------------------------- {{{
