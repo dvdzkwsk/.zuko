@@ -1,0 +1,3 @@
+  #TabsToolbar, #sidebar-header {visibility: collapse !important;}
+    #TabsToolbar {margin-bottom: -21px !important;}
+    #nav-bar-customization-target {padding-left: 65px;}
