@@ -29,7 +29,7 @@ brew install gnu-sed --with-default-names
 brew install python3
 brew install rg
 brew install jq
-brew install nvm
+brew install nvim
 brew install tree
 brew install yarn
 brew install docker
@@ -37,9 +37,10 @@ brew install boot2docker
 #}}}
 
 # Applications -------------------------------------------- {{{
-brew cask install --appdir="/Applications" google-chrome
-brew cask install --appdir="/Applications" firefox
-brew cask install --appdir="/Applications" slack
+brew cask install google-chrome
+brew cask install firefox
+brew cask install slack
+brew cask install flux
 #}}}
 
 # Dotfiles ------------------------------------------------ {{{
