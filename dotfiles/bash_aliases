@@ -5,6 +5,7 @@ alias size="stat -f%z"
 alias serve="python -m SimpleHTTPServer"
 alias weather="curl wttr.in"
 alias clock="tty-clock -b -s -c -C 2"
+alias diff="colordiff"
 
 # Mnemonic
 # [B]ash
