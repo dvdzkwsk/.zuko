@@ -39,6 +39,7 @@ Plug 'tpope/vim-commentary'           " Easier commenting
 Plug 'tpope/vim-repeat'               " Make `.` work better
 Plug 'tpope/vim-unimpaired'           " More symmetrical mappings
 Plug 'machakann/vim-sandwich'         " Intuitive surround commands
+Plug 'junegunn/vim-easy-align'        " Text alignment commands
 
 " Version Control
 Plug 'tpope/vim-fugitive'             " Sweet Git integration
@@ -263,6 +264,10 @@ vnoremap < <gv
 
 " Option to go to file in vertical split
 nnoremap gF :vertical wincmd f<CR>
+
+" Suggested vim-easy-align mappings
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 "}}}
 
 " Mnemonics ------------------------------------------------ {{{
