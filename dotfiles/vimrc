@@ -8,7 +8,6 @@
 " - https://statico.github.io/vim3.html
 "
 " Plugins to remember:
-" - https://github.com/bling/vim-bufferline
 " - https://github.com/francoiscabrol/ranger.vim
 " - https://github.com/mbbill/undotree
 "}}}
@@ -30,13 +29,12 @@ Plug 'junegunn/fzf.vim'               " FuzzyFind integration
 Plug 'w0rp/ale'                       " Asynchronous linter
 Plug 'scrooloose/nerdtree'            " File explorer
 Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between tmux and vim
-Plug 'vim-airline/vim-airline'        " Prettier statusline
 Plug 'luochen1990/rainbow'            " Rainbow parentheses
 Plug 'aquach/vim-http-client'         " Make HTTP requests from vim
 
 " IMproved Editing
 Plug 'tpope/vim-commentary'           " Easier commenting
-Plug 'tpope/vim-repeat'               " Make `.` work better
+Plug 'tpope/vim-repeat'               " Make '.' smarter
 Plug 'tpope/vim-unimpaired'           " More symmetrical mappings
 Plug 'machakann/vim-sandwich'         " Intuitive surround commands
 Plug 'junegunn/vim-easy-align'        " Text alignment commands
@@ -44,14 +42,15 @@ Plug 'junegunn/vim-easy-align'        " Text alignment commands
 " Version Control
 Plug 'tpope/vim-fugitive'             " Sweet Git integration
 Plug 'tpope/vim-rhubarb'              " Extensions for fugitive
-Plug 'airblade/vim-gitgutter'         " Sidebar Git integration
+Plug 'mhinz/vim-signify'              " Sidebar VCS integration
 
 " Language Support
 Plug 'sheerun/vim-polyglot'           " Suite of language packages
 Plug 'jpalardy/vim-slime'             " REPL integration
 Plug 'tpope/vim-fireplace'            " Clojure integration
 
-" Themes
+" Theming
+Plug 'vim-airline/vim-airline'        " Prettier statusline
 Plug 'vim-airline/vim-airline-themes'
 Plug 'chriskempson/base16-vim'
 Plug 'lifepillar/vim-solarized8'
@@ -77,7 +76,7 @@ set expandtab                         " Convert tabs to spaces
 set tabstop=2                         " Number of spaces for a tab
 set softtabstop=2                     " Replace tabs with this number of spaces
 set shiftwidth=2                      " Use this number of spaces for shift motions (e.g. indent, dedent)
-set backspace=indent,eol,start        " Allow backspacing over the following regions (for backwards compat)
+set backspace=indent,eol,start        " Allow backspacing over these regions (for backwards compat)
 set number                            " Show line numbers
 set ruler                             " Show current column and line number
 set cursorline                        " Highlight the current line
@@ -97,7 +96,7 @@ set splitbelow                        " Open new horizontal splits below
 set wildignore+=*.jpg,*.jpeg,*.png,*.svg
 
 if has('clipboard')
-  set clipboard=unnamedplus           " Always copy to system clipboard with yank/delete
+  set clipboard=unnamedplus           " Use system clipboard with yank/delete
 endif
 if exists('+colorcolumn')
   set colorcolumn=80                  " Show line length guide
@@ -109,15 +108,17 @@ if has('nvim')
   set completeopt-=preview
 endif
 
-" Prevent grep from automatically opening the first matching file, and replace
-" grep with ripgrep for speed.
-ca grep grep!
+" Replace grep with faster ripgrep
 if executable('rg')
   set grepprg=rg\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m
 endif
 
-" Plugin Configuration
+" Prevent grep from automatically opening the first matching file
+ca grep grep!
+"}}}
+
+" Plugin Configurations ------------------------------------ {{{
 let g:deoplete#enable_at_startup=1
 let g:jsx_ext_required=0
 let g:slime_target="neovim"
@@ -127,7 +128,7 @@ let g:slime_target="neovim"
 call operator#sandwich#set('all', 'all', 'highlight', 0)
 
 " vim-http-client
-let g:http_client_focus_output_window=0
+let g:http_client_focus_output_window=1
 
 " Ale
 let g:ale_fix_on_save=0
@@ -171,6 +172,8 @@ endif
 
 set background=dark
 colorscheme space-vim-dark
+
+" Display comments in italics
 hi Comment cterm=italic
 
 " Airline
@@ -180,10 +183,10 @@ let g:airline_left_sep=''
 let g:airline_right_sep=''
 let g:airline#extensions#ale#enabled=1
 
-" Git Gutter
-let g:gitgutter_sign_added='●'
-let g:gitgutter_sign_modified='●'
-let g:gitgutter_sign_removed='●'
+" Signify (VCS Gutter)
+let g:signify_show_count=1
+let g:signify_sign_add='●'
+let g:signify_sign_change='●'
 
 " Rainbow Parentheses
 let g:rainbow_active=1
@@ -204,7 +207,6 @@ hi xmlTagName guifg=#59ACE5
 hi xmlTag     guifg=#59ACE5
 hi xmlEndTag  guifg=#2974a1
 "}}}
-
 " Keybindings ---------------------------------------------- {{{
 " Space(macs) as my leader. Keep \ as the leader and map space to that key.
 " Prefer this method over mapping space directly as the leader so that there
@@ -222,7 +224,7 @@ nnoremap <Up> g<Up>
 nnoremap <Down> g<Down>
 
 " Disable Shift-Up/Down in visual mode, which 99% of the time is me
-" accidentally jumping up to the top or bottom of the screen.
+" accidentally jumping up to the top or bottom of the screen. Prefer H and J.
 vnoremap <S-Up> <NOP>
 vnoremap <S-Down> <NOP>
 
@@ -286,6 +288,7 @@ nnoremap <Leader>bp :bp<CR>
 nnoremap <Leader>fb :Buffers<CR>
 nnoremap <Leader>ff :FZF<CR>
 nnoremap <Leader>fw :grep! "<cword>"<CR>
+nnoremap <Leader>f* :grep! "<cword>"<CR>
 
 " [G]it
 nnoremap <Leader>gs :Gstatus<CR>
