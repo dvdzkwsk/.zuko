@@ -6,10 +6,6 @@
 " - http://www.oliversherouse.com/2017/08/21/vim_zero.html
 " - https://alexpearce.me/2014/05/italics-in-iterm2-vim-tmux
 " - https://statico.github.io/vim3.html
-"
-" Plugins to remember:
-" - https://github.com/francoiscabrol/ranger.vim
-" - https://github.com/mbbill/undotree
 "}}}
 
 " Plugins -------------------------------------------------- {{{
@@ -67,8 +63,8 @@ filetype plugin indent on
 
 " Main Settings -------------------------------------------- {{{
 set ttimeoutlen=50                    " Reduce input delay when entering normal mode
-set undofile                          " Remember undo history between sessions
-set undodir=~/.vim/undo               " Where to store the undo history
+set undofile                          " Remember undo history between sessions...
+set undodir=~/.vim/undo               " ...and store it here
 set noswapfile                        " Don't create swap files
 set hidden                            " Allow unsaved buffers
 set autoread                          " Automatically reload files changes outside of vim
@@ -81,8 +77,7 @@ set number                            " Show line numbers
 set ruler                             " Show current column and line number
 set cursorline                        " Highlight the current line
 set showcmd                           " Show when leader key has been pressed
-set wrap                              " Enable visual line wrapping...
-set textwidth=0                       " ...only when text reaches the end of the window
+set wrap                              " Enable visual line wrapping
 set wrapmargin=0                      " Number of characters from the window edge to start wrapping
 set ignorecase                        " Ignore case when searching...
 set smartcase                         " ...except when search term starts with a capital
@@ -91,6 +86,7 @@ set incsearch                         " Show search/replace in real time
 set modeline                          " Enable modeline
 set laststatus=2                      " Always show the status line
 set diffopt+=vertical                 " Split diffs vertically (left/right pane)
+set scrolloff=3                       " Number of rows to keep visible above/below scroll threshold
 set splitright                        " Open new vertical splits to the right
 set splitbelow                        " Open new horizontal splits below
 set wildignore+=*.jpg,*.jpeg,*.png,*.svg
@@ -105,7 +101,7 @@ if exists('&inccommand')
   set inccommand=nosplit              " Show substitutions in place
 endif
 if has('nvim')
-  set completeopt-=preview
+  set completeopt-=preview            " Disable preview scratch buffer
 endif
 
 " Replace grep with faster ripgrep
@@ -245,7 +241,7 @@ nnoremap <Esc> :nohlsearch<return><Esc>
 " https://stackoverflow.com/questions/11940801/mapping-esc-in-vimrc-causes-bizzare-arrow-behaviour
 nnoremap <Esc>^[ <Esc>^[
 
-" Do not automatically jump to next match for current word
+" Don't automatically jump forward when selecting current word
 nnoremap * *<c-o>
 
 " Easy error navigation
@@ -267,6 +263,12 @@ vnoremap < <gv
 
 " Option to go to file in vertical split
 nnoremap gF :vertical wincmd f<CR>
+
+" Make `gs` useful (default: sleep)
+nnoremap gs :%s/\v
+
+" Easily run macro in `q` register on visual selection
+xnoremap Q :normal @q<CR>
 
 " Suggested vim-easy-align mappings
 xmap ga <Plug>(EasyAlign)
