@@ -207,6 +207,7 @@ hi xmlTagName guifg=#59ACE5
 hi xmlTag     guifg=#59ACE5
 hi xmlEndTag  guifg=#2974a1
 "}}}
+
 " Keybindings ---------------------------------------------- {{{
 " Space(macs) as my leader. Keep \ as the leader and map space to that key.
 " Prefer this method over mapping space directly as the leader so that there
@@ -305,6 +306,9 @@ nnoremap <Leader>ql :copen<CR>
 nmap <Leader>rc <Plug>SlimeConfig
 nmap <Leader>rr <Plug>SlimeParagraphSend
 xmap <Leader>rr <Plug>SlimeRegionSend
+
+" [S]urround (TODO: better namespace)
+nmap <leader>sc saiWfconsole.log<CR>
 
 " [T]erminal
 nnoremap <Leader>t? :echo b:terminal_job_id<CR>
