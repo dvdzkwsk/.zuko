@@ -27,6 +27,7 @@ Plug 'scrooloose/nerdtree'            " File explorer
 Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between tmux and vim
 Plug 'luochen1990/rainbow'            " Rainbow parentheses
 Plug 'aquach/vim-http-client'         " Make HTTP requests from vim
+Plug 'shime/vim-livedown'             " Realtime markdown preview
 
 " IMproved Editing
 Plug 'tpope/vim-commentary'           " Easier commenting
@@ -221,7 +222,7 @@ nnoremap <Up> g<Up>
 nnoremap <Down> g<Down>
 
 " Disable Shift-Up/Down in visual mode, which 99% of the time is me
-" accidentally jumping up to the top or bottom of the screen. Prefer H and J.
+" accidentally jumping to the top/bottom of the screen. Prefer H and J.
 vnoremap <S-Up> <NOP>
 vnoremap <S-Down> <NOP>
 
@@ -316,10 +317,6 @@ nmap <leader>sc saiWfconsole.log<CR>
 nnoremap <Leader>t? :echo b:terminal_job_id<CR>
 
 " [W]indow
-nnoremap <Leader>w<Left> <C-W><C-H>
-nnoremap <Leader>w<Down> <C-W><C-J>
-nnoremap <Leader>w<Up> <C-W><C-K>
-nnoremap <Leader>w<Right> <C-W><C-L>
 nnoremap <Leader>w= <C-W>=
 nnoremap <Leader>ws :split<CR>
 nnoremap <Leader>wv :vsplit<CR>
