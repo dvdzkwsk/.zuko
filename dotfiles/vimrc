@@ -130,7 +130,7 @@ let g:http_client_focus_output_window=1
 " Ale
 let g:ale_fix_on_save=0
 let g:ale_fixers={
-\  'javascript': ['prettier'],
+\  'javascript': ['eslint'],
 \  'typescript': ['prettier'],
 \  'typescript.jsx': ['prettier'],
 \}
@@ -215,6 +215,10 @@ vnoremap <Space> <Nop>
 nmap <Space> <Leader>
 vmap <Space> <Leader>
 
+" Custom unimpaired bindings
+nmap [w <Plug>(ale_previous_wrap)
+nmap ]w <Plug>(ale_next_wrap)
+
 " Move vertically through visual lines, not logical lines
 nnoremap k gk
 nnoremap j gj
@@ -245,10 +249,6 @@ nnoremap <Esc>^[ <Esc>^[
 " Don't automatically jump forward when selecting current word
 nnoremap * *<c-o>
 
-" Easy error navigation
-nmap <silent> <C-Left> <Plug>(ale_previous_wrap)
-nmap <silent> <C-Right> <Plug>(ale_next_wrap)
-
 " Enable Tab completion for deoplete
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
@@ -268,7 +268,8 @@ nnoremap gF :vertical wincmd f<CR>
 " Make `gs` useful (default: sleep)
 nnoremap gs :%s/\v
 
-" Easily run macro in `q` register on visual selection
+" Quick access to the macro in the `q` register. I don't care about Ex mode.
+nnoremap Q @q
 xnoremap Q :normal @q<CR>
 
 " Suggested vim-easy-align mappings
