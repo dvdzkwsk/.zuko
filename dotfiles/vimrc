@@ -90,6 +90,7 @@ set diffopt+=vertical                 " Split diffs vertically (left/right pane)
 set scrolloff=3                       " Number of rows to keep visible above/below scroll threshold
 set splitright                        " Open new vertical splits to the right
 set splitbelow                        " Open new horizontal splits below
+set mouse=a                           " Enable mouse interaction, for when all else fails
 set wildignore+=*.jpg,*.jpeg,*.png,*.svg
 
 if has('clipboard')
@@ -125,14 +126,12 @@ let g:slime_target="neovim"
 call operator#sandwich#set('all', 'all', 'highlight', 0)
 
 " vim-http-client
-let g:http_client_focus_output_window=1
+let g:http_client_focus_output_window=0
 
 " Ale
-let g:ale_fix_on_save=0
+let g:ale_fix_on_save=1
 let g:ale_fixers={
 \  'javascript': ['eslint'],
-\  'typescript': ['prettier'],
-\  'typescript.jsx': ['prettier'],
 \}
 "}}}
 
@@ -218,6 +217,8 @@ vmap <Space> <Leader>
 " Custom unimpaired bindings
 nmap [w <Plug>(ale_previous_wrap)
 nmap ]w <Plug>(ale_next_wrap)
+nmap [W <Plug>(ale_first)
+nmap ]W <Plug>(ale_last)
 
 " Move vertically through visual lines, not logical lines
 nnoremap k gk
