@@ -49,7 +49,6 @@ Plug 'tpope/vim-fireplace'            " Clojure integration
 " Theming
 Plug 'vim-airline/vim-airline'        " Prettier statusline
 Plug 'vim-airline/vim-airline-themes'
-Plug 'chriskempson/base16-vim'
 Plug 'lifepillar/vim-solarized8'
 Plug 'liuchengxu/space-vim-dark'
 
@@ -157,8 +156,7 @@ augroup END
 "}}}
 
 " Theming -------------------------------------------------- {{{
-" Do not clobber existing syntax highlighting if `syntax enable` is called
-" multiple times (i.e. when .vimrc is re-sourced).
+" Don't clobber existing syntax highlighting if config is re-sourced.
 if !exists('g:syntax_on')
   syntax enable
 endif
@@ -214,6 +212,9 @@ vnoremap <Space> <Nop>
 nmap <Space> <Leader>
 vmap <Space> <Leader>
 
+" More efficient file saving
+map <Esc><Esc> :w<CR>
+
 " Custom unimpaired bindings
 nmap [w <Plug>(ale_previous_wrap)
 nmap ]w <Plug>(ale_next_wrap)
@@ -230,9 +231,6 @@ nnoremap <Down> g<Down>
 " accidentally jumping to the top/bottom of the screen. Prefer H and J.
 vnoremap <S-Up> <NOP>
 vnoremap <S-Down> <NOP>
-
-" More efficient file saving
-map <Esc><Esc> :w<CR>
 
 " Center screen during jump movements
 nnoremap n nzz
@@ -253,12 +251,6 @@ nnoremap * *<c-o>
 " Enable Tab completion for deoplete
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
-" Easy movement between panes
-noremap <C-Left> <C-W><C-H>
-noremap <C-Down> <C-W><C-J>
-noremap <C-Up> <C-W><C-K>
-noremap <C-Right> <C-W><C-L>
-
 " Persist selection in visual mode after indent
 vnoremap > >gv
 vnoremap < <gv
@@ -270,7 +262,6 @@ nnoremap gF :vertical wincmd f<CR>
 nnoremap gs :%s/\v
 
 " Quick access to the macro in the `q` register. I don't care about Ex mode.
-nnoremap Q @q
 xnoremap Q :normal @q<CR>
 
 " Suggested vim-easy-align mappings
@@ -285,10 +276,7 @@ nmap <Leader>af <Plug>(ale_fix)
 " [B]uffer
 nnoremap <Leader><Tab> :b#<CR>
 nnoremap <Leader>bb :Buffers<CR>
-nnoremap <Leader>bl :ls<CR>
 nnoremap <Leader>bd :bd<CR>
-nnoremap <Leader>bn :bn<CR>
-nnoremap <Leader>bp :bp<CR>
 
 " [F]ind
 nnoremap <Leader>fb :Buffers<CR>
@@ -311,9 +299,6 @@ nnoremap <Leader>ql :copen<CR>
 nmap <Leader>rc <Plug>SlimeConfig
 nmap <Leader>rr <Plug>SlimeParagraphSend
 xmap <Leader>rr <Plug>SlimeRegionSend
-
-" [S]urround (TODO: better namespace)
-nmap <leader>sc saiWfconsole.log<CR>
 
 " [T]erminal
 nnoremap <Leader>t? :echo b:terminal_job_id<CR>
