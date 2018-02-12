@@ -267,6 +267,14 @@ xnoremap Q :normal @q<CR>
 " Suggested vim-easy-align mappings
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+" Editor-agnostic commenting. More vim emulators seem to support <Command-/>
+" for commenting than `gcc`, so this eases some friction. If outside of a GUI,
+" <D-/> will not work since the command key is ignored. To fix this, map the
+" key combination to the F6 escape sequence: \x1b[17~
+vmap <F6> gcc
+nnoremap <F6> <Esc>:Commentary<CR>
+inoremap <F6> <Esc>:Commentary<CR>
 "}}}
 
 " Mnemonics ------------------------------------------------ {{{
