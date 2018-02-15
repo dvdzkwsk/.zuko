@@ -26,6 +26,7 @@ brew install coreutils
 # Install GNU `sed`, overwriting the built-in `sed`.
 brew install gnu-sed --with-default-names
 
+brew cask install java
 brew install python3
 brew install rg
 brew install jq
@@ -34,6 +35,8 @@ brew install tree
 brew install yarn
 brew install docker
 brew install boot2docker
+brew install htop
+brew install lumo
 #}}}
 
 # Applications -------------------------------------------- {{{
