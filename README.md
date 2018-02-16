@@ -105,3 +105,5 @@ shell:
 ```
 
 To get italics working, see https://github.com/jwilm/alacritty/issues/489. For Fira Mono italics, use the following fork: https://github.com/zwaldowski/Fira/tree/zwaldowski/mod-new/otf.
+
+Issues with True Color? See https://bruinsslot.jp/post/how-to-enable-true-color-for-neovim-tmux-and-gnome-terminal/.
