@@ -46,6 +46,10 @@ brew cask install slack
 brew cask install flux
 #}}}
 
+# Fonts --------------------------------------------------- {{{
+brew tap caskroom/fonts && brew cask install font-source-code-pro
+#}}}
+
 # Dotfiles ------------------------------------------------ {{{
 ./bin/install-dotfiles.sh
 #}}}
