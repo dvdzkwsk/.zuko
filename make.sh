@@ -27,16 +27,30 @@ brew install coreutils
 brew install gnu-sed --with-default-names
 
 brew cask install java
-brew install python3
-brew install rg
+brew install boot2docker
+brew install docker
+brew install fasd
+brew install fzf
+brew install htop
+brew install hub
 brew install jq
 brew install nvim
+brew install ranger
+brew install reattach-to-user-namespace
+brew install ripgrep
+brew install tmux
 brew install tree
-brew install yarn
-brew install docker
-brew install boot2docker
-brew install htop
+brew install tty-clock
+brew install weechat
+brew install zsh-completions
+#}}}
+
+# Programming --------------------------------------------- {{{
+brew install elixir
 brew install lumo
+brew install postgresql
+brew install python3
+brew install yarn
 #}}}
 
 # Applications -------------------------------------------- {{{
