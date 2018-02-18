@@ -64,6 +64,14 @@ brew cask install flux
 brew tap caskroom/fonts && brew cask install font-source-code-pro
 #}}}
 
+# Misc ------------------------------------------------ {{{
+# Tmux Plugin Manager: use `prefix` + I to install plugins
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
+# Intall custom terminfo that enables italics support
+tic ./configs/xterm/xterm-256color-italic.terminfo
+#}}}
+
 # Dotfiles ------------------------------------------------ {{{
 ./bin/install-dotfiles.sh
 #}}}
