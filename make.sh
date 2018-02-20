@@ -58,6 +58,7 @@ brew cask install google-chrome
 brew cask install firefox
 brew cask install slack
 brew cask install flux
+brew cask install gpg-suite
 #}}}
 
 # Fonts --------------------------------------------------- {{{
