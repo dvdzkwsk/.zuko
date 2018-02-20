@@ -166,6 +166,7 @@ endif
 
 set background=dark
 colorscheme space-vim-dark
+let g:solarized8_term_italics=1
 
 " Display comments in italics
 hi Comment cterm=italic
@@ -305,6 +306,7 @@ nnoremap <Leader>ql :copen<CR>
 
 " [R]epl
 nmap <Leader>rc <Plug>SlimeConfig
+nmap <Leader>rl <Plug>SlimeLineSend
 nmap <Leader>rr <Plug>SlimeParagraphSend
 xmap <Leader>rr <Plug>SlimeRegionSend
 
