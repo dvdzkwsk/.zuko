@@ -28,6 +28,7 @@ Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between tmux and vim
 Plug 'luochen1990/rainbow'            " Rainbow parentheses
 Plug 'aquach/vim-http-client'         " Make HTTP requests from vim
 Plug 'shime/vim-livedown'             " Realtime markdown preview
+Plug 'romainl/vim-qf'                 " Better Quickfix List management
 
 " IMproved Editing
 Plug 'tpope/vim-commentary'           " Easier commenting
@@ -96,7 +97,7 @@ if has('clipboard')
   set clipboard=unnamedplus           " Use system clipboard with yank/delete
 endif
 if exists('+colorcolumn')
-  set colorcolumn=80                  " Show line length guide
+  set colorcolumn=81                  " Show line length guide
 endif
 if exists('&inccommand')
   set inccommand=nosplit              " Show substitutions in place
@@ -286,6 +287,7 @@ nmap <Leader>af <Plug>(ale_fix)
 nnoremap <Leader><Tab> :b#<CR>
 nnoremap <Leader>bb :Buffers<CR>
 nnoremap <Leader>bd :bd<CR>
+xnoremap <Leader>bs y:%s/<C-r>"//g<Left><Left>
 
 " [F]ind
 nnoremap <Leader>fb :Buffers<CR>
