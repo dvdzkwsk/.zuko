@@ -91,6 +91,7 @@ set scrolloff=3                       " Number of rows to keep visible above/bel
 set splitright                        " Open new vertical splits to the right
 set splitbelow                        " Open new horizontal splits below
 set mouse=a                           " Enable mouse interaction, for when all else fails
+set lazyredraw                        " Better rendering performance
 set wildignore+=*.jpg,*.jpeg,*.png,*.svg
 
 if has('clipboard')
