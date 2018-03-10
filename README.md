@@ -1,4 +1,4 @@
-## .zuko
+# .zuko
 
 Settings for my personal development environment.
 
@@ -11,14 +11,6 @@ Settings for my personal development environment.
     * [Alacritty](#alacritty)
 
 ## System
-
-```shell
-# Show hidden files in Finder
-$ defaults write com.apple.finder AppleShowAllFiles -bool true
-
-# Enable global key repeat
-$ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
-```
 
 ### SSH Config
 

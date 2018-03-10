@@ -6,6 +6,14 @@ sudo -v
 # Install available updates
 sudo softwareupdate -iva
 xcode-select --install
+
+# User settings
+# Show hidden files in Finder
+defaults write com.apple.finder AppleShowAllFiles -bool true
+
+# Enable key repeat, and make it fast
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+defaults write NSGlobalDomain KeyRepeat -int 1
 #}}}
 
 # Homebrew ------------------------------------------------ {{{
