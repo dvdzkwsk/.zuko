@@ -273,11 +273,15 @@ nmap ga <Plug>(EasyAlign)
 
 " Editor-agnostic commenting. More vim emulators seem to support <Command-/>
 " for commenting than `gcc`, so this eases some friction. If outside of a GUI,
-" <D-/> will not work since the command key is ignored. To fix this, map the
-" key combination to the F6 escape sequence: \x1b[17~
+" <D-/> (Command + /) will not work since the command key is ignored. To fix
+" this, map the desired key combinations to the function keys as a proxy, and
+" then map those to the desired behavior within vim.
+" e.g. F6 escape sequence = \x1b[17~
 vmap <F6> gcc
 nnoremap <F6> <Esc>:Commentary<CR>
 inoremap <F6> <Esc>:Commentary<CR>
+nnoremap <F7> <Esc>:FZF<CR>
+nnoremap <F7> <Esc>:FZF<CR>
 "}}}
 
 " Mnemonics ------------------------------------------------ {{{
