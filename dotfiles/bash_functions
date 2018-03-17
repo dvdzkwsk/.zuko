@@ -16,5 +16,5 @@ function ff {
 }
 
 function hg {
-  history | grep "$1"
+  h | grep "$1"
 }
