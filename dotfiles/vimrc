@@ -143,7 +143,7 @@ augroup autoTrimWhitespace
   autocmd BufWritePre * %s/\s\+$//e
 augroup END
 
-" Automatically open the quickfix list when it is populated.
+" Automatically open the quickfix list when it is populated
 augroup autoOpenQuickFixList
   autocmd!
   autocmd QuickFixCmdPost [^l]* cwindow
@@ -261,25 +261,28 @@ vnoremap < <gv
 " Option to go to file in vertical split
 nnoremap gF :vertical wincmd f<CR>
 
-" Make `gs` useful (default: sleep)
+" Make `gs` useful: search/replace in current buffer (default: sleep)
 nnoremap gs :%s/\v
 
-" Quick access to the macro in the `q` register. I don't care about Ex mode.
+" Quick access to the macro in the `q` register; I don't care about Ex mode
+nnoremap Q @q
 xnoremap Q :normal @q<CR>
 
 " Suggested vim-easy-align mappings
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
-" Editor-agnostic commenting. More vim emulators seem to support <Command-/>
+" Editor-agnostic commenting. More vim emulators seem to support `CMD + /`
 " for commenting than `gcc`, so this eases some friction. If outside of a GUI,
-" <D-/> (Command + /) will not work since the command key is ignored. To fix
-" this, map the desired key combinations to the function keys as a proxy, and
-" then map those to the desired behavior within vim.
+" <D-/> (CMD + /) will not work since the command key is ignored. To fix this,
+" map the desired key combinations to the function keys as a proxy, and then
+" map those to the desired behavior within vim.
 " e.g. F6 escape sequence = \x1b[17~
 vmap <F6> gcc
 nnoremap <F6> <Esc>:Commentary<CR>
 inoremap <F6> <Esc>:Commentary<CR>
+
+" Suggested mapping: CMD + P
 nnoremap <F7> <Esc>:FZF<CR>
 nnoremap <F7> <Esc>:FZF<CR>
 "}}}
@@ -288,17 +291,16 @@ nnoremap <F7> <Esc>:FZF<CR>
 " [A]le
 nmap <Leader>af <Plug>(ale_fix)
 
-" [B]uffer
-nnoremap <Leader><Tab> :b#<CR>
+" [B]qffer
+nnoremap <Leader><Tab> :b#<CR
 nnoremap <Leader>bb :Buffers<CR>
 nnoremap <Leader>bd :bd<CR>
-xnoremap <Leader>bs y:%s/<C-r>"//g<Left><Left>
+xnoremap <Leader>br y:%s/<C-r>"//g<Left><Left>
 
 " [F]ind
 nnoremap <Leader>fb :Buffers<CR>
 nnoremap <Leader>ff :FZF<CR>
 nnoremap <Leader>fw :grep! "<cword>"<CR>
-nnoremap <Leader>f* :grep! "<cword>"<CR>
 
 " [G]it
 nnoremap <Leader>gs :Gstatus<CR>
