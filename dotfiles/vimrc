@@ -93,6 +93,7 @@ set splitbelow                        " Open new horizontal splits below
 set mouse=a                           " Enable mouse interaction, for when all else fails
 set lazyredraw                        " Better rendering performance
 set wildignore+=*.jpg,*.jpeg,*.png,*.svg
+let g:jsx_ext_required=0
 
 if has('clipboard')
   set clipboard=unnamedplus           " Use system clipboard with yank/delete
@@ -107,7 +108,7 @@ if has('nvim')
   set completeopt-=preview            " Disable preview scratch buffer
 endif
 
-" Replace grep with faster ripgrep
+" Replace grep with ripgrep for speed
 if executable('rg')
   set grepprg=rg\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m
@@ -118,12 +119,14 @@ ca grep grep!
 "}}}
 
 " Plugin Configurations ------------------------------------ {{{
+" deoplete
 let g:deoplete#enable_at_startup=1
-let g:jsx_ext_required=0
+
+" vim-slime
 let g:slime_target="neovim"
 
-" vim-sandwich
-" Disable vim-sandwich action animation
+" vim-sandwich (vim-surround alternative)
+" Disable animations
 call operator#sandwich#set('all', 'all', 'highlight', 0)
 
 " vim-http-client
@@ -292,7 +295,7 @@ nnoremap <F7> <Esc>:FZF<CR>
 nmap <Leader>af <Plug>(ale_fix)
 
 " [B]qffer
-nnoremap <Leader><Tab> :b#<CR
+nnoremap <Leader><Tab> :b#<CR>
 nnoremap <Leader>bb :Buffers<CR>
 nnoremap <Leader>bd :bd<CR>
 xnoremap <Leader>br y:%s/<C-r>"//g<Left><Left>
