@@ -1,0 +1,42 @@
+# vim: foldmethod=marker
+
+# Aliases -------------------------------------------------- {{{
+alias ga="git add -p"
+alias gall="git add --all"
+alias gm="git merge"
+alias gdf="git diff"
+alias gls="git branch -l"
+alias gcp="git cherry-pick"
+alias gup="git fetch; git pull"
+alias gc="git commit -S"
+alias gca="git commit -S --amend"
+alias gcs="git commit -S --amend --no-edit"
+alias gcm="git commit -S -m"
+alias gpo="git push origin"
+alias gcl="git clone"
+alias gst="git status"
+alias gl="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias grb="git rebase"
+alias grbi="git rebase -i"
+alias gpr="git pull-request"
+alias gr="git rebase"
+alias grc="git rebase --continue"
+#}}}
+
+# Functions ------------------------------------------------ {{{
+function gbd {
+  if [ -n "$1" ]; then
+    git branch -D "$@"
+  else
+    git branch -D $(git branch -l | fzf -m)
+  fi
+}
+
+function gco {
+  if [ -n "$1" ]; then
+    git checkout "$@"
+  else
+    git checkout $(git branch -l | fzf)
+  fi
+}
+#}}}

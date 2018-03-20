@@ -1,3 +1,4 @@
 source ~/.bash_main
 source ~/.bash_private
 source ~/.zsh_main
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

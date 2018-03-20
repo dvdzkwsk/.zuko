@@ -21,4 +21,5 @@ export NVM_DIR="$HOME/.nvm"
 # Externals ------------------------------------------------ {{{
 source ~/.bash_aliases
 source ~/.bash_functions
+source ~/.bash_git
 #}}}
