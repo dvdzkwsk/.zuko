@@ -18,6 +18,22 @@ function command_exists {
   type "$1" &> /dev/null
 }
 
+FORCE_INSTALL=false
+
+while [[ $# -gt 0 ]]
+do
+key="$1"
+case $key in
+    -f|--force)
+    FORCE_INSTALL=true
+    shift # past flag
+    ;;
+    *)    # unknown option
+    shift # past flag
+    ;;
+esac
+done
+
 echo
 log "Symlinking ${PWD}/dotfiles/* to ${HOME}"
 echo
@@ -27,11 +43,25 @@ for file in dotfiles/*; do
   info=""
   status=""
   if [ -L $dest ]; then
-    status=$ERROR
-    info="(Symlink already exists)"
+    if [ "$FORCE_INSTALL" = true ]; then
+      status=$OK
+      rm ${dest}
+      ln -s ${PWD}/dotfiles/${file} ${dest}
+      info="(Overwrote existing symlink)"
+    else
+      status=$ERROR
+      info="(Symlink already exists)"
+    fi
   elif [ -f $dest ]; then
-    status=$ERROR
-    info="(File already exists)"
+    if [ "$FORCE_INSTALL" = true ]; then
+      status=$OK
+      rm ${dest}
+      ln -s ${PWD}/dotfiles/${file} ${dest}
+      info="(Overwrote existing file)"
+    else
+      status=$ERROR
+      info="(File already exists)"
+    fi
   else
     status=$OK
     ln -s ${PWD}/dotfiles/${file} ${dest}
