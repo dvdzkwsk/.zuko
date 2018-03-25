@@ -44,13 +44,14 @@ brew install hub
 brew install jq
 brew install nvim
 brew install ranger
-brew install reattach-to-user-namespace
 brew install ripgrep
 brew install tmux
+brew install reattach-to-user-namespace
 brew install tree
 brew install tty-clock
 brew install weechat
 brew install zsh-completions
+brew install task
 #}}}
 
 # Programming --------------------------------------------- {{{
@@ -62,8 +63,9 @@ brew install yarn
 #}}}
 
 # Applications -------------------------------------------- {{{
+brew cask install dropbox
 brew cask install google-chrome
-brew cask install firefox
+brew cask install brave
 brew cask install slack
 brew cask install flux
 brew cask install gpg-suite
