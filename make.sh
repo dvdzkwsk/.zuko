@@ -52,6 +52,7 @@ brew install tty-clock
 brew install weechat
 brew install zsh-completions
 brew install task
+brew install tig
 #}}}
 
 # Programming --------------------------------------------- {{{
