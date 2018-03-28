@@ -67,12 +67,13 @@ set ttimeoutlen=50                    " Reduce input delay when entering normal 
 set undofile                          " Remember undo history between sessions...
 set undodir=~/.vim/undo               " ...and store it here
 set noswapfile                        " Don't create swap files
-set hidden                            " Allow unsaved buffers
+set hidden                            " Allow unsaved buffers (i.e. switch buffers w/o saving current)
 set autoread                          " Automatically reload files changes outside of vim
 set expandtab                         " Convert tabs to spaces
 set tabstop=2                         " Number of spaces for a tab
 set softtabstop=2                     " Replace tabs with this number of spaces
 set shiftwidth=2                      " Use this number of spaces for shift motions (e.g. indent, dedent)
+set shiftround                        " Restrict indentations to multiples of shiftwidth
 set backspace=indent,eol,start        " Allow backspacing over these regions (for backwards compat)
 set number                            " Show line numbers
 set ruler                             " Show current column and line number
@@ -92,6 +93,7 @@ set splitright                        " Open new vertical splits to the right
 set splitbelow                        " Open new horizontal splits below
 set mouse=a                           " Enable mouse interaction, for when all else fails
 set lazyredraw                        " Better rendering performance
+set ttyfast                           " Improve redraw speed (enabled by default in neovim)
 set wildignore+=*.jpg,*.jpeg,*.png,*.svg
 let g:jsx_ext_required=0
 
