@@ -46,6 +46,7 @@ Plug 'mhinz/vim-signify'              " Sidebar VCS integration
 Plug 'sheerun/vim-polyglot'           " Suite of language packages
 Plug 'jpalardy/vim-slime'             " REPL integration
 Plug 'tpope/vim-fireplace'            " Clojure integration
+Plug 'bhurlow/vim-parinfer'           " Lisp structural editing
 
 " Theming
 Plug 'vim-airline/vim-airline'        " Prettier statusline
