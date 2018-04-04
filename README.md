@@ -9,6 +9,7 @@ Settings for my personal development environment.
 1. [Applications](#applications)
     * [ITerm2](#iterm2)
     * [Alacritty](#alacritty)
+1. [Troubleshooting](#troubleshooting)
 
 ## System
 
@@ -98,4 +99,10 @@ shell:
 
 To get italics working, see https://github.com/jwilm/alacritty/issues/489. For Fira Mono italics, use the following fork: https://github.com/zwaldowski/Fira/tree/zwaldowski/mod-new/otf.
 
-Issues with True Color? See https://bruinsslot.jp/post/how-to-enable-true-color-for-neovim-tmux-and-gnome-terminal/.
+Issues with True Color? See https://bruinsslot.jp/post/how-to-enable-true-color-for-neovim-tmux-and-gnome-terminal/.g
+
+## Troubleshooting
+
+### Tmux complains about nvm/npm
+
+Make sure `node` is not installed via brew, and delete `/usr/local/bin/npm` if it exists. This often gets re-created after a brew update, it seems.
