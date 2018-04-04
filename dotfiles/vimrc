@@ -82,6 +82,8 @@ set cursorline                        " Highlight the current line
 set showcmd                           " Show when leader key has been pressed
 set wrap                              " Enable visual line wrapping
 set wrapmargin=0                      " Number of characters from the window edge to start wrapping
+set foldmethod=syntax                 " Fold based on syntax rules
+set foldlevelstart=20                 " Automatically expand all folds (well, up to 20 levels)
 set ignorecase                        " Ignore case when searching...
 set smartcase                         " ...except when search term starts with a capital
 set hlsearch                          " Highlight active search
