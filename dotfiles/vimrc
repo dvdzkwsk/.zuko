@@ -6,10 +6,11 @@
 " - http://www.oliversherouse.com/2017/08/21/vim_zero.html
 " - https://alexpearce.me/2014/05/italics-in-iterm2-vim-tmux
 " - https://statico.github.io/vim3.html
+" - https://fortes.com/2017/language-server-neovim
 "}}}
 
 " Plugins -------------------------------------------------- {{{
-" Install plugin manager if it does not exist.
+" Install the plugin manager if it does not exist.
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -97,6 +98,8 @@ set modeline                          " Enable modeline
 set laststatus=2                      " Always show the status line
 set diffopt+=vertical                 " Split diffs vertically (left/right pane)
 set scrolloff=3                       " Number of rows to keep visible above/below scroll threshold
+set sidescrolloff=3                   " Number of columns to keep visible
+set sidescroll=1                      " Scroll columns incrementally at max width, don't jump
 set splitright                        " Open new vertical splits to the right
 set splitbelow                        " Open new horizontal splits below
 set mouse=a                           " Enable mouse interaction, for when all else fails
@@ -155,7 +158,7 @@ let g:vimwiki_list=[
 au FileType vimwiki set syntax=markdown
 
 " LanguageClient-nvim
-let g:LanguageClient_autoStart = 1
+let g:LanguageClient_autoStart=1
 
 " Minimal LSP configuration for JavaScript
 let g:LanguageClient_serverCommands = {}
@@ -179,7 +182,7 @@ augroup autoTrimWhitespace
   autocmd BufWritePre * %s/\s\+$//e
 augroup END
 
-" Automatically open the quickfix list when it is populated
+" Automatically open the quickfix list when it gets populated
 augroup autoOpenQuickFixList
   autocmd!
   autocmd QuickFixCmdPost [^l]* cwindow
@@ -242,10 +245,9 @@ hi xmlEndTag  guifg=#2974a1
 "}}}
 
 " Keybindings ---------------------------------------------- {{{
-" Space(macs) as my leader
 let g:mapleader=' '
 
-" More efficient file saving
+" More efficient file saving by double tapping <Esc>
 map <Esc><Esc> :w<CR>
 
 " Custom unimpaired bindings
@@ -292,7 +294,7 @@ vnoremap < <gv
 nnoremap gF :vertical wincmd f<CR>
 
 " Make `gs` useful: search/replace in current buffer (default: sleep)
-nnoremap gs :%s/\v
+nnoremap gs :%s/
 
 " Quick access to the macro in the `q` register; I don't care about Ex mode
 nnoremap Q @q
@@ -312,7 +314,7 @@ vmap <F6> gcc
 nnoremap <F6> <Esc>:Commentary<CR>
 inoremap <F6> <Esc>:Commentary<CR>
 
-" Suggested mapping: CMD + P
+" Suggested external mapping: CMD + P -> F7
 nnoremap <F7> <Esc>:FZF<CR>
 nnoremap <F7> <Esc>:FZF<CR>
 "}}}
@@ -331,6 +333,7 @@ xnoremap <Leader>br y:%s/<C-r>"//g<Left><Left>
 nnoremap <Leader>fb :Buffers<CR>
 nnoremap <Leader>ff :FZF<CR>
 nnoremap <Leader>fw :grep! "<cword>"<CR>
+nnoremap <Leader>fs :call LanguageClient_textDocument_documentSymbol()<cr>
 
 " [G]it
 nnoremap <Leader>gs :Gstatus<CR>
