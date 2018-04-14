@@ -48,6 +48,10 @@ Plug 'sheerun/vim-polyglot'           " Suite of language packages
 Plug 'jpalardy/vim-slime'             " REPL integration
 Plug 'tpope/vim-fireplace'            " Clojure integration
 Plug 'bhurlow/vim-parinfer'           " Lisp structural editing
+Plug 'autozimu/LanguageClient-neovim', {
+\  'branch': 'next',
+\  'do': 'bash install.sh',
+\ }
 
 " Theming
 Plug 'vim-airline/vim-airline'        " Prettier statusline
@@ -149,6 +153,23 @@ let g:vimwiki_list=[
 \  {'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}
 \]
 au FileType vimwiki set syntax=markdown
+
+" LanguageClient-nvim
+let g:LanguageClient_autoStart = 1
+
+" Minimal LSP configuration for JavaScript
+let g:LanguageClient_serverCommands = {}
+
+if executable('javascript-typescript-stdio')
+  let g:LanguageClient_serverCommands['javascript'] = ['javascript-typescript-stdio']
+  let g:LanguageClient_serverCommands['javascript.jsx'] = ['javascript-typescript-stdio']
+else
+  echo "javascript-typescript-stdio not installed!\n"
+  :cq
+endif
+
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 "}}}
 
 " Auto Commands -------------------------------------------- {{{
