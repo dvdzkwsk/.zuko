@@ -29,6 +29,7 @@ Plug 'luochen1990/rainbow'            " Rainbow parentheses
 Plug 'aquach/vim-http-client'         " Make HTTP requests from vim
 Plug 'shime/vim-livedown'             " Realtime markdown preview
 Plug 'romainl/vim-qf'                 " Better Quickfix List management
+Plug 'vimwiki/vimwiki'                " Personal wiki manager
 
 " IMproved Editing
 Plug 'tpope/vim-commentary'           " Easier commenting
@@ -142,6 +143,12 @@ let g:ale_fix_on_save=1
 let g:ale_fixers={
 \  'javascript': ['eslint'],
 \}
+
+" vimwiki
+let g:vimwiki_list=[
+\  {'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}
+\]
+au FileType vimwiki set syntax=markdown
 "}}}
 
 " Auto Commands -------------------------------------------- {{{
@@ -214,14 +221,8 @@ hi xmlEndTag  guifg=#2974a1
 "}}}
 
 " Keybindings ---------------------------------------------- {{{
-" Space(macs) as my leader. Keep \ as the leader and map space to that key.
-" Prefer this method over mapping space directly as the leader so that there
-" is a visual indicator when a command is being entered.
-let g:mapleader='\'
-nnoremap <Space> <Nop>
-vnoremap <Space> <Nop>
-nmap <Space> <Leader>
-vmap <Space> <Leader>
+" Space(macs) as my leader
+let g:mapleader=' '
 
 " More efficient file saving
 map <Esc><Esc> :w<CR>
@@ -332,6 +333,6 @@ nnoremap <Leader>t? :echo b:terminal_job_id<CR>
 
 " [W]indow
 nnoremap <Leader>w= <C-W>=
-nnoremap <Leader>ws :split<CR>
-nnoremap <Leader>wv :vsplit<CR>
+nnoremap <Leader>w<Down> :split<CR>
+nnoremap <Leader>w<Right> :vsplit<CR>
 "}}}
