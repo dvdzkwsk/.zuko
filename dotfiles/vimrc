@@ -176,6 +176,16 @@ nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 "}}}
 
 " Auto Commands -------------------------------------------- {{{
+" Delete all other buffers when running :BufOnly
+command! BufOnly silent! execute "%bd|e#|bd#"
+
+" Only show cursor line in active window
+augroup cursorLine
+  autocmd!
+  autocmd BufEnter * setlocal cursorline
+  autocmd BufLeave * setlocal nocursorline
+augroup end
+
 " Remove trailing whitespace on save
 augroup autoTrimWhitespace
   autocmd!
@@ -323,10 +333,11 @@ nnoremap <F7> <Esc>:FZF<CR>
 " [A]le
 nmap <Leader>af <Plug>(ale_fix)
 
-" [B]qffer
+" [B]uffer
 nnoremap <Leader><Tab> :b#<CR>
 nnoremap <Leader>bb :Buffers<CR>
 nnoremap <Leader>bd :bd<CR>
+nnoremap <Leader>bo :BufOnly<CR>
 xnoremap <Leader>br y:%s/<C-r>"//g<Left><Left>
 
 " [F]ind
