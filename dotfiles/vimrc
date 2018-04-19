@@ -55,8 +55,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 \ }
 
 " Theming
-Plug 'vim-airline/vim-airline'        " Prettier statusline
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 Plug 'lifepillar/vim-solarized8'
 Plug 'liuchengxu/space-vim-dark'
 
@@ -222,12 +221,29 @@ let g:solarized8_term_italics=1
 " Display comments in italics
 hi Comment cterm=italic
 
-" Airline
-let g:airline_theme='bubblegum'
-let g:airline_powerline_fonts=!has("gui_macvim")
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline#extensions#ale#enabled=1
+" Lightline
+let g:lightline = {
+\   'colorscheme': 'one',
+\   'component': {
+\     'readonly': '%{&readonly?"\ue0a2":""}',
+\   },
+\   'active': {
+\     'left': [
+\       ['mode', 'paste'],
+\       [ 'readonly', 'absolutepath', 'modified']
+\     ],
+\     'right': [
+\        [ 'lineinfo'],
+\        [ 'filetype' ],
+\     ]
+\   },
+\   'inactive': {
+\     'right': [
+\        [ 'lineinfo' ],
+\        [ 'gitversion', 'percent' ],
+\     ]
+\   },
+\ }
 
 " Signify (VCS Gutter)
 let g:signify_show_count=1
