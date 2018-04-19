@@ -27,3 +27,7 @@ function update {
 function work {
   ~/.tmux/layouts/work.sh
 }
+
+function wiki {
+  $EDITOR ~/vimwiki/index.md
+}
