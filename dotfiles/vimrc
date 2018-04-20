@@ -58,7 +58,6 @@ Plug 'autozimu/LanguageClient-neovim', {
 Plug 'itchyny/lightline.vim'
 Plug 'lifepillar/vim-solarized8'
 Plug 'liuchengxu/space-vim-dark'
-Plug 'dracula/vim', { 'as': 'dracula' }
 
 " NeoVim
 if has('nvim')
@@ -216,9 +215,6 @@ if has("termguicolors")
 endif
 
 set background=dark
-" Need to load dracula so that it's available to lightline...
-colorscheme dracula
-" ...but we really want this theme
 colorscheme space-vim-dark
 let g:solarized8_term_italics=1
 
@@ -227,7 +223,7 @@ hi Comment cterm=italic
 
 " Lightline
 let g:lightline = {
-\   'colorscheme': 'Dracula',
+\   'colorscheme': 'deus',
 \   'component': {
 \     'readonly': '%{&readonly?"\ue0a2":""}',
 \   },
