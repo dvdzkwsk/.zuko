@@ -38,6 +38,7 @@ Plug 'tpope/vim-repeat'               " Make '.' smarter
 Plug 'tpope/vim-unimpaired'           " More symmetrical mappings
 Plug 'machakann/vim-sandwich'         " Intuitive surround commands
 Plug 'junegunn/vim-easy-align'        " Text alignment commands
+Plug 'wellle/targets.vim'             " Additional/smarter text objects
 
 " Version Control
 Plug 'tpope/vim-fugitive'             " Sweet Git integration
@@ -230,7 +231,7 @@ let g:lightline = {
 \   'active': {
 \     'left': [
 \       ['mode', 'paste'],
-\       [ 'readonly', 'absolutepath', 'modified']
+\       [ 'readonly', 'relativepath', 'modified']
 \     ],
 \     'right': [
 \        [ 'lineinfo'],
