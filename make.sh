@@ -60,7 +60,7 @@ brew install elixir
 brew install lumo
 brew install postgresql
 brew install python3
-brew install yarn
+brew install yarn --without-node
 #}}}
 
 # Applications -------------------------------------------- {{{
@@ -81,7 +81,7 @@ brew tap caskroom/fonts && brew cask install font-source-code-pro
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # Intall custom terminfo that enables italics support
-tic ./configs/xterm/xterm-256color-italic.terminfo
+tic ./config/xterm/xterm-256color-italic.terminfo
 #}}}
 
 # Dotfiles ------------------------------------------------ {{{
