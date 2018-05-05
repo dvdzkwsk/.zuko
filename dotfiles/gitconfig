@@ -8,7 +8,7 @@
 [color]
   ui = auto
 [hub]
-  protocol = ssh
+	protocol = ssh
 [push]
   default = current
 [url "ssh://git@github.com/"]

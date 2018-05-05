@@ -10,7 +10,7 @@ GIT_PS1_DESCRIBE_STYLE="branch"
 precmd () {
   NEWLINE=$'\n'
   user="%F{blue}%n"
-  cwd="%F{cyan}%(3~|~/%2~|%~)"
+  cwd="%F{cyan}%(4~|.../%2~|%~)"
   prompt="%F{magenta}λ%F{reset_color}"
 
   __git_ps1 "${NEWLINE}${user}%F{white}:${cwd}%F{green}" " ${prompt} "

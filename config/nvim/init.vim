@@ -26,7 +26,6 @@ Plug 'junegunn/fzf.vim'               " FuzzyFind integration
 Plug 'w0rp/ale'                       " Asynchronous linter
 Plug 'scrooloose/nerdtree'            " File explorer
 Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between tmux and vim
-Plug 'luochen1990/rainbow'            " Rainbow parentheses
 Plug 'aquach/vim-http-client'         " Make HTTP requests from vim
 Plug 'shime/vim-livedown'             " Realtime markdown preview
 Plug 'romainl/vim-qf'                 " Better Quickfix List management
@@ -41,9 +40,8 @@ Plug 'junegunn/vim-easy-align'        " Text alignment commands
 Plug 'wellle/targets.vim'             " Additional/smarter text objects
 
 " Version Control
-Plug 'tpope/vim-fugitive'             " Sweet Git integration
-Plug 'tpope/vim-rhubarb'              " Extensions for fugitive
-Plug 'mhinz/vim-signify'              " Sidebar VCS integration
+Plug 'tpope/vim-fugitive'             " Git integration
+Plug 'mhinz/vim-signify'              " Sidebar version control integration
 
 " Language Support
 Plug 'sheerun/vim-polyglot'           " Suite of language packages
@@ -56,7 +54,8 @@ Plug 'autozimu/LanguageClient-neovim', {
 \ }
 
 " Theming
-Plug 'itchyny/lightline.vim'
+Plug 'itchyny/lightline.vim'          " Customizable status line
+Plug 'luochen1990/rainbow'            " Rainbow parentheses
 Plug 'lifepillar/vim-solarized8'
 Plug 'liuchengxu/space-vim-dark'
 
