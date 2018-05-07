@@ -1,15 +1,20 @@
-# .zuko
+<div align="center">
+  <h1>.zuko</h1>
+  <p>My personal, portable development environment.</p>
+</div>
 
-Settings for my personal development environment.
+```sh
+git clone https://github.com/davezuko/.zuko && cd .zuko && chmod +x ./make.sh && ./make.sh
+```
+
+## Table of Contents
 
 1. [System](#system)
     * [SSH Config](#ssh-config)
     * [Keybindings](#keybindings)
-    * [Fonts](#fonts)
-1. [Applications](#applications)
+2. [Applications](#applications)
     * [ITerm2](#iterm2)
-    * [Alacritty](#alacritty)
-1. [Troubleshooting](#troubleshooting)
+3. [Troubleshooting](#troubleshooting)
 
 ## System
 
@@ -31,71 +36,22 @@ Use [Karabiner-Elements](https://pqrs.org/osx/karabiner/).
 * `Left Command` -> `Left Control`
 * `Left Control` -> `Left Command`
 
-### Fonts
-
-* [Source Code Pro](https://github.com/adobe-fonts/source-code-pro)
-    * Set as font in ITerm2
-
 ## Applications
 
 Name      | Website                               | Description                |
 ----------|---------------------------------------|----------------------------|
-Homebrew  | https://brew.sh                       | Package manager            |
-ITerm2    | https://www.iterm2.com/               | More feature-full terminal |
-Neovim    | https://neovim.io/                    | Modern Vim                 |
-Ripgrep   | https://github.com/BurntSushi/ripgrep | Faster grep                |
-Ranger    | http://ranger.nongnu.org              | Awesome file system client |
 Viscosity | https://www.sparklabs.com/viscosity   | VPN client                 |
-Insomnia  | https://insomnia.rest/                | Intuitive REST client      |
 
 VPN provider: https://www.privateinternetaccess.com
 Import VPN connection configurations into client from PIA
 
 ### ITerm2
-* Grab [ITerm Themes](https://github.com/chriskempson/base16-iterm2) for [Base 16](https://github.com/chriskempson/base16)
-    * Current Favorite: Base 16 Spacemacs
 * Disable `CMD + R` (avoid accidentally resetting the terminal, vim, et al.)
 * [Enable Italics Support in Vim](https://alexpearce.me/2014/05/italics-in-iterm2-vim-tmux/)
 
 For better Tmux integration...
 * Swap left Command and Left Control
 * Add action "don't remap modifier keys" for command + shift left/right so I can still navigate between windows
-
-### Alacritty
-
-Install Rust (and the toochain) with rustup, see: https://www.rustup.rs/, follow the instructions there.
-
-```sh
-# Clone the repo:
-git clone https://github.com/jwilm/alacritty.git
-cd alacritty
-
-# Ensure Rust is configured correctly:
-rustup override set stable
-rustup update stable
-
-# Build:
-cargo build --release
-
-# Create Application for Spotlight
-make app
-cp -r target/release/osx/Alacritty.app /Applications/Alacritty.app
-```
-
-To update:
-
-```sh
-cd ~/path/to/alacritty && git pull && rustup update stable && cargo build --release && make app && cp -r target/release/osx/Alacritty.app /
-```
-
-If `$PATH` is missing entries, update `~/.config/alacritty/alacritty.yml`:
-
-```yml
-shell:
- program: /usr/local/bin/zsh
- args:
-   - --login
-```
 
 To get italics working, see https://github.com/jwilm/alacritty/issues/489. For Fira Mono italics, use the following fork: https://github.com/zwaldowski/Fira/tree/zwaldowski/mod-new/otf.
 
