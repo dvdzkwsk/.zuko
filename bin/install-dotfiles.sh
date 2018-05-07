@@ -41,18 +41,22 @@ create_link () {
   info=""
   status=""
 
-
   if [ "$FORCE_INSTALL" = true ]; then
     rm -rf $dst
     ln -s $src $dst
     status=$OK
     info="(Overwrote existing file)"
   elif [ -L $dst ]; then
-    status=$ERROR
-    info="(Symlink already installed)"
+    if [ "$(realpath $dst)" == "$src" ]; then
+      status=$OK
+      info="(Symlink already installed)"
+    else
+      status=$ERROR
+      info="(Destination already exists, use --force to override)"
+    fi
   elif [ -f $dst ] || [ -d $dst ]; then
     status=$ERROR
-    info="(Destination already exists)"
+    info="(Destination already exists, use --force to override)"
   else
     status=$OK
     ln -s $src $dst
