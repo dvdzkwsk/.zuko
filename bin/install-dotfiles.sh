@@ -34,75 +34,44 @@ case $key in
 esac
 done
 
+create_link () {
+  name="$1"
+  src="$2"
+  dst="$3"
+  info=""
+  status=""
+
+
+  if [ "$FORCE_INSTALL" = true ]; then
+    rm -rf $dst
+    ln -s $src $dst
+    status=$OK
+    info="(Overwrote existing file)"
+  elif [ -L $dst ]; then
+    status=$ERROR
+    info="(Symlink already installed)"
+  elif [ -f $dst ] || [ -d $dst ]; then
+    status=$ERROR
+    info="(Destination already exists)"
+  else
+    status=$OK
+    ln -s $src $dst
+  fi
+  echo "${status} $(column $name) ${info}"
+}
+
 echo
 log "Symlinking ${PWD}/dotfiles/* to ${HOME}"
 echo
 for file in dotfiles/*; do
-  file=${file##*/}
-  dest="${HOME}/.${file}"
-  info=""
-  status=""
-  if [ -L $dest ]; then
-    if [ "$FORCE_INSTALL" = true ]; then
-      status=$OK
-      rm ${dest}
-      ln -s ${PWD}/dotfiles/${file} ${dest}
-      info="(Overwrote existing symlink)"
-    else
-      status=$ERROR
-      info="(Symlink already exists)"
-    fi
-  elif [ -f $dest ]; then
-    if [ "$FORCE_INSTALL" = true ]; then
-      status=$OK
-      rm ${dest}
-      ln -s ${PWD}/dotfiles/${file} ${dest}
-      info="(Overwrote existing file)"
-    else
-      status=$ERROR
-      info="(File already exists)"
-    fi
-  else
-    status=$OK
-    ln -s ${PWD}/dotfiles/${file} ${dest}
-  fi
-  echo "${status}  $(column $file) --> $(column "~/.${file}") ${info}"
+  file="${file##*/}"
+  create_link "${file}" "${PWD}/dotfiles/${file}" "${HOME}/.${file}"
 done
-
 
 echo
 log "Symlinking ${PWD}/config/* to ${HOME}/.config"
 echo
 for config in config/*; do
   dir=${config##*/}
-  src="${PWD}/config/${dir}"
-  dst="${HOME}/.config/${dir}"
-  info=""
-  status=""
-  if [ -L $dst ]; then
-    if [ "$FORCE_INSTALL" = true ]; then
-      status=$OK
-      rm ${dst}
-      ln -s ${src} ${dst}
-      info="(Overwrote existing symlink)"
-    else
-      status=$ERROR
-      info="(Symlink already exists)"
-    fi
-  elif [ -f $dst ]; then
-    if [ "$FORCE_INSTALL" = true ]; then
-      status=$OK
-      rm ${dst}
-      ln -s ${src} ${dst}
-      info="(Overwrote existing file)"
-    else
-      status=$ERROR
-      ln -s ${src} ${dst}
-      info="(File already exists)"
-    fi
-  else
-    status=$OK
-    ln -s ${src} ${dst}
-  fi
-  echo "${status}  $(column $dir) --> $(column "~/.config/${dir}") ${info}"
+  create_link "${dir}" "${PWD}/config/${dir}" "${HOME}/.config/${dir}"
 done
