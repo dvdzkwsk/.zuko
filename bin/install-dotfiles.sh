@@ -68,3 +68,41 @@ for file in dotfiles/*; do
   fi
   echo "${status}  $(column $file) --> $(column "~/.${file}") ${info}"
 done
+
+
+echo
+log "Symlinking ${PWD}/config/* to ${HOME}/.config"
+echo
+for config in config/*; do
+  dir=${config##*/}
+  src="${PWD}/config/${dir}"
+  dst="${HOME}/.config/${dir}"
+  info=""
+  status=""
+  if [ -L $dst ]; then
+    if [ "$FORCE_INSTALL" = true ]; then
+      status=$OK
+      rm ${dst}
+      ln -s ${src} ${dst}
+      info="(Overwrote existing symlink)"
+    else
+      status=$ERROR
+      info="(Symlink already exists)"
+    fi
+  elif [ -f $dst ]; then
+    if [ "$FORCE_INSTALL" = true ]; then
+      status=$OK
+      rm ${dst}
+      ln -s ${src} ${dst}
+      info="(Overwrote existing file)"
+    else
+      status=$ERROR
+      ln -s ${src} ${dst}
+      info="(File already exists)"
+    fi
+  else
+    status=$OK
+    ln -s ${src} ${dst}
+  fi
+  echo "${status}  $(column $dir) --> $(column "~/.config/${dir}") ${info}"
+done
