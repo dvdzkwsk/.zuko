@@ -2,7 +2,7 @@
   name = David Zukowski
   email = david@zuko.me
   username = davezuko
-  signingkey = 2BD5B7438A815C7C
+  signingkey = 635A47B8C3BB4D5C
 [core]
   excludesfile = ~/.gitignore
 [color]
