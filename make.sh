@@ -18,7 +18,7 @@ if test ! $(which brew); then
 fi
 
 brew update
-brew upgrade --all
+brew upgrade
 #}}}
 
 # Developer Tools ----------------------------------------- {{{
@@ -48,6 +48,7 @@ brew install weechat
 brew install zsh-completions
 brew install task
 brew install tig
+brew install diff-so-fancy
 #}}}
 
 # Programming --------------------------------------------- {{{
