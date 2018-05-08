@@ -73,8 +73,10 @@ brew tap caskroom/fonts && brew cask install font-source-code-pro
 #}}}
 
 # Misc ------------------------------------------------ {{{
-# Tmux Plugin Manager: use `prefix` + I to install plugins
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+if [ ! -d ~/.tmux/plugins/tpm ]; then
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+~/.tmux/plugins/tpm/scripts/install_plugins.sh
 
 # Intall custom terminfo that enables italics support
 tic ./config/xterm/xterm-256color-italic.terminfo
