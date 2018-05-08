@@ -79,3 +79,10 @@ for config in config/*; do
   dir=${config##*/}
   create_link "${dir}" "${PWD}/config/${dir}" "${HOME}/.config/${dir}"
 done
+
+if [ ! -f ~/.bash_private ]; then
+  echo "# This file is not committed, use it to configure private settings." > ~/.bash_private
+  echo
+  log "Creating new ~/.bash_private file for private settings"
+  echo "${OK} $(column "~/.bash_private")"
+fi
