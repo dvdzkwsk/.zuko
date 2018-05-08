@@ -7,25 +7,13 @@
 git clone https://github.com/davezuko/.zuko && cd .zuko && chmod +x ./make.sh && ./make.sh
 ```
 
-## Table of Contents
+* [Setup an SSH Config](http://nerderati.com/2011/03/17/simplify-your-life-with-an-ssh-config-file/)
+* [Setup Karabiner Elements](https://pqrs.org/osx/karabiner/)
+  * [Recommended Keybindings](#recommended-keybindings)
+* [Install VPN Client](https://www.sparklabs.com/viscosity)
+  * [My VPN Provider](https://www.privateinternetaccess.com)
 
-1. [System](#system)
-    * [SSH Config](#ssh-config)
-    * [Keybindings](#keybindings)
-2. [Applications](#applications)
-    * [ITerm2](#iterm2)
-3. [Troubleshooting](#troubleshooting)
-
-## System
-
-### SSH Config
-
-Easily manage SSH identities.
-* http://nerderati.com/2011/03/17/simplify-your-life-with-an-ssh-config-file/
-
-### Keybindings
-
-Use [Karabiner-Elements](https://pqrs.org/osx/karabiner/).
+### Recommended Keybindings
 
 #### Windows Keyboard Profile for OSX
 * `Left Command` -> `Left Option`
@@ -36,16 +24,7 @@ Use [Karabiner-Elements](https://pqrs.org/osx/karabiner/).
 * `Left Command` -> `Left Control`
 * `Left Control` -> `Left Command`
 
-## Applications
-
-Name      | Website                               | Description                |
-----------|---------------------------------------|----------------------------|
-Viscosity | https://www.sparklabs.com/viscosity   | VPN client                 |
-
-VPN provider: https://www.privateinternetaccess.com
-Import VPN connection configurations into client from PIA
-
-### ITerm2
+## ITerm2
 * Disable `CMD + R` (avoid accidentally resetting the terminal, vim, et al.)
 * [Enable Italics Support in Vim](https://alexpearce.me/2014/05/italics-in-iterm2-vim-tmux/)
 
