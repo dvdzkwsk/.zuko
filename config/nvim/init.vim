@@ -20,6 +20,7 @@ call plug#begin('~/.vim/plugged')
 
 " Basics
 Plug 'mhinz/vim-startify'             " Improved startup screen
+Plug 'itchyny/lightline.vim'          " Customizable status line
 Plug 'editorconfig/editorconfig-vim'  " Use .editorconfig settings when found
 Plug '/usr/local/opt/fzf'             " Import native FZF binary (brew install fzf)
 Plug 'junegunn/fzf.vim'               " FuzzyFind integration
@@ -54,7 +55,6 @@ Plug 'autozimu/LanguageClient-neovim', {
 \ }
 
 " Theming
-Plug 'itchyny/lightline.vim'          " Customizable status line
 Plug 'luochen1990/rainbow'            " Rainbow parentheses
 Plug 'lifepillar/vim-solarized8'
 Plug 'liuchengxu/space-vim-dark'
@@ -157,7 +157,7 @@ let g:vimwiki_list=[
 au FileType vimwiki set syntax=markdown
 
 " LanguageClient-nvim
-let g:LanguageClient_autoStart=1
+let g:LanguageClient_autoStart=0
 
 " Minimal LSP configuration for JavaScript
 let g:LanguageClient_serverCommands = {}
@@ -165,8 +165,6 @@ let g:LanguageClient_serverCommands = {}
 if executable('javascript-typescript-stdio')
   let g:LanguageClient_serverCommands['javascript'] = ['javascript-typescript-stdio']
   let g:LanguageClient_serverCommands['javascript.jsx'] = ['javascript-typescript-stdio']
-else
-  echo "javascript-typescript-stdio not installed!"
 endif
 
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
