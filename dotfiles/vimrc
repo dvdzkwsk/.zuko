@@ -1,16 +1,6 @@
 " vim: foldmethod=marker
-
-" Documentation -------------------------------------------- {{{
-" Reference:
-" - http://statico.github.io/vim.html
-" - http://www.oliversherouse.com/2017/08/21/vim_zero.html
-" - https://alexpearce.me/2014/05/italics-in-iterm2-vim-tmux
-" - https://statico.github.io/vim3.html
-" - https://fortes.com/2017/language-server-neovim
-"}}}
-
 " Plugins -------------------------------------------------- {{{
-" Install the plugin manager if it does not exist.
+" Install plugin manager if it does not exist
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -19,17 +9,17 @@ endif
 call plug#begin('~/.vim/plugged')
 
 " Basics
-Plug 'mhinz/vim-startify'             " Improved startup screen
+Plug 'mhinz/vim-startify'             " Friendly startup screen
 Plug 'itchyny/lightline.vim'          " Customizable status line
 Plug 'editorconfig/editorconfig-vim'  " Use .editorconfig settings when found
 Plug '/usr/local/opt/fzf'             " Import native FZF binary (brew install fzf)
-Plug 'junegunn/fzf.vim'               " FuzzyFind integration
-Plug 'w0rp/ale'                       " Asynchronous linter
+Plug 'junegunn/fzf.vim'               " FZF integration
+Plug 'w0rp/ale'                       " Asynchronous lint engine
 Plug 'scrooloose/nerdtree'            " File explorer
+Plug 'romainl/vim-qf'                 " Better quickfix List management
 Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between tmux and vim
 Plug 'aquach/vim-http-client'         " Make HTTP requests from vim
 Plug 'shime/vim-livedown'             " Realtime markdown preview
-Plug 'romainl/vim-qf'                 " Better Quickfix List management
 Plug 'vimwiki/vimwiki'                " Personal wiki manager
 
 " IMproved Editing
@@ -38,26 +28,26 @@ Plug 'tpope/vim-repeat'               " Make '.' smarter
 Plug 'tpope/vim-unimpaired'           " More symmetrical mappings
 Plug 'machakann/vim-sandwich'         " Intuitive surround commands
 Plug 'junegunn/vim-easy-align'        " Text alignment commands
-Plug 'wellle/targets.vim'             " Additional/smarter text objects
+Plug 'wellle/targets.vim'             " More, smarter text objects
 
 " Version Control
 Plug 'tpope/vim-fugitive'             " Git integration
-Plug 'mhinz/vim-signify'              " Sidebar version control integration
+Plug 'mhinz/vim-signify'              " VCS (e.g. git) indicators in sidebar
 
 " Language Support
 Plug 'sheerun/vim-polyglot'           " Suite of language packages
+Plug 'bhurlow/vim-parinfer'           " Structural editing for lisps
 Plug 'jpalardy/vim-slime'             " REPL integration
-Plug 'tpope/vim-fireplace'            " Clojure integration
-Plug 'bhurlow/vim-parinfer'           " Lisp structural editing
+Plug 'tpope/vim-fireplace'            " Clojure tooling
 Plug 'autozimu/LanguageClient-neovim', {
 \  'branch': 'next',
 \  'do': 'bash install.sh',
-\ }
+\}
 
 " Theming
 Plug 'luochen1990/rainbow'            " Rainbow parentheses
-Plug 'lifepillar/vim-solarized8'
-Plug 'liuchengxu/space-vim-dark'
+Plug 'liuchengxu/space-vim-dark'      " My primary theme...
+Plug 'lifepillar/vim-solarized8'      " ...but sometimes a change is nice
 
 " NeoVim
 if has('nvim')
@@ -71,7 +61,7 @@ filetype plugin indent on
 " Main Settings -------------------------------------------- {{{
 set ttimeoutlen=50                    " Reduce input delay when entering normal mode
 set undofile                          " Remember undo history between sessions...
-set undodir=~/.vim/undo               " ...and store it here
+set undodir=/tmp/.vim/undo            " ...and store it here
 set noswapfile                        " Don't create swap files
 set hidden                            " Allow unsaved buffers (i.e. switch buffers w/o saving current)
 set autoread                          " Automatically reload files changes outside of vim
@@ -111,13 +101,10 @@ if has('clipboard')
   set clipboard=unnamedplus           " Use system clipboard with yank/delete
 endif
 if exists('+colorcolumn')
-  set colorcolumn=81                  " Show line length guide
+  set colorcolumn=81                  " Show suggested max line length guide
 endif
 if exists('&inccommand')
-  set inccommand=nosplit              " Show substitutions in place
-endif
-if has('nvim')
-  set completeopt-=preview            " Disable preview scratch buffer
+  set inccommand=nosplit              " Preview regex substitutions in place
 endif
 
 " Replace grep with ripgrep for speed
@@ -136,13 +123,6 @@ let g:deoplete#enable_at_startup=1
 
 " vim-slime
 let g:slime_target="neovim"
-
-" vim-sandwich (vim-surround alternative)
-" Disable animations
-call operator#sandwich#set('all', 'all', 'highlight', 0)
-
-" vim-http-client
-let g:http_client_focus_output_window=0
 
 " Ale
 let g:ale_fix_on_save=1
@@ -193,12 +173,6 @@ augroup autoOpenQuickFixList
   autocmd!
   autocmd QuickFixCmdPost [^l]* cwindow
   autocmd QuickFixCmdPost l*    lwindow
-augroup END
-
-" Language Support
-augroup autoSetFileType
-  autocmd!
-  autocmd BufNewFile,BufRead *.tsx set filetype=typescript.jsx
 augroup END
 "}}}
 
@@ -337,9 +311,6 @@ nnoremap <F7> <Esc>:FZF<CR>
 "}}}
 
 " Mnemonics ------------------------------------------------ {{{
-" [A]le
-nmap <Leader>af <Plug>(ale_fix)
-
 " [B]uffer
 nnoremap <Leader><Tab> :b#<CR>
 nnoremap <Leader>bb :Buffers<CR>
@@ -348,7 +319,6 @@ nnoremap <Leader>bo :BufOnly<CR>
 xnoremap <Leader>br y:%s/<C-r>"//g<Left><Left>
 
 " [F]ind
-nnoremap <Leader>fb :Buffers<CR>
 nnoremap <Leader>ff :FZF<CR>
 nnoremap <Leader>fw :grep! "<cword>"<CR>
 nnoremap <Leader>fs :call LanguageClient_textDocument_documentSymbol()<cr>
@@ -360,9 +330,6 @@ nnoremap <Leader>gb :Gbrowse<CR>
 
 " [P]roject
 nnoremap <Leader>pt :NERDTreeToggle<CR>
-
-" [Q]uickFix List
-nnoremap <Leader>ql :copen<CR>
 
 " [R]epl
 nmap <Leader>rc <Plug>SlimeConfig
