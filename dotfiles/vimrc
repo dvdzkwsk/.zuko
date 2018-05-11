@@ -20,13 +20,13 @@ call plug#begin('~/.vim/plugged')
 
 " Basics
 Plug 'mhinz/vim-startify'             " Improved startup screen
+Plug 'itchyny/lightline.vim'          " Customizable status line
 Plug 'editorconfig/editorconfig-vim'  " Use .editorconfig settings when found
 Plug '/usr/local/opt/fzf'             " Import native FZF binary (brew install fzf)
 Plug 'junegunn/fzf.vim'               " FuzzyFind integration
 Plug 'w0rp/ale'                       " Asynchronous linter
 Plug 'scrooloose/nerdtree'            " File explorer
 Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between tmux and vim
-Plug 'luochen1990/rainbow'            " Rainbow parentheses
 Plug 'aquach/vim-http-client'         " Make HTTP requests from vim
 Plug 'shime/vim-livedown'             " Realtime markdown preview
 Plug 'romainl/vim-qf'                 " Better Quickfix List management
@@ -41,9 +41,8 @@ Plug 'junegunn/vim-easy-align'        " Text alignment commands
 Plug 'wellle/targets.vim'             " Additional/smarter text objects
 
 " Version Control
-Plug 'tpope/vim-fugitive'             " Sweet Git integration
-Plug 'tpope/vim-rhubarb'              " Extensions for fugitive
-Plug 'mhinz/vim-signify'              " Sidebar VCS integration
+Plug 'tpope/vim-fugitive'             " Git integration
+Plug 'mhinz/vim-signify'              " Sidebar version control integration
 
 " Language Support
 Plug 'sheerun/vim-polyglot'           " Suite of language packages
@@ -56,7 +55,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 \ }
 
 " Theming
-Plug 'itchyny/lightline.vim'
+Plug 'luochen1990/rainbow'            " Rainbow parentheses
 Plug 'lifepillar/vim-solarized8'
 Plug 'liuchengxu/space-vim-dark'
 
@@ -148,7 +147,7 @@ let g:http_client_focus_output_window=0
 " Ale
 let g:ale_fix_on_save=1
 let g:ale_fixers={
-\  'javascript': ['eslint'],
+\  'javascript': ['eslint', 'prettier'],
 \}
 
 " vimwiki
@@ -162,8 +161,11 @@ let g:LanguageClient_autoStart=0
 
 " Minimal LSP configuration for JavaScript
 let g:LanguageClient_serverCommands = {}
-let g:LanguageClient_serverCommands['javascript'] = ['javascript-typescript-stdio']
-let g:LanguageClient_serverCommands['javascript.jsx'] = ['javascript-typescript-stdio']
+
+if executable('javascript-typescript-stdio')
+  let g:LanguageClient_serverCommands['javascript'] = ['javascript-typescript-stdio']
+  let g:LanguageClient_serverCommands['javascript.jsx'] = ['javascript-typescript-stdio']
+endif
 
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
@@ -256,13 +258,7 @@ let g:rainbow_conf={
 
 " Fix vim-jsx not coloring closing tags. Seriously?
 " https://github.com/mxw/vim-jsx/issues/124
-hi Tag        ctermfg=04
-hi xmlTag     ctermfg=04
-hi xmlTagName ctermfg=04
-hi xmlEndTag  ctermfg=04
-hi xmlTagName guifg=#59ACE5
-hi xmlTag     guifg=#59ACE5
-hi xmlEndTag  guifg=#2974a1
+hi link xmlEndTag xmlTag
 "}}}
 
 " Keybindings ---------------------------------------------- {{{

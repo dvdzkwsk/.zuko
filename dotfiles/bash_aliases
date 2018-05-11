@@ -23,7 +23,7 @@ alias ls="ls -Gfh"
 
 # [V]im
 alias vi="nvim"
-alias vrc="vi ~/.config/nvim/init.vim"
+alias vrc="vi ~/.vimrc"
 
 # [R]anger
 alias r="ranger"
