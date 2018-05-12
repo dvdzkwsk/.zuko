@@ -31,3 +31,12 @@ function work {
 function wiki {
   $EDITOR ~/vimwiki/index.md
 }
+
+function backup {
+  DATE=`date +%Y-%m-%d`
+  FILE="${DATE}.tar.gz"
+
+  cd ~/vimwiki
+  tar -zcvf $FILE *
+  mv $FILE ~/Dropbox/backups/wiki
+}

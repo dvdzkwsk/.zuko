@@ -36,7 +36,9 @@ Plug 'mhinz/vim-signify'              " VCS (e.g. git) indicators in sidebar
 
 " Language Support
 Plug 'sheerun/vim-polyglot'           " Suite of language packages
-Plug 'bhurlow/vim-parinfer'           " Structural editing for lisps
+Plug 'eraserhd/parinfer-rust', {
+\  'do': 'cargo build --manifest-path=cparinfer/Cargo.toml --release'
+\}
 Plug 'jpalardy/vim-slime'             " REPL integration
 Plug 'tpope/vim-fireplace'            " Clojure tooling
 Plug 'autozimu/LanguageClient-neovim', {
@@ -186,15 +188,17 @@ if has("termguicolors")
 endif
 
 set background=dark
-colorscheme space-vim-dark
+" colorscheme space-vim-dark
+colorscheme solarized8_dark_high
 let g:solarized8_term_italics=1
 
 " Display comments in italics
 hi Comment cterm=italic
 
 " Lightline
+" Favorite colorschemes: 'deus' | 'solarized'
 let g:lightline = {
-\   'colorscheme': 'deus',
+\   'colorscheme': 'solarized',
 \   'component': {
 \     'readonly': '%{&readonly?"\ue0a2":""}',
 \   },
@@ -222,7 +226,7 @@ let g:signify_sign_add='●'
 let g:signify_sign_change='●'
 
 " Rainbow Parentheses
-let g:rainbow_active=1
+let g:rainbow_active=0
 let rainbow_colors_light=['#06e5ff', '#e806ff', '#06ff72', '#ffa406']
 let rainbow_colors_dark=['DarkBlue', 'Magenta', 'Black', 'Red', 'DarkGray', 'DarkGreen', 'DarkYellow']
 let g:rainbow_conf={
@@ -233,6 +237,13 @@ let g:rainbow_conf={
 " Fix vim-jsx not coloring closing tags. Seriously?
 " https://github.com/mxw/vim-jsx/issues/124
 hi link xmlEndTag xmlTag
+hi Tag        ctermfg=04
+hi xmlTag     ctermfg=04
+hi xmlTagName ctermfg=04
+hi xmlEndTag  ctermfg=04
+hi xmlTagName guifg=#59ACE5
+hi xmlTag     guifg=#59ACE5
+hi xmlEndTag  guifg=#2974a1
 "}}}
 
 " Keybindings ---------------------------------------------- {{{
@@ -330,6 +341,7 @@ nnoremap <Leader>gb :Gbrowse<CR>
 
 " [P]roject
 nnoremap <Leader>pt :NERDTreeToggle<CR>
+nnoremap <Leader>pf :GFiles<CR>
 
 " [R]epl
 nmap <Leader>rc <Plug>SlimeConfig

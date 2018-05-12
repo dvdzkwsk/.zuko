@@ -34,6 +34,7 @@ brew install boot2docker
 brew install docker
 brew install fasd
 brew install fzf
+$(brew --prefix)/opt/fzf/install
 brew install htop
 brew install hub
 brew install jq
@@ -52,6 +53,7 @@ brew install diff-so-fancy
 #}}}
 
 # Programming --------------------------------------------- {{{
+brew install sbcl
 brew install elixir
 brew install lumo
 brew install postgresql
