@@ -156,6 +156,7 @@ nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 " Auto Commands -------------------------------------------- {{{
 " Delete all other buffers when running :BufOnly
 command! BufOnly silent! execute "%bd|e#|bd#"
+au BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
 
 " Only show cursor line in active window
 augroup cursorLine
