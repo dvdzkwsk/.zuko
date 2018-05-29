@@ -130,9 +130,12 @@ let g:slime_target="neovim"
 let g:ale_fix_on_save=1
 let g:ale_fixers={
 \  'javascript': ['eslint', 'prettier'],
+\  'typescript': ['tslint', 'prettier'],
+\  'typescript.jsx': ['tslint', 'prettier'],
 \}
 
 " vimwiki
+let g:vimwiki_table_mappings=0
 let g:vimwiki_list=[
 \  {'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}
 \]
@@ -157,6 +160,7 @@ nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 " Delete all other buffers when running :BufOnly
 command! BufOnly silent! execute "%bd|e#|bd#"
 au BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.jsx
 
 " Only show cursor line in active window
 augroup cursorLine
@@ -189,8 +193,8 @@ if has("termguicolors")
 endif
 
 set background=dark
-" colorscheme space-vim-dark
-colorscheme solarized8_dark_high
+colorscheme space-vim-dark
+" colorscheme solarized8_dark_high
 let g:solarized8_term_italics=1
 
 " Display comments in italics
@@ -199,7 +203,7 @@ hi Comment cterm=italic
 " Lightline
 " Favorite colorschemes: 'deus' | 'solarized'
 let g:lightline = {
-\   'colorscheme': 'solarized',
+\   'colorscheme': 'deus',
 \   'component': {
 \     'readonly': '%{&readonly?"\ue0a2":""}',
 \   },
@@ -331,7 +335,9 @@ nnoremap <Leader>bo :BufOnly<CR>
 xnoremap <Leader>br y:%s/<C-r>"//g<Left><Left>
 
 " [F]ind
+nnoremap <Leader>fa :Ag<CR>
 nnoremap <Leader>ff :FZF<CR>
+nnoremap <Leader>fb :Buffers<CR>
 nnoremap <Leader>fw :grep! "<cword>"<CR>
 nnoremap <Leader>fs :call LanguageClient_textDocument_documentSymbol()<cr>
 
