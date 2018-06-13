@@ -49,6 +49,7 @@ brew install weechat
 brew install zsh-completions
 brew install task
 brew install tig
+brew install fd
 brew install diff-so-fancy
 #}}}
 
