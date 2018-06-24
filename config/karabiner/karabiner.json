@@ -51,6 +51,22 @@
                             "to": {
                                 "key_code": "left_control"
                             }
+                        },
+                        {
+                            "from": {
+                                "key_code": "scroll_lock"
+                            },
+                            "to": {
+                                "consumer_key_code": "volume_decrement"
+                            }
+                        },
+                        {
+                            "from": {
+                                "key_code": "pause"
+                            },
+                            "to": {
+                                "consumer_key_code": "volume_increment"
+                            }
                         }
                     ]
                 }
@@ -125,7 +141,7 @@
                         "key_code": "f9"
                     },
                     "to": {
-                        "consumer_key_code": "fastforward"
+                        "consumer_key_code": "play_or_pause"
                     }
                 },
                 {
@@ -141,7 +157,7 @@
                         "key_code": "f11"
                     },
                     "to": {
-                        "consumer_key_code": "volume_decrement"
+                        "consumer_key_code": "rewind"
                     }
                 },
                 {
@@ -149,7 +165,7 @@
                         "key_code": "f12"
                     },
                     "to": {
-                        "consumer_key_code": "volume_increment"
+                        "consumer_key_code": "fastforward"
                     }
                 }
             ],

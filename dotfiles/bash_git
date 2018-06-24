@@ -28,7 +28,7 @@ function gbd {
   if [ -n "$1" ]; then
     git branch -D "$@"
   else
-    git branch -D $(git branch -l | fzf -m)
+    git branch -D $(git branch -l | fzf -m | tr -s " " | sed 's/^\s*//')
   fi
 }
 
@@ -36,7 +36,7 @@ function gco {
   if [ -n "$1" ]; then
     git checkout "$@"
   else
-    git checkout $(git branch -l | fzf)
+    git checkout $(git branch -l | fzf -m | sed 's/^\s*//')
   fi
 }
 #}}}
