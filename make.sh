@@ -35,6 +35,8 @@ brew install docker
 brew install fasd
 brew install fzf
 $(brew --prefix)/opt/fzf/install
+brew install gopass
+brew install pinentry-mac                   # browserpass (browser extension) dependency
 brew install htop
 brew install hub
 brew install jq
