@@ -24,6 +24,10 @@ git clone https://github.com/davezuko/.zuko && cd .zuko && chmod +x ./make.sh &&
 * `Left Command` -> `Left Control`
 * `Left Control` -> `Left Command`
 
+## Tmux
+
+Easily define layouts with http://cockpit.27ae60.com/
+
 ## ITerm2
 * Disable `CMD + R` (avoid accidentally resetting the terminal, vim, et al.)
 * [Enable Italics Support in Vim](https://alexpearce.me/2014/05/italics-in-iterm2-vim-tmux/)
@@ -41,3 +45,4 @@ Issues with True Color? See https://bruinsslot.jp/post/how-to-enable-true-color-
 ### Tmux complains about nvm/npm
 
 Make sure `node` is not installed via brew, and delete `/usr/local/bin/npm` if it exists. This often gets re-created after a brew update, it seems.
+
