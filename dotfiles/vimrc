@@ -16,7 +16,7 @@ Plug '/usr/local/opt/fzf'             " Import native FZF binary (brew install f
 Plug 'junegunn/fzf.vim'               " FZF integration
 Plug 'w0rp/ale'                       " Asynchronous lint engine
 Plug 'scrooloose/nerdtree'            " File explorer
-Plug 'romainl/vim-qf'                 " Better quickfix List management
+Plug 'mbbill/undotree'                " Visualize and manage vim's undo tree
 Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between tmux and vim
 Plug 'aquach/vim-http-client'         " Make HTTP requests from vim
 Plug 'shime/vim-livedown'             " Realtime markdown preview
@@ -129,8 +129,8 @@ let g:slime_target="neovim"
 " Ale
 let g:ale_fix_on_save=1
 let g:ale_fixers={
-\  'vue': ['prettier'],
 \  'javascript': ['eslint', 'prettier'],
+\  'javascript.jsx': ['eslint', 'prettier'],
 \  'typescript': ['tslint', 'prettier'],
 \  'typescript.jsx': ['tslint', 'prettier'],
 \}
@@ -257,6 +257,9 @@ let g:mapleader=' '
 
 " More efficient file saving by double tapping <Esc>
 map <Esc><Esc> :w<CR>
+
+" And an easier way to save files as sudo when vim isn't privileged
+cmap w!! w !sudo tee > /dev/null %
 
 " Custom unimpaired bindings
 nmap [w <Plug>(ale_previous_wrap)
