@@ -30,8 +30,6 @@ brew install coreutils
 brew install gnu-sed --with-default-names
 
 brew cask install java
-brew install boot2docker
-brew install docker
 brew install fasd
 brew install fzf
 $(brew --prefix)/opt/fzf/install
@@ -57,14 +55,13 @@ brew install diff-so-fancy
 
 # Programming --------------------------------------------- {{{
 brew install sbcl
-brew install elixir
 brew install lumo
-brew install postgresql
 brew install python3
 brew install yarn --without-node
 #}}}
 
 # Applications -------------------------------------------- {{{
+brew cask install docker
 brew cask install dropbox
 brew cask install google-chrome
 brew cask install brave
