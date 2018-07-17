@@ -5,7 +5,7 @@
 sudo -v
 
 # Ensure package manager is up-to-date
-apt-get update && apt-get upgrade
+apt-get update && apt-get -y upgrade
 
 # Install Node
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash

@@ -21,6 +21,8 @@ Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between tmux and vim
 Plug 'aquach/vim-http-client'         " Make HTTP requests from vim
 Plug 'shime/vim-livedown'             " Realtime markdown preview
 Plug 'vimwiki/vimwiki'                " Personal wiki manager
+Plug 'junegunn/goyo.vim'              " Distraction-free writing
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " IMproved Editing
 Plug 'tpope/vim-commentary'           " Easier commenting
@@ -49,12 +51,7 @@ Plug 'autozimu/LanguageClient-neovim', {
 " Theming
 Plug 'luochen1990/rainbow'            " Rainbow parentheses
 Plug 'liuchengxu/space-vim-dark'      " My primary theme...
-Plug 'lifepillar/vim-solarized8'      " ...but sometimes a change is nice
-
-" NeoVim
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-endif
+Plug 'rafi/awesome-vim-colorschemes'  " ...but sometimes a change is nice
 
 call plug#end()
 filetype plugin indent on
@@ -199,7 +196,7 @@ colorscheme space-vim-dark
 let g:solarized8_term_italics=1
 
 " Display comments in italics
-hi Comment cterm=italic
+" hi Comment cterm=italic
 
 " Lightline
 " Favorite colorschemes: 'deus' | 'solarized'
