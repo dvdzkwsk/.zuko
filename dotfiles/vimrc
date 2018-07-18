@@ -107,7 +107,7 @@ if exists('&inccommand')
   set inccommand=nosplit              " Preview regex substitutions in place
 endif
 
-" Replace grep with ripgrep for speed
+" Replace grep with ripgrep
 if executable('rg')
   set grepprg=rg\ --vimgrep\ --no-heading
   set grepformat=%f:%l:%c:%m
@@ -138,12 +138,9 @@ let g:vimwiki_table_mappings=0
 let g:vimwiki_list=[
 \  {'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}
 \]
-au FileType vimwiki set syntax=markdown
 
 " LanguageClient-nvim
 let g:LanguageClient_autoStart=0
-
-" Minimal LSP configuration for JavaScript
 let g:LanguageClient_serverCommands = {}
 
 if executable('javascript-typescript-stdio')
@@ -157,6 +154,7 @@ nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 
 " Auto Commands -------------------------------------------- {{{
 " Filetype configuration
+autocmd FileType vimwiki set syntax=markdown
 autocmd BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.jsx
 
@@ -192,8 +190,9 @@ endif
 
 set background=dark
 let ayucolor="mirage"
+
+" Favorites: ayu, palenight, space-vim-dark
 colorscheme ayu
-" colorscheme palenight
 
 " Display comments in italics
 hi Comment gui=italic cterm=italic
@@ -201,7 +200,7 @@ let g:palenight_terminal_italics=1
 
 " Lightline (favorites themes: deus, solarized, palenight)
 let g:lightline = {
-\   'colorscheme': 'palenight',
+\   'colorscheme': 'deus',
 \   'component': {
 \     'readonly': '%{&readonly?"\ue0a2":""}',
 \   },
