@@ -50,8 +50,9 @@ Plug 'autozimu/LanguageClient-neovim', {
 
 " Theming
 Plug 'luochen1990/rainbow'            " Rainbow parentheses
-Plug 'liuchengxu/space-vim-dark'      " My primary theme...
-Plug 'rafi/awesome-vim-colorschemes'  " ...but sometimes a change is nice
+Plug 'liuchengxu/space-vim-dark'      " My preferred theme
+Plug 'drewtempelmeyer/palenight.vim'  " ... but sometimes ...
+Plug 'ayu-theme/ayu-vim'              " ... we change it up
 
 call plug#end()
 filetype plugin indent on
@@ -155,10 +156,9 @@ nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 "}}}
 
 " Auto Commands -------------------------------------------- {{{
-" Delete all other buffers when running :BufOnly
-command! BufOnly silent! execute "%bd|e#|bd#"
-au BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
-autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.jsx
+" Filetype configuration
+autocmd BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
+autocmd BufNewFile,BufRead *.tsx set filetype=typescript.jsx
 
 " Only show cursor line in active window
 augroup cursorLine
@@ -191,34 +191,34 @@ if has("termguicolors")
 endif
 
 set background=dark
-colorscheme space-vim-dark
-" colorscheme solarized8_dark_high
-let g:solarized8_term_italics=1
+let ayucolor="mirage"
+colorscheme ayu
+" colorscheme palenight
 
 " Display comments in italics
-" hi Comment cterm=italic
+hi Comment gui=italic cterm=italic
+let g:palenight_terminal_italics=1
 
-" Lightline
-" Favorite colorschemes: 'deus' | 'solarized'
+" Lightline (favorites themes: deus, solarized, palenight)
 let g:lightline = {
-\   'colorscheme': 'deus',
+\   'colorscheme': 'palenight',
 \   'component': {
 \     'readonly': '%{&readonly?"\ue0a2":""}',
 \   },
 \   'active': {
 \     'left': [
 \       ['mode', 'paste'],
-\       [ 'readonly', 'relativepath', 'modified']
+\       ['readonly', 'relativepath', 'modified']
 \     ],
 \     'right': [
-\        [ 'lineinfo'],
-\        [ 'filetype' ],
+\        ['lineinfo'],
+\        ['filetype'],
 \     ]
 \   },
 \   'inactive': {
 \     'right': [
-\        [ 'lineinfo' ],
-\        [ 'gitversion', 'percent' ],
+\        ['lineinfo'],
+\        ['gitversion', 'percent'],
 \     ]
 \   },
 \ }
@@ -325,6 +325,9 @@ inoremap <F6> <Esc>:Commentary<CR>
 " Suggested external mapping: CMD + P -> F7
 nnoremap <F7> <Esc>:FZF<CR>
 nnoremap <F7> <Esc>:FZF<CR>
+
+" Delete all other buffers when running :BufOnly
+command! BufOnly silent! execute "%bd|e#|bd#"
 "}}}
 
 " Mnemonics ------------------------------------------------ {{{
