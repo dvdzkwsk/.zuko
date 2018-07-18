@@ -49,7 +49,6 @@ Plug 'autozimu/LanguageClient-neovim', {
 \}
 
 " Theming
-Plug 'luochen1990/rainbow'            " Rainbow parentheses
 Plug 'liuchengxu/space-vim-dark'      " My preferred theme
 Plug 'drewtempelmeyer/palenight.vim'  " ... but sometimes ...
 Plug 'ayu-theme/ayu-vim'              " ... we change it up
@@ -191,7 +190,7 @@ endif
 set background=dark
 let ayucolor="mirage"
 
-" Favorites: ayu, palenight, space-vim-dark
+" Favorite themes: ayu, palenight, space-vim-dark
 colorscheme ayu
 
 " Display comments in italics
@@ -226,17 +225,9 @@ let g:lightline = {
 let g:signify_show_count=1
 let g:signify_sign_add='●'
 let g:signify_sign_change='●'
+let g:signify_sign_delete='-'
 
-" Rainbow Parentheses
-let g:rainbow_active=0
-let rainbow_colors_light=['#06e5ff', '#e806ff', '#06ff72', '#ffa406']
-let rainbow_colors_dark=['DarkBlue', 'Magenta', 'Black', 'Red', 'DarkGray', 'DarkGreen', 'DarkYellow']
-let g:rainbow_conf={
-\  'guifgs': (&background == 'light' ? rainbow_colors_dark : rainbow_colors_light),
-\  'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-\}
-
-" Fix vim-jsx not coloring closing tags. Seriously?
+" Fix vim-jsx not coloring closing tags properly. Seriously?
 " https://github.com/mxw/vim-jsx/issues/124
 hi link xmlEndTag xmlTag
 hi Tag        ctermfg=04
@@ -325,7 +316,7 @@ inoremap <F6> <Esc>:Commentary<CR>
 nnoremap <F7> <Esc>:FZF<CR>
 nnoremap <F7> <Esc>:FZF<CR>
 
-" Delete all other buffers when running :BufOnly
+" Delete all other buffers with :BufOnly
 command! BufOnly silent! execute "%bd|e#|bd#"
 "}}}
 
@@ -334,7 +325,6 @@ command! BufOnly silent! execute "%bd|e#|bd#"
 nnoremap <Leader><Tab> :b#<CR>
 nnoremap <Leader>bb :Buffers<CR>
 nnoremap <Leader>bd :bd<CR>
-nnoremap <Leader>bo :BufOnly<CR>
 xnoremap <Leader>br y:%s/<C-r>"//g<Left><Left>
 
 " [F]ind
