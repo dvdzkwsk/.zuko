@@ -7,12 +7,17 @@ GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUPSTREAM="auto"
 GIT_PS1_DESCRIBE_STYLE="branch"
 
+BRIGHT_GREEN="%{[38;5;155m%}"
+BRIGHT_BLUE="%{[38;5;153m%}"
+BRIGHT_CYAN="%{[38;5;158m%}"
+BRIGHT_PURPLE="%{[38;5;135m%}"
+
 precmd () {
   NEWLINE=$'\n'
-  user="%F{blue}%n"
-  cwd="%F{cyan}%(4~|.../%2~|%~)"
-  prompt="%F{magenta}λ%F{reset_color}"
+  user="${BRIGHT_BLUE}%n"
+  cwd="${BRIGHT_CYAN}%(4~|.../%2~|%~)"
+  prompt="${BRIGHT_PURPLE}λ%F{reset_color}"
 
-  __git_ps1 "${NEWLINE}${user}%F{white}:${cwd}%F{green}" " ${prompt} "
+  __git_ps1 "${NEWLINE}${user}%F{white}:${cwd}${BRIGHT_GREEN}" " ${prompt} "
 }
 
