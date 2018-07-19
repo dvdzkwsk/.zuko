@@ -1,6 +1,5 @@
 # vim: foldmethod=marker
 
-# Aliases -------------------------------------------------- {{{
 alias ga="git add -p"
 alias gall="git add --all"
 alias gm="git merge"
@@ -21,7 +20,6 @@ alias grbi="git rebase -i"
 alias gpr="git pull-request"
 alias gr="git rebase"
 alias grc="git rebase --continue"
-#}}}
 
 # Functions ------------------------------------------------ {{{
 function gbd {

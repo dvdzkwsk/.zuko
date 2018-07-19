@@ -1,4 +1,46 @@
-source ~/.bash_main
-source ~/.bash_private
-source ~/.zsh_main
+# Main Settings -------------------------------------------- {{{
+set -o vi                     # Allow vi-like commands in bash
+ulimit -n 2000                # Increase allowed open file limit
+eval "$(hub alias -s)"        # Enable git extensions
+export HISTFILE=~/.histfile   # Where to save command history
+export HISTSIZE=500           # Increase the default history size
+export SAVEHIST=500           # ibid
+export HISTCONTROL=erasedups  # Remove duplicates in history
+export VISUAL=nvim            # Global default editor
+export EDITOR="$VISUAL"       # ibid
+export GPG_TTY=$(tty)
+
+eval "$(fasd --init auto)"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#}}}
+
+# ZSH Settings -------------------------------------------- {{{
+setopt sharehistory           # Share history across terminals
+setopt appendhistory          # Persist history across sessions
+setopt incappendhistory       # Immediately append to history file
+
+autoload -U edit-command-line
+
+# Mirror bash's Ctrl + x + e functionality to edit the current command with $EDITOR.
+# http://nuclearsquid.com/writings/edit-long-commands/
+zle -N edit-command-line
+bindkey '^xe' edit-command-line
+bindkey '^x^e' edit-command-line
+bindkey -M vicmd v edit-command-line
+bindkey '^R' history-incremental-search-backward
+
+fpath=(/usr/local/share/zsh-completions $fpath)
+#}}}
+
+# Node ----------------------------------------------------- {{{
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#}}}
+
+# Externals ------------------------------------------------ {{{
+source ~/.zsh_aliases
+source ~/.zsh_prompt
+source ~/.git_aliases
+
+[ -f ~/.zsh_private ] && source ~/.zsh_private
+#}}}
