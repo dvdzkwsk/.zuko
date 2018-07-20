@@ -7,10 +7,11 @@ alias weather="curl wttr.in"
 alias clock="tty-clock -b -s -c -C 2"
 alias diff="colordiff"
 alias did="nvim +'normal Go' +'r!echo \"[$(date)]\"' +'normal Go- ' ~/wiki/did.txt"
+alias todo="nvim -O ~/wiki/{todo,progress,done}.md"
 
 # Mnemonic
 # [B]ash
-alias brc="vi ~/.zshrc"
+alias brc="$EDITOR ~/.zshrc"
 alias brcs="source ~/.zshrc"
 
 # [E]macs
