@@ -22,7 +22,6 @@ Plug 'aquach/vim-http-client'         " Make HTTP requests from vim
 Plug 'shime/vim-livedown'             " Realtime markdown preview
 Plug 'vimwiki/vimwiki'                " Personal wiki manager
 Plug 'junegunn/goyo.vim'              " Distraction-free writing
-Plug 'SirVer/ultisnips'               " Code snippets
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " IMproved Editing
@@ -120,9 +119,6 @@ ca grep grep!
 " Plugin Configurations ------------------------------------ {{{
 " deoplete
 let g:deoplete#enable_at_startup=1
-
-" ultisnips
-let g:UltiSnipsExpandTrigger="<tab>"
 
 " vim-slime
 let g:slime_target="neovim"
