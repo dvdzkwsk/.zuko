@@ -1,7 +1,6 @@
 # Main Settings -------------------------------------------- {{{
 set -o vi                     # Allow vi-like commands in bash
 ulimit -n 2000                # Increase allowed open file limit
-eval "$(hub alias -s)"        # Enable git extensions
 export HISTFILE=~/.histfile   # Where to save command history
 export HISTSIZE=500           # Increase the default history size
 export SAVEHIST=500           # ibid
@@ -9,9 +8,6 @@ export HISTCONTROL=erasedups  # Remove duplicates in history
 export VISUAL=nvim            # Global default editor
 export EDITOR="$VISUAL"       # ibid
 export GPG_TTY=$(tty)
-
-eval "$(fasd --init auto)"
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #}}}
 
 # ZSH Settings -------------------------------------------- {{{
@@ -43,4 +39,8 @@ source ~/.zsh_prompt
 source ~/.git_aliases
 
 [ -f ~/.zsh_private ] && source ~/.zsh_private
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+eval "$(hub alias -s)"
+eval "$(fasd --init auto)"
 #}}}
