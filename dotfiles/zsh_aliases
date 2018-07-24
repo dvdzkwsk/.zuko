@@ -8,6 +8,7 @@ alias clock="tty-clock -b -s -c -C 2"
 alias diff="colordiff"
 alias did="nvim +'normal Go' +'r!echo \"[$(date)]\"' +'normal Go- ' ~/wiki/did.txt"
 alias todo="nvim -O ~/wiki/{todo,progress,done}.md"
+alias wiki="nvim ~/wiki/index.md"
 
 # Mnemonic
 # [B]ash
