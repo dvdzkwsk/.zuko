@@ -7,8 +7,9 @@ alias weather="curl wttr.in"
 alias clock="tty-clock -b -s -c -C 2"
 alias diff="colordiff"
 alias did="nvim +'normal Go' +'r!echo \"[$(date)]\"' +'normal Go- ' ~/wiki/did.txt"
-alias todo="nvim -O ~/wiki/{todo,progress,done}.md"
-alias wiki="nvim ~/wiki/index.md"
+alias todo="nvim -O ~/wiki/todo/{todo,progress,done}.md"
+alias wiki="nvim ~/wiki/vimwiki/index.md"
+alias bookmarks="nvim ~/wiki/bookmarks.md"
 
 # Mnemonic
 # [B]ash
