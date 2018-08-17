@@ -195,7 +195,6 @@ colorscheme ayu
 
 " Display comments in italics
 hi Comment gui=italic cterm=italic
-let g:palenight_terminal_italics=1
 
 " Lightline (favorites themes: deus, solarized, palenight)
 let g:lightline = {
@@ -288,9 +287,6 @@ inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 vnoremap > >gv
 vnoremap < <gv
 
-" Option to go to file in vertical split
-nnoremap gF :vertical wincmd f<CR>
-
 " Make `gs` useful: search/replace in current buffer (default: sleep)
 nnoremap gs :%s/
 
@@ -330,7 +326,6 @@ xnoremap <Leader>br y:%s/<C-r>"//g<Left><Left>
 " [F]ind
 nnoremap <Leader>fa :Ag<CR>
 nnoremap <Leader>ff :FZF<CR>
-nnoremap <Leader>fb :Buffers<CR>
 nnoremap <Leader>fw :grep! "<cword>"<CR>
 nnoremap <Leader>fs :call LanguageClient_textDocument_documentSymbol()<cr>
 
