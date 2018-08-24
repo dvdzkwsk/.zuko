@@ -126,6 +126,8 @@ let g:slime_target="neovim"
 " Ale
 let g:ale_fix_on_save=1
 let g:ale_fixers={
+\  'json': ['prettier'],
+\  'markdown': ['prettier'],
 \  'javascript': ['eslint', 'prettier'],
 \  'javascript.jsx': ['eslint', 'prettier'],
 \  'typescript': ['tslint', 'prettier'],
