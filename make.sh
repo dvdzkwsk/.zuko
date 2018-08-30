@@ -30,27 +30,32 @@ brew install coreutils
 brew install gnu-sed --with-default-names
 
 brew cask install java
-brew install fasd
-brew install fzf
 $(brew --prefix)/opt/fzf/install
-brew install gopass
-brew install pinentry-mac                   # browserpass (browser extension) dependency
-brew install htop
 brew install hub
 brew install jq
 brew install nvim
 brew install ranger
-brew install ripgrep
-brew install tmux
-brew install reattach-to-user-namespace
 brew install tree
 brew install tty-clock
-brew install weechat
 brew install zsh-completions
-brew install task
-brew install tig
-brew install fd
-brew install diff-so-fancy
+brew install fasd             # easily jump to commonly-used directories
+brew install fzf              # general purpose fuzzy-finder
+brew install htop             # better `top`
+brew install tldr             # better `man`
+brew install prettyping       # better `ping`
+brew install ripgrep          # better `grep`
+brew install fd               # better `find`
+brew install bat              # better `less` or `cat`
+brew install tig              # better `git`
+brew install diff-so-fancy    # better `git diff`
+
+# gopass
+brew install gopass
+brew install pinentry-mac   # browserpass (browser extension) dependency
+
+# tmux
+brew install tmux
+brew install reattach-to-user-namespace
 #}}}
 
 # Programming --------------------------------------------- {{{
