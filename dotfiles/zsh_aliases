@@ -1,4 +1,8 @@
-# General
+# Sacrilegious Unix Replacements ------------------------- {{{
+alias cat="bat"
+#}}}
+
+# General ------------------------------------------------ {{{
 alias ..="cd .."
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 alias size="stat -f%z"
@@ -10,16 +14,12 @@ alias did="nvim +'normal Go' +'r!echo \"[$(date)]\"' +'normal Go- ' ~/wiki/did.t
 alias todo="nvim -O ~/wiki/vimwiki/tasks.md"
 alias wiki="nvim ~/wiki/vimwiki/index.md"
 alias bookmarks="nvim ~/wiki/bookmarks.md"
+#}}}
 
-# Mnemonic
+# Mnemonics ----------------------------------------------- {{{
 # [B]ash
 alias brc="$EDITOR ~/.zshrc"
 alias brcs="source ~/.zshrc"
-
-# [E]macs
-alias ec="emacsclient -c -n"
-alias ed="emacs --daemon"
-alias ekd="emacsclient -e '(kill-emacs)'"
 
 # [H]istory
 alias history="history 1"
@@ -28,6 +28,7 @@ alias h="history"
 # [L]ist
 alias ll="ls -la -Gfh"
 alias ls="ls -Gfh"
+#}}}
 
 # Functions ------------------------------------------------ {{{
 function pathadd {
