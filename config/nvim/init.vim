@@ -126,7 +126,6 @@ let g:slime_target="neovim"
 " Ale
 let g:ale_fix_on_save=1
 let g:ale_fixers={
-\  'json': ['prettier'],
 \  'markdown': ['prettier'],
 \  'javascript': ['eslint', 'prettier'],
 \  'javascript.jsx': ['eslint', 'prettier'],
@@ -316,6 +315,9 @@ nnoremap <F7> <Esc>:FZF<CR>
 
 " Delete all other buffers with :BufOnly
 command! BufOnly silent! execute "%bd|e#|bd#"
+
+" Don't show filenames when executing :Ag (aliased to `<leader>fa`)
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 "}}}
 
 " Mnemonics ------------------------------------------------ {{{
