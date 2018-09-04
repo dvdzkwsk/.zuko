@@ -1,13 +1,14 @@
 # Main Settings -------------------------------------------- {{{
-set -o vi                     # Allow vi-like commands in bash
-ulimit -n 2000                # Increase allowed open file limit
-export HISTFILE=~/.histfile   # Where to save command history
-export HISTSIZE=500           # Increase the default history size
-export SAVEHIST=500           # ibid
-export HISTCONTROL=erasedups  # Remove duplicates in history
-export VISUAL=nvim            # Global default editor
-export EDITOR="$VISUAL"       # ibid
+set -o vi                             # Allow vi-like commands in bash
+ulimit -n 2000                        # Increase allowed open file limit
+export HISTFILE=~/.histfile           # Where to save command history
+export HISTSIZE=500                   # Increase the default history size
+export SAVEHIST=500                   # ibid
+export HISTCONTROL=erasedups          # Remove duplicates in history
+export VISUAL=nvim                    # Global default editor
+export EDITOR="$VISUAL"               # ibid
 export GPG_TTY=$(tty)
+export RANGER_LOAD_DEFAULT_RC=FALSE   # do not load default ranger config on top of ~/.config/ranger
 #}}}
 
 # ZSH Settings -------------------------------------------- {{{
