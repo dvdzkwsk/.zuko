@@ -42,7 +42,6 @@ brew install fasd             # easily jump to commonly-used directories
 brew install fzf              # general purpose fuzzy-finder
 brew install htop             # better `top`
 brew install tldr             # better `man`
-brew install prettyping       # better `ping`
 brew install ripgrep          # better `grep`
 brew install fd               # better `find`
 brew install bat              # better `less` or `cat`
