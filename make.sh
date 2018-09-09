@@ -84,6 +84,9 @@ if [ ! -d ~/.tmux/plugins/tpm ]; then
 fi
 ~/.tmux/plugins/tpm/scripts/install_plugins.sh
 
+# Enable python3 support for nvim
+pip3 install neovim
+
 # Intall custom terminfo that enables italics support
 tic ./config/xterm/xterm-256color-italic.terminfo
 #}}}
