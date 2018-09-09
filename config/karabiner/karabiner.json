@@ -54,21 +54,34 @@
                         },
                         {
                             "from": {
-                                "key_code": "scroll_lock"
-                            },
-                            "to": {
-                                "consumer_key_code": "volume_decrement"
-                            }
-                        },
-                        {
-                            "from": {
                                 "key_code": "pause"
                             },
                             "to": {
                                 "consumer_key_code": "volume_increment"
                             }
+                        },
+                        {
+                            "from": {
+                                "key_code": "scroll_lock"
+                            },
+                            "to": {
+                                "consumer_key_code": "volume_decrement"
+                            }
                         }
                     ]
+                },
+                {
+                    "disable_built_in_keyboard_if_exists": false,
+                    "fn_function_keys": [],
+                    "identifiers": {
+                        "is_keyboard": true,
+                        "is_pointing_device": false,
+                        "product_id": 628,
+                        "vendor_id": 1452
+                    },
+                    "ignore": false,
+                    "manipulate_caps_lock_led": true,
+                    "simple_modifications": []
                 }
             ],
             "fn_function_keys": [
@@ -157,7 +170,7 @@
                         "key_code": "f11"
                     },
                     "to": {
-                        "consumer_key_code": "rewind"
+                        "consumer_key_code": "volume_decrement"
                     }
                 },
                 {
@@ -165,7 +178,7 @@
                         "key_code": "f12"
                     },
                     "to": {
-                        "consumer_key_code": "fastforward"
+                        "consumer_key_code": "volume_increment"
                     }
                 }
             ],
