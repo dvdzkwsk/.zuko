@@ -1,16 +1,15 @@
 " vim: foldmethod=marker
 " Plugins -------------------------------------------------- {{{
 " Install plugin manager if it does not exist
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+if empty(glob('~/.local/share/nvim/plugged'))
+  silent! curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.local/share/nvim/plugged')
 
 " Basics
 Plug 'mhinz/vim-startify'             " Friendly startup screen
-Plug 'itchyny/lightline.vim'          " Customizable status line
 Plug 'editorconfig/editorconfig-vim'  " Use .editorconfig settings when found
 Plug '/usr/local/opt/fzf'             " Import native FZF binary (brew install fzf)
 Plug 'junegunn/fzf.vim'               " FZF integration
@@ -18,13 +17,12 @@ Plug 'w0rp/ale'                       " Asynchronous lint engine
 Plug 'scrooloose/nerdtree'            " File explorer
 Plug 'mbbill/undotree'                " Visualize and manage vim's undo tree
 Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between tmux and vim
-Plug 'aquach/vim-http-client'         " Make HTTP requests from vim
 Plug 'shime/vim-livedown'             " Realtime markdown preview
 Plug 'vimwiki/vimwiki'                " Personal wiki manager
 Plug 'junegunn/goyo.vim'              " Distraction-free writing
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-" IMproved Editing
+" Editing iMproved
 Plug 'tpope/vim-commentary'           " Easier commenting
 Plug 'tpope/vim-repeat'               " Make '.' smarter
 Plug 'tpope/vim-unimpaired'           " More symmetrical mappings
@@ -38,17 +36,9 @@ Plug 'mhinz/vim-signify'              " VCS (e.g. git) indicators in sidebar
 
 " Language Support
 Plug 'sheerun/vim-polyglot'           " Suite of language packages
-Plug 'eraserhd/parinfer-rust', {
-\  'do': 'cargo build --manifest-path=cparinfer/Cargo.toml --release'
-\}
-Plug 'jpalardy/vim-slime'             " REPL integration
-Plug 'tpope/vim-fireplace'            " Clojure tooling
-Plug 'autozimu/LanguageClient-neovim', {
-\  'branch': 'next',
-\  'do': 'bash install.sh',
-\}
 
 " Theming
+Plug 'itchyny/lightline.vim'          " Customizable status line
 Plug 'liuchengxu/space-vim-dark'      " My preferred theme
 Plug 'drewtempelmeyer/palenight.vim'  " ... but sometimes ...
 Plug 'ayu-theme/ayu-vim'              " ... we change it up
@@ -117,13 +107,8 @@ ca grep grep!
 "}}}
 
 " Plugin Configurations ------------------------------------ {{{
-" deoplete
 let g:deoplete#enable_at_startup=1
 
-" vim-slime
-let g:slime_target="neovim"
-
-" Ale
 let g:ale_fix_on_save=1
 let g:ale_fixers={
 \  'markdown': ['prettier'],
@@ -133,23 +118,10 @@ let g:ale_fixers={
 \  'typescript.jsx': ['tslint', 'prettier'],
 \}
 
-" vimwiki
 let g:vimwiki_table_mappings=0
 let g:vimwiki_list=[
 \  {'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}
 \]
-
-" LanguageClient-nvim
-let g:LanguageClient_autoStart=0
-let g:LanguageClient_serverCommands = {}
-
-if executable('javascript-typescript-stdio')
-  let g:LanguageClient_serverCommands['javascript'] = ['javascript-typescript-stdio']
-  let g:LanguageClient_serverCommands['javascript.jsx'] = ['javascript-typescript-stdio']
-endif
-
-nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 "}}}
 
 " Auto Commands -------------------------------------------- {{{
@@ -331,7 +303,6 @@ xnoremap <Leader>br y:%s/<C-r>"//g<Left><Left>
 nnoremap <Leader>fa :Ag<CR>
 nnoremap <Leader>ff :FZF<CR>
 nnoremap <Leader>fw :grep! "<cword>"<CR>
-nnoremap <Leader>fs :call LanguageClient_textDocument_documentSymbol()<cr>
 
 " [G]it
 nnoremap <Leader>gs :Gstatus<CR>
@@ -341,15 +312,6 @@ nnoremap <Leader>gb :Gbrowse<CR>
 " [P]roject
 nnoremap <Leader>pt :NERDTreeToggle<CR>
 nnoremap <Leader>pf :GFiles<CR>
-
-" [R]epl
-nmap <Leader>rc <Plug>SlimeConfig
-nmap <Leader>rl <Plug>SlimeLineSend
-nmap <Leader>rr <Plug>SlimeParagraphSend
-xmap <Leader>rr <Plug>SlimeRegionSend
-
-" [T]erminal
-nnoremap <Leader>t? :echo b:terminal_job_id<CR>
 
 " [W]indow
 nnoremap <Leader>w= <C-W>=
