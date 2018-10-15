@@ -17,17 +17,15 @@ Plug 'w0rp/ale'                       " Asynchronous lint engine
 Plug 'scrooloose/nerdtree'            " File explorer
 Plug 'mbbill/undotree'                " Visualize and manage vim's undo tree
 Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between tmux and vim
-Plug 'shime/vim-livedown'             " Realtime markdown preview
 Plug 'vimwiki/vimwiki'                " Personal wiki manager
-Plug 'junegunn/goyo.vim'              " Distraction-free writing
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Editing iMproved
 Plug 'tpope/vim-commentary'           " Easier commenting
 Plug 'tpope/vim-repeat'               " Make '.' smarter
 Plug 'tpope/vim-unimpaired'           " More symmetrical mappings
+Plug 'tpope/vim-abolish'              " Smarter text manipulation and replacement
 Plug 'machakann/vim-sandwich'         " Intuitive surround commands
-Plug 'junegunn/vim-easy-align'        " Text alignment commands
 Plug 'wellle/targets.vim'             " More, smarter text objects
 
 " Version Control
@@ -36,6 +34,7 @@ Plug 'mhinz/vim-signify'              " VCS (e.g. git) indicators in sidebar
 
 " Language Support
 Plug 'sheerun/vim-polyglot'           " Suite of language packages
+Plug 'shime/vim-livedown'             " Realtime markdown preview
 
 " Theming
 Plug 'itchyny/lightline.vim'          " Customizable status line
@@ -266,10 +265,6 @@ nnoremap gs :%s/
 " Quick access to the macro in the `q` register; I don't care about Ex mode
 nnoremap Q @q
 xnoremap Q :normal @q<CR>
-
-" Suggested vim-easy-align mappings
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
 
 " Editor-agnostic commenting. More vim emulators seem to support `CMD + /`
 " for commenting than `gcc`, so this eases some friction. If outside of a GUI,
