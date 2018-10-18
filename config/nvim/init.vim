@@ -260,7 +260,7 @@ vnoremap > >gv
 vnoremap < <gv
 
 " Make `gs` useful: search/replace in current buffer (default: sleep)
-nnoremap gs :%s/
+nnoremap gs :%Subvert/
 
 " Quick access to the macro in the `q` register; I don't care about Ex mode
 nnoremap Q @q
@@ -292,7 +292,7 @@ command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : 
 nnoremap <Leader><Tab> :b#<CR>
 nnoremap <Leader>bb :Buffers<CR>
 nnoremap <Leader>bd :bd<CR>
-xnoremap <Leader>br y:%s/<C-r>"//g<Left><Left>
+xnoremap <Leader>br y:%Subvert/<C-r>"//g<Left><Left>
 
 " [F]ind
 nnoremap <Leader>fa :Ag<CR>
