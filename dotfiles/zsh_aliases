@@ -6,16 +6,15 @@ alias cat="bat"
 alias ..="cd .."
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 alias size="stat -f%z"
-alias serve="python -m SimpleHTTPServer"
 alias weather="curl wttr.in"
 alias clock="tty-clock -b -s -c -C 2"
 alias diff="colordiff"
 alias did="nvim +'normal Go' +'r!echo \"[$(date)]\"' +'normal Go- ' ~/wiki/did.txt"
 alias todo="nvim -O ~/wiki/vimwiki/tasks.md"
-alias wiki="nvim ~/wiki/vimwiki/index.md"
 alias bookmarks="nvim ~/wiki/bookmarks.md"
 alias reference="nvim ~/wiki/vimwiki/reference.md"
 alias terminal="open -n /Applications/Alacritty.app"
+alias unsafe="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --unsafely-treat-insecure-origin-as-secure=http://dev.local"
 #}}}
 
 # Mnemonics ----------------------------------------------- {{{
@@ -66,5 +65,24 @@ function backup {
   cd ~/vimwiki
   tar -zcvf $FILE *
   mv $FILE ~/Dropbox/backups/wiki
+}
+
+function ms {
+  case "$1" in
+    sprint)
+      open https://domoreexp.visualstudio.com/MSTeams/_sprints/taskboard/Embedded%20Experiences/
+      ;;
+    backlog)
+      open https://domoreexp.visualstudio.com/MSTeams/_backlogs/backlog/Embedded%20Experiences/Features
+      ;;
+  esac
+}
+
+function wiki {
+  if [ $# -eq 0 ]; then
+    $EDITOR ~/wiki/vimwiki/index.md
+  else
+    rg "$@" ~/wiki
+  fi
 }
 #}}}
