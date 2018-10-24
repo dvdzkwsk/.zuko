@@ -34,8 +34,69 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 #}}}
 
+# Sacrilegious Unix Replacements --------------------------- {{{
+alias cat="bat"
+#}}}
+
+# Aliases --------------------------------------------------- {{{
+alias ..="cd .."
+alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+alias size="stat -f%z"
+alias weather="curl wttr.in"
+alias clock="tty-clock -b -s -c -C 2"
+alias diff="colordiff"
+alias did="nvim +'normal Go' +'r!echo \"[$(date)]\"' +'normal Go- ' ~/wiki/did.txt"
+alias terminal="open -n /Applications/Alacritty.app"
+#}}}
+
+# Mnemonic Aliases ------------------------------------------ {{{
+# [B]ash / ZSH
+alias brc="$EDITOR ~/.zshrc"
+alias brcs="source ~/.zshrc"
+
+# [H]istory
+alias history="history 1"
+alias h="history"
+
+# [L]ist
+alias ll="ls -la -Gfh"
+alias ls="ls -Gfh"
+#}}}
+
+# Functions ------------------------------------------------ {{{
+function pathadd {
+  if [ -d "$1" ] && [[ ":$PATH:" != *":$1:"* ]]; then
+    PATH="${PATH:+"$PATH:"}$1"
+  fi
+}
+
+function ff {
+  local files
+  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}
+
+function ms {
+  case "$1" in
+    sprint)
+      open https://domoreexp.visualstudio.com/MSTeams/_sprints/taskboard/Embedded%20Experiences/
+      ;;
+    backlog)
+      open https://domoreexp.visualstudio.com/MSTeams/_backlogs/backlog/Embedded%20Experiences/Features
+      ;;
+  esac
+}
+
+function wiki {
+  if [ $# -eq 0 ]; then
+    $EDITOR ~/wiki/vimwiki/index.md
+  else
+    rg "$@" ~/wiki
+  fi
+}
+#}}}
+
 # Externals ------------------------------------------------ {{{
-source ~/.zsh_aliases
 source ~/.zsh_prompt
 source ~/.git_aliases
 
