@@ -18,6 +18,7 @@ Plug 'scrooloose/nerdtree'            " File explorer
 Plug 'mbbill/undotree'                " Visualize and manage vim's undo tree
 Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between tmux and vim
 Plug 'vimwiki/vimwiki'                " Personal wiki manager
+Plug 'junegunn/goyo.vim'              " Distraction-free mode
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Editing iMproved
@@ -83,7 +84,7 @@ set mouse=a                           " Enable mouse interaction, for when all e
 set lazyredraw                        " Better rendering performance
 set ttyfast                           " Improve redraw speed (enabled by default in neovim)
 set wildignore+=*.jpg,*.jpeg,*.png,*.svg
-let g:jsx_ext_required=0
+let g:jsx_ext_required=1
 
 if has('clipboard')
   set clipboard=unnamedplus           " Use system clipboard with yank/delete
