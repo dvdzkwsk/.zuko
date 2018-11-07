@@ -37,6 +37,7 @@ brew install nvim
 brew install ranger
 brew install tree
 brew install tty-clock
+brew install git-extras
 brew install zsh-completions
 brew install fasd             # easily jump to commonly-used directories
 brew install fzf              # general purpose fuzzy-finder
