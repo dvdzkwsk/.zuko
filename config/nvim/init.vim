@@ -63,6 +63,7 @@ set backspace=indent,eol,start        " Allow backspacing over these regions (fo
 set number                            " Show line numbers
 set ruler                             " Show current column and line number
 set cursorline                        " Highlight the current line
+set noshowmode                        " Do not show -- MODE -- indicator below statusline
 set showcmd                           " Show when leader key has been pressed
 set wrap                              " Enable visual line wrapping
 set wrapmargin=0                      " Number of characters from the window edge to start wrapping
