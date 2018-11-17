@@ -19,6 +19,7 @@ Plug 'mbbill/undotree'                " Visualize and manage vim's undo tree
 Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between tmux and vim
 Plug 'vimwiki/vimwiki'                " Personal wiki manager
 Plug 'junegunn/goyo.vim'              " Distraction-free mode
+Plug 'jpalardy/vim-slime'             " REPL
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " Editing iMproved
@@ -28,6 +29,8 @@ Plug 'tpope/vim-unimpaired'           " More symmetrical mappings
 Plug 'tpope/vim-abolish'              " Smarter text manipulation and replacement
 Plug 'machakann/vim-sandwich'         " Intuitive surround commands
 Plug 'wellle/targets.vim'             " More, smarter text objects
+Plug 'eraserhd/parinfer-rust',        " Easily manage parentheses in lisps
+  \ {'do': 'cargo build --release'}
 
 " Version Control
 Plug 'tpope/vim-fugitive'             " Git integration
@@ -86,6 +89,11 @@ set lazyredraw                        " Better rendering performance
 set ttyfast                           " Improve redraw speed (enabled by default in neovim)
 set wildignore+=*.jpg,*.jpeg,*.png,*.svg
 let g:jsx_ext_required=1
+let g:slime_target = "tmux"
+let g:slime_default_config = {
+\  'socket_name': split($TMUX, ",")[0],
+\  "target_pane": ":.1"
+\}
 
 if has('clipboard')
   set clipboard=unnamedplus           " Use system clipboard with yank/delete
