@@ -136,9 +136,10 @@ let g:vimwiki_list=[
 
 " Auto Commands -------------------------------------------- {{{
 " Filetype configuration
-autocmd FileType vimwiki set syntax=markdown
-autocmd BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
+autocmd FileType vimwiki setlocal syntax=markdown
+autocmd FileType go setlocal tabstop=6 softtabstop=6 shiftwidth=6
 autocmd BufNewFile,BufRead *.tsx set filetype=typescript.jsx
+autocmd BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
 
 " Only show cursor line in active window
 augroup cursorLine
