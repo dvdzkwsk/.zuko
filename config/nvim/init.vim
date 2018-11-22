@@ -120,6 +120,7 @@ let g:deoplete#enable_at_startup=1
 
 let g:ale_fix_on_save=1
 let g:ale_fixers={
+\  'go': ['gofmt'],
 \  'markdown': ['prettier'],
 \  'javascript': ['eslint', 'prettier'],
 \  'javascript.jsx': ['eslint', 'prettier'],
