@@ -130,7 +130,7 @@ let g:ale_fixers={
 
 let g:vimwiki_table_mappings=0
 let g:vimwiki_list=[
-\  {'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}
+\  {'path': '~/Dropbox/wiki/', 'syntax': 'markdown', 'ext': '.md'}
 \]
 "}}}
 
