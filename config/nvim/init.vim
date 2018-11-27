@@ -88,12 +88,6 @@ set mouse=a                           " Enable mouse interaction, for when all e
 set lazyredraw                        " Better rendering performance
 set ttyfast                           " Improve redraw speed (enabled by default in neovim)
 set wildignore+=*.jpg,*.jpeg,*.png,*.svg
-let g:jsx_ext_required=1
-let g:slime_target = "tmux"
-let g:slime_default_config = {
-\  'socket_name': split($TMUX, ",")[0],
-\  "target_pane": ":.1"
-\}
 
 if has('clipboard')
   set clipboard=unnamedplus           " Use system clipboard with yank/delete
@@ -132,6 +126,14 @@ let g:vimwiki_table_mappings=0
 let g:vimwiki_list=[
 \  {'path': '~/Dropbox/wiki/', 'syntax': 'markdown', 'ext': '.md'}
 \]
+
+if !empty($TMUX)
+  let g:slime_target="tmux"
+  let g:slime_default_config={
+  \  'socket_name': split($TMUX || "", ",")[0],
+  \  "target_pane": ":.1"
+  \}
+endif
 "}}}
 
 " Auto Commands -------------------------------------------- {{{
@@ -142,24 +144,15 @@ autocmd BufNewFile,BufRead *.tsx set filetype=typescript.jsx
 autocmd BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
 
 " Only show cursor line in active window
-augroup cursorLine
-  autocmd!
-  autocmd BufEnter * setlocal cursorline
-  autocmd BufLeave * setlocal nocursorline
-augroup end
+autocmd BufEnter * setlocal cursorline
+autocmd BufLeave * setlocal nocursorline
 
 " Remove trailing whitespace on save
-augroup autoTrimWhitespace
-  autocmd!
-  autocmd BufWritePre * %s/\s\+$//e
-augroup END
+autocmd BufWritePre * %s/\s\+$//e
 
 " Automatically open the quickfix list when it gets populated
-augroup autoOpenQuickFixList
-  autocmd!
-  autocmd QuickFixCmdPost [^l]* cwindow
-  autocmd QuickFixCmdPost l*    lwindow
-augroup END
+autocmd QuickFixCmdPost [^l]* cwindow
+autocmd QuickFixCmdPost l*    lwindow
 "}}}
 
 " Theming -------------------------------------------------- {{{
