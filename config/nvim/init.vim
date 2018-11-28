@@ -20,7 +20,8 @@ Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between tmux and vim
 Plug 'vimwiki/vimwiki'                " Personal wiki manager
 Plug 'junegunn/goyo.vim'              " Distraction-free mode
 Plug 'jpalardy/vim-slime'             " REPL
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/deoplete.nvim',
+  \ {'do': ':UpdateRemotePlugins'}
 
 " Editing iMproved
 Plug 'tpope/vim-commentary'           " Easier commenting
@@ -39,6 +40,8 @@ Plug 'mhinz/vim-signify'              " VCS (e.g. git) indicators in sidebar
 " Language Support
 Plug 'sheerun/vim-polyglot'           " Suite of language packages
 Plug 'shime/vim-livedown'             " Realtime markdown preview
+Plug 'autozimu/LanguageClient-neovim',
+  \ {'branch': 'next'}
 
 " Theming
 Plug 'itchyny/lightline.vim'          " Customizable status line
@@ -134,6 +137,15 @@ if !empty($TMUX)
   \  "target_pane": ":.1"
   \}
 endif
+
+let g:LanguageClient_serverCommands = {
+\ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+\ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+\ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+\ }
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 "}}}
 
 " Auto Commands -------------------------------------------- {{{
