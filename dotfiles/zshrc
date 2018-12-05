@@ -82,6 +82,16 @@ function wiki {
     rg "$1" ~/wiki --after-context --ignore-case "$@"
   fi
 }
+
+function um {
+  if [ $# -eq 0 ]; then
+    $EDITOR ~/wiki/um.md
+  else
+    search="$1"
+    shift
+    rg "$search" ~/wiki/um.md --ignore-case --after-context 1 "$@"
+  fi
+}
 #}}}
 
 # Externals ------------------------------------------------ {{{
