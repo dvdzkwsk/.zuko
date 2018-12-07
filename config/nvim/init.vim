@@ -9,7 +9,6 @@ endif
 call plug#begin('~/.local/share/nvim/plugged')
 
 " Basics
-Plug 'mhinz/vim-startify'             " Friendly startup screen
 Plug 'editorconfig/editorconfig-vim'  " Use .editorconfig settings when found
 Plug '/usr/local/opt/fzf'             " Import native FZF binary (brew install fzf)
 Plug 'junegunn/fzf.vim'               " FZF integration
