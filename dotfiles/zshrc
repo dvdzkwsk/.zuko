@@ -92,6 +92,10 @@ function um {
     rg "$search" ~/wiki/um.md --ignore-case --after-context 1 "$@"
   fi
 }
+
+function dot {
+  $EDITOR $(fd . ~/projects/.zuko/config -t f | rg "$1")
+}
 #}}}
 
 # Externals ------------------------------------------------ {{{
