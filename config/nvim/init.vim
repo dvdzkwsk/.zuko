@@ -308,7 +308,6 @@ command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : 
 nnoremap <Leader><Tab> :b#<CR>
 nnoremap <Leader>bb :Buffers<CR>
 nnoremap <Leader>bd :bd<CR>
-xnoremap <Leader>br y:%Subvert/<C-r>"//g<Left><Left>
 
 " [F]ind
 nnoremap <Leader>fa :Ag<CR>
@@ -323,6 +322,9 @@ nnoremap <Leader>gb :Gbrowse<CR>
 " [P]roject
 nnoremap <Leader>pt :NERDTreeToggle<CR>
 nnoremap <Leader>pf :GFiles<CR>
+
+" [R]eplace
+nnoremap <Leader>rw y:%Subvert/<C-r><C-w>//g<Left><Left>
 
 " [W]indow
 nnoremap <Leader>w= <C-W>=
