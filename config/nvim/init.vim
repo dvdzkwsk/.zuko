@@ -113,6 +113,7 @@ ca grep grep!
 
 " Plugin Configurations ------------------------------------ {{{
 let g:deoplete#enable_at_startup=1
+let g:jsx_ext_required=1
 
 let g:ale_fix_on_save=1
 let g:ale_fixers={
