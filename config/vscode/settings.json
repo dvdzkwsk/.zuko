@@ -1,0 +1,15 @@
+{
+  "gitlens.codeLens.enabled": false,
+  "gitlens.hovers.currentLine.over": "line",
+  "workbench.colorTheme": "Ayu Mirage Bordered",
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
+  "editor.tabSize": 2,
+  "editor.renderIndentGuides": false,
+  "terminal.external.osxExec": "iterm.app",
+  "explorer.confirmDelete": false,
+  "gitlens.hovers.enabled": false,
+  "gitlens.blame.heatmap.enabled": false,
+  "gitlens.currentLine.enabled": false,
+  "workbench.editor.labelFormat": "short"
+}
