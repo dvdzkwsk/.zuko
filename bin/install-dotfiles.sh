@@ -42,11 +42,11 @@ create_link () {
   status=""
 
   if [ "$FORCE_INSTALL" = true ]; then
-    rm -rf $dst
-    ln -s $src $dst
+    rm -rf "$dst"
+    ln -s "$src" "$dst"
     status=$OK
     info="(Overwrote existing file)"
-  elif [ -L $dst ]; then
+  elif [ -L "$dst" ]; then
     if [ "$(realpath $dst)" == "$src" ]; then
       status=$OK
       info="(Symlink already installed)"
@@ -54,12 +54,12 @@ create_link () {
       status=$ERROR
       info="(Destination already exists, use --force to override)"
     fi
-  elif [ -f $dst ] || [ -d $dst ]; then
+  elif [ -f "$dst" ] || [ -d "$dst" ]; then
     status=$ERROR
     info="(Destination already exists, use --force to override)"
   else
     status=$OK
-    ln -s $src $dst
+    ln -s "$src" "$dst"
   fi
   echo "${status} $(column $name) ${info}"
 }
@@ -78,6 +78,14 @@ echo
 for config in config/*; do
   dir=${config##*/}
   create_link "${dir}" "${PWD}/config/${dir}" "${HOME}/.config/${dir}"
+done
+
+echo
+log "Symlinking ${PWD}/vscode/* to ${HOME}/Library/Application Support/Code/User"
+echo
+for file in vscode/*; do
+  file="${file##*/}"
+  create_link "${file}" "${PWD}/vscode/${file}" "${HOME}/Library/Application Support/Code/User/${file}"
 done
 
 if [ ! -f ~/.bash_private ]; then
