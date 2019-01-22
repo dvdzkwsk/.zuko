@@ -156,6 +156,7 @@ brew install python3
 #}}}
 
 # Applications -------------------------------------------- {{{
+brew cask install iterm2
 brew cask install docker
 brew cask install dropbox
 brew cask install google-chrome
