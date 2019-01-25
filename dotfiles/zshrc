@@ -96,6 +96,27 @@ function um {
 function dot {
   $EDITOR $(fd . ~/projects/.zuko/config -t f | rg "$1")
 }
+
+function jest {
+  if [ $# -eq 0 ]; then
+    yarn test "$@"
+  else
+    search="$1"
+    shift
+    matches=$(fd "^$search" -E '*.{test,spec,integration,e2e,interfaces,scss,mock}*')
+    source_file=$(echo "$matches" | fzf --select-1)
+    if [[ -z "$source_file" ]]; then
+      return 1
+    fi
+
+    pattern=$(echo "$source_file" | sed -r 's/\.(js|ts|tsx)//')
+    if [[ $* == *--coverage* ]]; then
+      yarn test "$pattern" --coverage --collectCoverageFrom "$source_file" "$@"
+    else
+      yarn test "$pattern" "$@"
+    fi
+  fi
+}
 #}}}
 
 # Externals ------------------------------------------------ {{{
