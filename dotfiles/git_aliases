@@ -36,7 +36,7 @@ function gco {
   if [ -n "$1" ]; then
     git checkout "$@"
   else
-    git checkout $(git branch -l | fzf | sed 's/^\s*//')
+    git checkout $(git branch -l | fzf | sed 's/\s*//')
   fi
 }
 
