@@ -24,6 +24,8 @@ alias gr="git rebase"
 alias grc="git rebase --continue"
 
 # Functions ------------------------------------------------ {{{
+# delete a brach, just like "git branch -D". If no branch name is provided,
+# display a list of all local branches to pick from (can pick multiple).
 function gbd {
   if [ -n "$1" ]; then
     git branch -D "$@"
@@ -32,6 +34,8 @@ function gbd {
   fi
 }
 
+# check out a local branch, just like "git checkout". If no branch name is
+# provided, display a list of all local branches to pick from.
 function gco {
   if [ -n "$1" ]; then
     git checkout "$@"
@@ -40,6 +44,7 @@ function gco {
   fi
 }
 
+# pick from a list of all remote branches.
 function gcor {
   git checkout $(git branch -r | sed 's/.*origin\///g' | fzf | sed 's/^\s*//')
 }
