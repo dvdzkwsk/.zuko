@@ -24,7 +24,7 @@ alias gr="git rebase"
 alias grc="git rebase --continue"
 
 # Functions ------------------------------------------------ {{{
-# delete a brach, just like "git branch -D". If no branch name is provided,
+# delete a branch, just like "git branch -D". If no branch name is provided,
 # display a list of all local branches to pick from (can pick multiple).
 function gbd {
   if [ -n "$1" ]; then
