@@ -36,6 +36,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # Go ------------------------------------------------------- {{{
 export GOPATH="$HOME/projects/go"
+export PATH=$GOPATH/bin:$PATH
 #}}}
 
 # Sacrilegious Unix Replacements --------------------------- {{{
