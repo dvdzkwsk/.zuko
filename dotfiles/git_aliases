@@ -30,7 +30,7 @@ function gbd {
   if [ -n "$1" ]; then
     git branch -D "$@"
   else
-    git branch -D $(git branch -l | fzf -m | tr -s " " | sed 's/^\s*//')
+    git branch -D $(git branch -l | fzf -m | tr -s " " | sed 's/ //g')
   fi
 }
 
@@ -40,12 +40,12 @@ function gco {
   if [ -n "$1" ]; then
     git checkout "$@"
   else
-    git checkout $(git branch -l | fzf | sed 's/\s*//')
+    git checkout $(git branch -l | fzf | sed 's/ //g')
   fi
 }
 
 # pick from a list of all remote branches.
 function gcor {
-  git checkout $(git branch -r | sed 's/.*origin\///g' | fzf | sed 's/^\s*//')
+  git checkout $(git branch -r | sed 's/.*origin\///g' | fzf | sed 's/ //g')
 }
 #}}}
