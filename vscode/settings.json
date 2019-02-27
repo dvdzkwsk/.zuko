@@ -5,7 +5,7 @@
   "editor.renderIndentGuides": false,
   "explorer.confirmDelete": false,
   "terminal.external.osxExec": "iterm.app",
-  "workbench.colorTheme": "Ayu Dark Bordered",
+  "workbench.colorTheme": "Nord",
   "gitlens.codeLens.enabled": false,
   "gitlens.hovers.enabled": false,
   "gitlens.blame.heatmap.enabled": false,
