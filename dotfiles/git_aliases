@@ -23,7 +23,6 @@ alias gpr="git pull-request"
 alias gr="git rebase"
 alias grc="git rebase --continue"
 alias grh!="git reset --hard"
-alias groh!="git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)"
 
 # Functions ------------------------------------------------ {{{
 # delete a branch, just like "git branch -D". If no branch name is provided,
@@ -49,5 +48,9 @@ function gco {
 # pick from a list of all remote branches.
 function gcor {
   git checkout $(git branch -r | sed 's/.*origin\///g' | fzf | sed 's/ //g')
+}
+
+function groh! {
+  git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)
 }
 #}}}
