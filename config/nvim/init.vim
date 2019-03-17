@@ -36,8 +36,8 @@ Plug 'sheerun/vim-polyglot'           " Suite of language packages
 
 " Theming
 Plug 'itchyny/lightline.vim'          " Customizable status line
-Plug 'liuchengxu/space-vim-dark'      " My preferred theme...
-Plug 'ayu-theme/ayu-vim'              " ...but I also quite like this one
+Plug 'liuchengxu/space-vim-dark'
+Plug 'ayu-theme/ayu-vim'
 
 call plug#end()
 filetype plugin indent on
@@ -49,13 +49,13 @@ set undofile                          " Remember undo history between sessions..
 set undodir=/tmp/.vim/undo            " ...and store it here
 set noswapfile                        " Don't create swap files
 set hidden                            " Allow unsaved buffers (i.e. switch buffers w/o saving current)
-set autoread                          " Automatically reload files changes outside of vim
+set autoread                          " Automatically reload file changes outside of vim
 set expandtab                         " Convert tabs to spaces
 set tabstop=2                         " Number of spaces for a tab
-set softtabstop=2                     " Replace tabs with this number of spaces
-set shiftwidth=2                      " Use this number of spaces for shift motions (e.g. indent, dedent)
-set shiftround                        " Restrict indentations to multiples of shiftwidth
-set backspace=indent,eol,start        " Allow backspacing over these regions (for backwards compat)
+set softtabstop=2                     " ibid
+set shiftwidth=2                      " Number of spaces for a shift motion (e.g. indent)
+set shiftround                        " Round indents to multiples of shiftwidth
+set backspace=indent,eol,start        " Allow backspacing over these regions (nvim -> vim compat)
 set number                            " Show line numbers
 set ruler                             " Show current column and line number
 set cursorline                        " Highlight the current line
@@ -63,18 +63,18 @@ set noshowmode                        " Do not show -- MODE -- indicator below s
 set showcmd                           " Show when leader key has been pressed
 set wrap                              " Enable visual line wrapping
 set wrapmargin=0                      " Number of characters from the window edge to start wrapping
-set foldmethod=syntax                 " Fold based on syntax rules
+set foldmethod=syntax                 " Fold based on language syntax
 set foldlevelstart=20                 " Automatically expand all folds (well, up to 20 levels)
 set ignorecase                        " Ignore case when searching...
 set smartcase                         " ...except when search term starts with a capital
-set hlsearch                          " Highlight active search
+set hlsearch                          " Highlight active search matches
 set incsearch                         " Show search/replace in real time
 set modeline                          " Enable modeline
 set laststatus=2                      " Always show the status line
 set diffopt+=vertical                 " Split diffs vertically (left/right pane)
 set scrolloff=3                       " Number of rows to keep visible above/below scroll threshold
-set sidescrolloff=3                   " Number of columns to keep visible
-set sidescroll=1                      " Scroll columns incrementally at max width, don't jump
+set sidescrolloff=3                   " Number of columns to keep visible past the cursor
+set sidescroll=1                      " Scroll columns incrementally at max width (don't jump)
 set splitright                        " Open new vertical splits to the right
 set splitbelow                        " Open new horizontal splits below
 set mouse=a                           " Enable mouse interaction, for when all else fails
@@ -86,7 +86,7 @@ if has('clipboard')
   set clipboard=unnamedplus           " Use system clipboard with yank/delete
 endif
 if exists('+colorcolumn')
-  set colorcolumn=81                  " Show suggested max line length guide
+  set colorcolumn=81                  " Display vertical bar at suggested max line length
 endif
 if exists('&inccommand')
   set inccommand=nosplit              " Preview regex substitutions in place
@@ -109,15 +109,15 @@ let g:ale_fix_on_save=1
 let g:ale_fixers={
 \  'go': ['gofmt'],
 \  'markdown': ['prettier'],
-\  'javascript': ['eslint', 'prettier'],
-\  'javascript.jsx': ['eslint', 'prettier'],
+\  'javascript': ['prettier'],
+\  'javascript.jsx': ['prettier'],
 \  'typescript': ['tslint', 'prettier'],
 \  'typescript.jsx': ['tslint', 'prettier'],
 \}
 
 let g:vimwiki_table_mappings=0
 let g:vimwiki_list=[
-\  {'path': '~/Dropbox/wiki/', 'syntax': 'markdown', 'ext': '.md'}
+\  {'path': '~/wiki/', 'syntax': 'markdown', 'ext': '.md'}
 \]
 "}}}
 
@@ -217,11 +217,11 @@ nnoremap <Down> g<Down>
 vnoremap <S-Up> <NOP>
 vnoremap <S-Down> <NOP>
 
-" Center screen during jump movements
+" Center screen when jumping
 nnoremap n nzz
 nnoremap } }zz
 
-" Don't insert certain deletions into the default register
+" Don't yank when deleting a single character
 nnoremap x "_x
 
 " Clear search highlights on Escape...
