@@ -53,4 +53,9 @@ function gcor {
 function groh! {
   git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)
 }
+
+# [g]it [e]dit [c]onflicts
+function gec {
+  nvim $(gst | rg 'both modified' | awk '{print $3}')
+}
 #}}}
