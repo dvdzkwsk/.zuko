@@ -147,6 +147,10 @@ brew install diff-so-fancy    # better `git diff`
 # tmux
 brew install tmux
 brew install reattach-to-user-namespace
+
+# python tools
+pip3 install argcomplete
+pip3 install --upgrade bsed
 #}}}
 
 # Programming --------------------------------------------- {{{
