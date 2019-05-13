@@ -17,6 +17,7 @@ setopt appendhistory          # Persist history across sessions
 setopt incappendhistory       # Immediately append to history file
 
 autoload -U edit-command-line
+autoload -U zmv
 
 # Mirror bash's Ctrl + x + e functionality to edit the current command with $EDITOR.
 # http://nuclearsquid.com/writings/edit-long-commands/
