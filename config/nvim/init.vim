@@ -33,6 +33,10 @@ Plug 'mhinz/vim-signify'              " VCS (e.g. git) indicators in sidebar
 
 " Language Support
 Plug 'sheerun/vim-polyglot'           " Suite of language packages
+Plug 'autozimu/LanguageClient-neovim', {
+     \ 'branch': 'next',
+     \ 'do': 'bash install.sh',
+     \ }
 
 " Theming
 Plug 'itchyny/lightline.vim'          " Customizable status line
@@ -103,9 +107,15 @@ ca grep grep!
 "}}}
 
 " Plugin Configurations ------------------------------------ {{{
+let $FZF_DEFAULT_COMMAND='rg --files'
+
 let g:deoplete#enable_at_startup=1
 
-let $FZF_DEFAULT_COMMAND='rg --files'
+let g:LanguageClient_serverCommands = {
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'typescript': ['javascript-typescript-stdio']
+    \ }
 
 let g:ale_fix_on_save=1
 let g:ale_fixers={
