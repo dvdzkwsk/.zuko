@@ -1,5 +1,4 @@
 # vim: foldmethod=marker
-
 alias ga="git add -p"
 alias gall="git add --all"
 alias gm="git merge"
@@ -25,8 +24,10 @@ alias grc="git rebase --continue"
 alias grh!="git reset --hard"
 
 # Functions ------------------------------------------------ {{{
-# delete a branch, just like "git branch -D". If no branch name is provided,
-# display a list of all local branches to pick from (can pick multiple).
+# [g]it [b]ranch [d]elete
+# Delete a branchs, just like "git branch -D" if a branch name is provided.
+# With no branch provided, displays a list of all local branches to pick from
+# (can pick multiple).
 function gbd {
   if [ -n "$1" ]; then
     git branch -D "$@"
@@ -35,8 +36,10 @@ function gbd {
   fi
 }
 
-# check out a local branch, just like "git checkout". If no branch name is
-# provided, display a list of all local branches to pick from.
+# [g]it [c]heck[o]ut
+# Checks out a local branch, just like "git checkout" if a branch name is
+# provided. With no branch provided, displays a list of all local branches
+# to pick from.
 function gco {
   if [ -n "$1" ]; then
     git checkout "$@"
@@ -45,11 +48,20 @@ function gco {
   fi
 }
 
-# pick from a list of all remote branches.
+# [g]it [a]dd [u]nstaged
+# Stages all unstaged files.
+function gau {
+  git add $(git ls-files -o --exclude-standard)
+}
+
+# [g]it [c]heck[o]ut [r]emote
+# Presents a list of remote branches and checks out the selection.
 function gcor {
   git checkout $(git branch -r | sed 's/.*origin\///g' | fzf | sed 's/ //g')
 }
 
+# [g]it [r]eset [o]rigin [h]ard!
+# Forcibly resets the current branch to what's been pushed to the origin.
 function groh! {
   git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)
 }
