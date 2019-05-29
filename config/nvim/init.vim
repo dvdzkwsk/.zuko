@@ -16,8 +16,7 @@ Plug 'w0rp/ale'                       " Asynchronous lint engine
 Plug 'scrooloose/nerdtree'            " File explorer
 Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between tmux and vim
 Plug 'vimwiki/vimwiki'                " Personal wiki manager
-Plug 'Shougo/deoplete.nvim',
-  \ {'do': ':UpdateRemotePlugins'}
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
 
 " Editing iMproved
 Plug 'tpope/vim-commentary'           " Easier commenting
@@ -33,10 +32,6 @@ Plug 'mhinz/vim-signify'              " VCS (e.g. git) indicators in sidebar
 
 " Language Support
 Plug 'sheerun/vim-polyglot'           " Suite of language packages
-Plug 'autozimu/LanguageClient-neovim', {
-     \ 'branch': 'next',
-     \ 'do': 'bash install.sh',
-     \ }
 
 " Theming
 Plug 'itchyny/lightline.vim'          " Customizable status line
@@ -109,13 +104,11 @@ ca grep grep!
 " Plugin Configurations ------------------------------------ {{{
 let $FZF_DEFAULT_COMMAND='rg --files'
 
-let g:deoplete#enable_at_startup=1
-
-let g:LanguageClient_serverCommands = {
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'typescript': ['javascript-typescript-stdio']
-    \ }
+" Enable tab completion with coc.vim
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 let g:ale_fix_on_save=1
 let g:ale_fixers={
@@ -245,9 +238,6 @@ nnoremap <Esc>^[ <Esc>^[
 " Don't automatically jump forward when selecting current word
 nnoremap * *<c-o>
 
-" Enable Tab completion for deoplete
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-
 " Persist selection in visual mode after indent
 vnoremap > >gv
 vnoremap < <gv
@@ -261,6 +251,11 @@ xnoremap Q :normal @q<CR>
 
 " Don't show filenames when executing :Ag (aliased to `<leader>fa`)
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
+
+" Helpful mappings for coc.vim
+nmap <silent> <leader>dd <Plug>(coc-definition)
+nmap <silent> <leader>dr <Plug>(coc-references)
+nmap <silent> <leader>dj <Plug>(coc-implementation)
 "}}}
 
 " Mnemonics ------------------------------------------------ {{{
