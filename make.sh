@@ -128,12 +128,13 @@ brew install gnu-sed --with-default-names
 brew cask install java
 $(brew --prefix)/opt/fzf/install
 brew install hub
-brew install jq
-brew install nvim
-brew install ranger
-brew install tree
 brew install git-extras
 brew install zsh-completions
+brew install nvim
+brew install jq               # JSON explorer
+brew install gron             # JSON flattener
+brew install ranger           # TUI file explorer
+brew install tree             # Print nice file trees
 brew install fasd             # easily jump to commonly-used directories
 brew install fzf              # general purpose fuzzy-finder
 brew install htop             # better `top`
