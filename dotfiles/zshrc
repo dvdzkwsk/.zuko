@@ -109,5 +109,4 @@ source ~/.git_aliases
 
 eval "$(hub alias -s)"
 eval "$(fasd --init auto)"
-eval "$(register-python-argcomplete bsed)"
 #}}}
