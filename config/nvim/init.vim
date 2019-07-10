@@ -84,9 +84,6 @@ set wildignore+=*.jpg,*.jpeg,*.png,*.svg
 if has('clipboard')
   set clipboard=unnamedplus           " Use system clipboard with yank/delete
 endif
-if exists('+colorcolumn')
-  set colorcolumn=81                  " Display vertical bar at suggested max line length
-endif
 if exists('&inccommand')
   set inccommand=nosplit              " Preview regex substitutions in place
 endif
