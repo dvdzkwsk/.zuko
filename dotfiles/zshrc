@@ -52,6 +52,7 @@ alias weather="curl wttr.in"
 alias clock="tty-clock -b -s -c -C 2"
 alias diff="colordiff"
 alias terminal="open -n /Applications/Alacritty.app"
+alias todo="nvim ~/wiki/todo.md"
 #}}}
 
 # Mnemonic Aliases ------------------------------------------ {{{
