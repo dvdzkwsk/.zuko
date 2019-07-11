@@ -192,3 +192,9 @@ tic ./config/xterm/xterm-256color-italic.terminfo
 # Dotfiles ------------------------------------------------ {{{
 ./bin/install-dotfiles.sh
 #}}}
+
+# Templates ------------------------------------------------ {{{
+if [ ! -d ~/.config/templates ]; then
+  ln -s "${PWD}/templates" "${HOME}/.config"
+fi
+#}}}

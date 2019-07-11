@@ -99,6 +99,15 @@ function um {
 function dot {
   $EDITOR $(fd . ~/projects/.zuko/config -t f | rg "$1")
 }
+
+function new {
+  template="$HOME/.config/templates/$1"
+  if [ ! -d "$template" ]; then
+    echo "new: template $1 does not exist in $HOME/.config/templates"
+    exit 1
+  fi
+  cp -r "$template/" .
+}
 #}}}
 
 # Externals ------------------------------------------------ {{{
