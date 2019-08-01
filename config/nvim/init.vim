@@ -36,6 +36,8 @@ Plug 'sheerun/vim-polyglot'           " Suite of language packages
 " Theming
 Plug 'itchyny/lightline.vim'          " Customizable status line
 Plug 'liuchengxu/space-vim-dark'
+Plug 'arcticicestudio/nord-vim'
+Plug 'lifepillar/vim-solarized8'
 Plug 'ayu-theme/ayu-vim'
 
 call plug#end()
