@@ -16,7 +16,7 @@ Plug 'w0rp/ale'                       " Asynchronous lint engine
 Plug 'scrooloose/nerdtree'            " File explorer
 Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between tmux and vim
 Plug 'vimwiki/vimwiki'                " Personal wiki manager
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'neoclide/coc.nvim', {'tag': '*'}
 
 " Editing iMproved
 Plug 'tpope/vim-commentary'           " Easier commenting
