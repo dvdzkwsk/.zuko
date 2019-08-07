@@ -8,5 +8,9 @@
     }
   },
   "suggest.noselect": false,
-  "snippets.autoTrigger": false
+  "snippets.autoTrigger": false,
+  "snippets.extends": {
+    "typescript": ["javascript"],
+    "typescriptreact": ["typescript", "javscriptreact"]
+  }
 }
