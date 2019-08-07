@@ -104,10 +104,24 @@ ca grep grep!
 let $FZF_DEFAULT_COMMAND='rg --files'
 
 " Enable tab completion with coc.vim
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" Implementation #1: <Tab> cycles through completion list. <Enter> confirms.
+" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
+" autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+" Implementation #1: <Tab> confirms completion. Use <Arrow>s to cycle.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+let g:coc_snippet_next = '<tab>'
 
 let g:ale_fix_on_save=1
 let g:ale_fixers={
@@ -261,6 +275,9 @@ nmap <silent> <leader>dj <Plug>(coc-implementation)
 " [B]uffer
 nnoremap <Leader><Tab> :b#<CR>
 nnoremap <Leader>bb :Buffers<CR>
+
+" [C]oc
+nnoremap <Leader>cs :CocCommand snippets.editSnippets<CR>
 
 " [F]ind
 nnoremap <Leader>fa :Ag<CR>

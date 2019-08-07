@@ -6,5 +6,7 @@
       "rootPatterns": ["go.mod"],
       "filetypes": ["go"]
     }
-  }
+  },
+  "suggest.noselect": false,
+  "snippets.autoTrigger": false
 }
