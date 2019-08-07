@@ -111,7 +111,7 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 let g:ale_fix_on_save=1
 let g:ale_fixers={
-\  'go': ['gofmt'],
+\  'go': ['goimports'],
 \  'markdown': ['prettier'],
 \  'javascript': ['prettier'],
 \  'javascript.jsx': ['prettier'],
