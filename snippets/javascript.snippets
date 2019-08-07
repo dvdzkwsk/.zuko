@@ -26,3 +26,38 @@
 snippet log
 console.log("$1")
 endsnippet
+
+snippet fn "function"
+function $1($2) {
+	$3
+}
+endsnippet
+
+snippet ar "arrow function"
+($1) => {
+	$2
+}
+endsnippet
+
+snippet car "constant arrow function"
+const $1 = ($2) => {
+	$3
+}
+endsnippet
+
+snippet cl "class"
+class $1 {
+}
+endsnippet
+
+snippet cle "class extend"
+class $1 extends $2 {
+	constructor() {
+		super()
+	}
+}
+endsnippet
+
+snippet im "import"
+import $1 from "$2"
+endsnippet

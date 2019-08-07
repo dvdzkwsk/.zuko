@@ -1,0 +1,27 @@
+snippet rfn "react functional component"
+interface I$1 {
+	children?: React.ReactNode
+}
+const $1 = ({ children }: I$1) => {
+	return (
+		<$2>$3</$2>
+	)
+}
+endsnippet
+
+snippet rnew "react new component"
+import * as React from "react"
+
+export const $1 = () => {
+	return (
+		<$2>$3</$2>
+	)
+}
+endsnippet
+
+snippet onc "on click handler"
+onClick={(e) => {
+	e.preventDefault()
+	$1
+})
+endsnippet
