@@ -32,6 +32,7 @@ Plug 'mhinz/vim-signify'              " VCS (e.g. git) indicators in sidebar
 
 " Language Support
 Plug 'sheerun/vim-polyglot'           " Suite of language packages
+Plug 'fatih/vim-go'                   " Advanced Go support (improves upon vim-polygot)
 
 " Theming
 Plug 'itchyny/lightline.vim'          " Customizable status line
@@ -269,6 +270,11 @@ command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : 
 nmap <silent> <leader>dd <Plug>(coc-definition)
 nmap <silent> <leader>dr <Plug>(coc-references)
 nmap <silent> <leader>dj <Plug>(coc-implementation)
+"}}}
+"
+" Language Configuration ----------------------------------- {{{
+" Go
+let g:go_auto_type_info=1  " show type info of variable below cursor
 "}}}
 
 " Mnemonics ------------------------------------------------ {{{
