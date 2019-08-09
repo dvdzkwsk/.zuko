@@ -125,16 +125,15 @@ brew install coreutils
 # Install GNU `sed`, overwriting the built-in `sed`.
 brew install gnu-sed --with-default-names
 
-brew cask install java
 $(brew --prefix)/opt/fzf/install
 brew install hub
 brew install git-extras
 brew install zsh-completions
-brew install nvim
-brew install jq               # JSON explorer
-brew install gron             # JSON flattener
-brew install ranger           # TUI file explorer
-brew install tree             # Print nice file trees
+brew install nvim             # dark vim
+brew install jq               # json explorer
+brew install gron             # json flattener
+brew install ranger           # terminal file explorer
+brew install tree             # print nice file trees
 brew install fasd             # easily jump to commonly-used directories
 brew install fzf              # general purpose fuzzy-finder
 brew install htop             # better `top`
@@ -155,17 +154,20 @@ pip3 install --upgrade bsed
 #}}}
 
 # Programming --------------------------------------------- {{{
-brew install sbcl      # common lisp
-brew install lumo      # clojurescript runtime
-brew install python3   # python 3
-brew install rbenv     # ruby version manager
+brew install sbcl             # common lisp
+brew cask install java        # java (for clojure)
+brew install lumo             # clojurescript runtime
+brew install python3          # python 3
+brew install rbenv            # ruby version manager
 #}}}
 
 # Applications -------------------------------------------- {{{
+brew tap homebrew/cask-versions
 brew cask install iterm2
 brew cask install docker
 brew cask install dropbox
 brew cask install google-chrome
+brew cask install google-chrome-canary
 brew cask install brave
 brew cask install slack
 brew cask install flux

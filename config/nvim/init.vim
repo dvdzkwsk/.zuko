@@ -283,6 +283,7 @@ nnoremap <Leader><Tab> :b#<CR>
 nnoremap <Leader>bb :Buffers<CR>
 
 " [C]oc
+nnoremap <Leader>cc :CocConfig<CR>
 nnoremap <Leader>cs :CocCommand snippets.editSnippets<CR>
 
 " [F]ind
