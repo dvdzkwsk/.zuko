@@ -155,9 +155,10 @@ pip3 install --upgrade bsed
 #}}}
 
 # Programming --------------------------------------------- {{{
-brew install sbcl
-brew install lumo
-brew install python3
+brew install sbcl      # common lisp
+brew install lumo      # clojurescript runtime
+brew install python3   # python 3
+brew install rbenv     # ruby version manager
 #}}}
 
 # Applications -------------------------------------------- {{{
