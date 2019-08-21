@@ -281,6 +281,7 @@ let g:go_auto_type_info=1  " show type info of variable below cursor
 " [B]uffer
 nnoremap <Leader><Tab> :b#<CR>
 nnoremap <Leader>bb :Buffers<CR>
+nnoremap <Leader>bo :%bd\|e#<CR>
 
 " [C]oc
 nnoremap <Leader>cc :CocConfig<CR>
