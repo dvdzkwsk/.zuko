@@ -12,10 +12,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'editorconfig/editorconfig-vim'  " Use .editorconfig settings when found
 Plug '/usr/local/opt/fzf'             " Import native FZF binary (brew install fzf)
 Plug 'junegunn/fzf.vim'               " FZF integration
-Plug 'w0rp/ale'                       " Asynchronous lint engine
+Plug 'dense-analysis/ale'             " Asynchronous Lint Engine
 Plug 'scrooloose/nerdtree'            " File explorer
 Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between tmux and vim
-Plug 'vimwiki/vimwiki'                " Personal wiki manager
 Plug 'neoclide/coc.nvim', {'tag': '*'}
 
 " Editing iMproved
@@ -124,7 +123,7 @@ function! s:check_back_space() abort
 endfunction
 let g:coc_snippet_next = '<tab>'
 
-let g:ale_fix_on_save=1
+let g:ale_fix_on_save=0
 let g:ale_fixers={
 \  'go': ['goimports'],
 \  'markdown': ['prettier'],
@@ -216,8 +215,11 @@ hi xmlEndTag  guifg=#2974a1
 " Keybindings ---------------------------------------------- {{{
 let g:mapleader=' '
 
+" Enter command mode without <shift>
+nnoremap ; :
+
 " More efficient file saving by double tapping <Esc>
-map <Esc><Esc> :w<CR>
+noremap <Esc><Esc> :w<CR>
 
 " Custom unimpaired bindings
 nmap [w <Plug>(ale_previous_wrap)
@@ -282,6 +284,7 @@ let g:go_auto_type_info=1  " show type info of variable below cursor
 nnoremap <Leader><Tab> :b#<CR>
 nnoremap <Leader>bb :Buffers<CR>
 nnoremap <Leader>bo :%bd\|e#<CR>
+nnoremap <Leader>bf :ALEFix<CR>
 
 " [C]oc
 nnoremap <Leader>cc :CocConfig<CR>
@@ -297,9 +300,17 @@ nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gb :Gbrowse<CR>
 
+" [G]o
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
 " [P]roject
 nnoremap <Leader>pt :NERDTreeToggle<CR>
 nnoremap <Leader>pf :GFiles<CR>
+
+" [R]ename
+nmap <leader>rn <Plug>(coc-rename)
 
 " [W]indow
 nnoremap <Leader>w= <C-W>=
