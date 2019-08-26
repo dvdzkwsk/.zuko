@@ -226,17 +226,25 @@ nnoremap ; :
 " More efficient file saving by double tapping <Esc>
 noremap <Esc><Esc> :w<CR>
 
-" Custom unimpaired bindings
-nmap [w <Plug>(ale_previous_wrap)
-nmap ]w <Plug>(ale_next_wrap)
-nmap [W <Plug>(ale_first)
-nmap ]W <Plug>(ale_last)
-
 " Move vertically through visual lines, not logical lines
 nnoremap k gk
 nnoremap j gj
 nnoremap <Up> g<Up>
 nnoremap <Down> g<Down>
+
+" Custom unimpaired bindings
+nmap <silent> [w <Plug>(coc-diagnostic-prev)
+nmap <silent> ]w <Plug>(coc-diagnostic-next)
+
+" Show documentation
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 " Disable Shift-Up/Down in visual mode, which 99% of the time is me
 " accidentally jumping to the top/bottom of the screen. Prefer H and J.
@@ -294,6 +302,10 @@ nnoremap <Leader>bf :ALEFix<CR>
 " [C]oc
 nnoremap <Leader>cc :CocConfig<CR>
 nnoremap <Leader>cs :CocCommand snippets.editSnippets<CR>
+nmap <leader>cr <Plug>(coc-rename)
+xmap <leader>ca <Plug>(coc-codeaction-selected)
+nmap <leader>ca <Plug>(coc-codeaction-selected)
+nmap <leader>ca <Plug>(coc-codeaction)
 
 " [F]ind
 nnoremap <Leader>fa :Ag<CR>
@@ -302,7 +314,6 @@ nnoremap <Leader>fw :grep! "<cword>"<CR>
 
 " [G]it
 nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>gb :Gbrowse<CR>
 
 " [G]o
@@ -313,9 +324,6 @@ nmap <silent> gr <Plug>(coc-references)
 " [P]roject
 nnoremap <Leader>pt :NERDTreeToggle<CR>
 nnoremap <Leader>pf :GFiles<CR>
-
-" [R]ename
-nmap <leader>rn <Plug>(coc-rename)
 
 " [W]indow
 nnoremap <Leader>w= <C-W>=
