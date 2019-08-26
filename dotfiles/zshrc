@@ -32,7 +32,11 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 
 # Node ----------------------------------------------------- {{{
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+#}}}
+
+# Yarn ----------------------------------------------------- {{{
+export PATH=$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
 #}}}
 
 # Go ------------------------------------------------------- {{{
@@ -49,17 +53,15 @@ alias ..="cd .."
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 alias size="stat -f%z"
 alias weather="curl wttr.in"
-alias clock="tty-clock -b -s -c -C 2"
 alias diff="colordiff"
-alias terminal="open -n /Applications/Alacritty.app"
 alias todo="nvim ~/wiki/todo.md"
+alias journal="nvim ~/wiki/journal.txt"
+alias zrc="$EDITOR ~/.zshrc"
+alias zrcs="source ~/.zshrc"
+alias vrc="$EDITOR ~/.config/nvim/init.vim"
 #}}}
 
 # Mnemonic Aliases ------------------------------------------ {{{
-# [B]ash / ZSH
-alias brc="$EDITOR ~/.zshrc"
-alias brcs="source ~/.zshrc"
-
 # [H]istory
 alias history="history 1"
 alias h="history"
@@ -94,19 +96,6 @@ function um {
     shift
     rg "$search" ~/wiki/um.md --ignore-case --after-context 1 "$@"
   fi
-}
-
-function dot {
-  $EDITOR $(fd . ~/projects/.zuko/config -t f | rg "$1")
-}
-
-function new {
-  template="$HOME/.config/templates/$1"
-  if [ ! -d "$template" ]; then
-    echo "new: template $1 does not exist in $HOME/.config/templates"
-    exit 1
-  fi
-  cp -r "$template/" .
 }
 #}}}
 
