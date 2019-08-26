@@ -11,7 +11,7 @@ export GPG_TTY=$(tty)
 export RANGER_LOAD_DEFAULT_RC=FALSE   # do not load default ranger config on top of ~/.config/ranger
 #}}}
 
-# ZSH Settings -------------------------------------------- {{{
+# ZSH Settings --------------------------------------------- {{{
 setopt sharehistory           # Share history across terminals
 setopt appendhistory          # Persist history across sessions
 setopt incappendhistory       # Immediately append to history file
@@ -44,24 +44,27 @@ export GOPATH="$HOME/projects/go"
 export PATH=$GOPATH/bin:$PATH
 #}}}
 
+# Ripgrep -------------------------------------------------- {{{
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+#}}}
+
 # Sacrilegious Unix Replacements --------------------------- {{{
 alias cat="bat"
 #}}}
 
-# Aliases --------------------------------------------------- {{{
+# Aliases -------------------------------------------------- {{{
 alias ..="cd .."
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 alias size="stat -f%z"
 alias weather="curl wttr.in"
 alias diff="colordiff"
-alias todo="nvim ~/wiki/todo.md"
 alias journal="nvim ~/wiki/journal.txt"
 alias zrc="$EDITOR ~/.zshrc"
 alias zrcs="source ~/.zshrc"
 alias vrc="$EDITOR ~/.config/nvim/init.vim"
 #}}}
 
-# Mnemonic Aliases ------------------------------------------ {{{
+# Mnemonic Aliases ----------------------------------------- {{{
 # [H]istory
 alias history="history 1"
 alias h="history"
