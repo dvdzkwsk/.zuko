@@ -12,6 +12,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'editorconfig/editorconfig-vim'  " Use .editorconfig settings when found
 Plug '/usr/local/opt/fzf'             " Import native FZF binary (brew install fzf)
 Plug 'junegunn/fzf.vim'               " FZF integration
+Plug 'jesseleite/vim-agriculture'     " Better :Rg and :Ag for fzf.vim
 Plug 'dense-analysis/ale'             " Asynchronous Lint Engine
 Plug 'scrooloose/nerdtree'            " File explorer
 Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between tmux and vim
@@ -285,6 +286,11 @@ command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : 
 nmap <silent> <leader>dd <Plug>(coc-definition)
 nmap <silent> <leader>dr <Plug>(coc-references)
 nmap <silent> <leader>dj <Plug>(coc-implementation)
+
+" Quickly fuzzy search current directory
+nmap <Leader>/ <Plug>RgRawSearch
+vmap <Leader>/ <Plug>RgRawVisualSelection
+nmap <Leader>* <Plug>RgRawWordUnderCursor
 "}}}
 "
 " Language Configuration ----------------------------------- {{{
