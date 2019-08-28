@@ -38,7 +38,7 @@ Plug 'fatih/vim-go'                   " Advanced Go support (improves upon vim-p
 Plug 'itchyny/lightline.vim'          " Customizable status line
 Plug 'liuchengxu/space-vim-dark'
 Plug 'arcticicestudio/nord-vim'
-Plug 'lifepillar/vim-solarized8'
+Plug 'fxn/vim-monochrome'
 Plug 'ayu-theme/ayu-vim'
 
 call plug#end()
