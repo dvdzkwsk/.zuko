@@ -38,7 +38,7 @@ Plug 'fatih/vim-go'                   " Advanced Go support (improves upon vim-p
 Plug 'itchyny/lightline.vim'          " Customizable status line
 Plug 'liuchengxu/space-vim-dark'
 Plug 'arcticicestudio/nord-vim'
-Plug 'fxn/vim-monochrome'
+Plug 'davezuko/vim-monochrome'
 Plug 'ayu-theme/ayu-vim'
 
 call plug#end()
@@ -174,11 +174,11 @@ endif
 
 set background=dark
 let ayucolor="mirage"
-colorscheme nord
+colorscheme monochrome
 
 " Lightline (favorites themes: deus, solarized, palenight)
 let g:lightline = {
-\   'colorscheme': 'deus',
+\   'colorscheme': 'nord',
 \   'component': {
 \     'readonly': '%{&readonly?"\ue0a2":""}',
 \   },
