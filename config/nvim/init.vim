@@ -291,6 +291,11 @@ nmap <silent> <leader>dj <Plug>(coc-implementation)
 nmap <Leader>/ <Plug>RgRawSearch
 vmap <Leader>/ <Plug>RgRawVisualSelection
 nmap <Leader>* <Plug>RgRawWordUnderCursor
+
+" Go to code
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 "}}}
 "
 " Language Configuration ----------------------------------- {{{
@@ -321,11 +326,8 @@ nnoremap <Leader>fw :grep! "<cword>"<CR>
 " [G]it
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gb :Gbrowse<CR>
-
-" [G]o
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nnoremap <Leader>gc :Gcommit<CR>
+nnoremap <Leader>gd :Gdiff<CR>
 
 " [P]roject
 nnoremap <Leader>pt :NERDTreeToggle<CR>
