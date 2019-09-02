@@ -333,6 +333,11 @@ nnoremap <Leader>gd :Gdiff<CR>
 nnoremap <Leader>pt :NERDTreeToggle<CR>
 nnoremap <Leader>pf :GFiles<CR>
 
+" [V]im
+nnoremap <Leader>vc :e $MYVIMRC<CR>
+nnoremap <leader>vs :source $MYVIMRC<CR>
+nnoremap <leader>vi :PlugInstall<CR>
+
 " [W]indow
 nnoremap <Leader>w= <C-W>=
 nnoremap <Leader>w<Down> :split<CR>
