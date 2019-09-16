@@ -12,5 +12,8 @@
   "snippets.extends": {
     "typescript": ["javascript"],
     "typescriptreact": ["typescript", "javscriptreact"]
-  }
+  },
+  "tsserver.enableJavascript": false,
+  "typescript.updateImportsOnFileMove.enable": false,
+  "javascript.updateImportsOnFileMove.enable": false
 }
