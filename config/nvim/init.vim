@@ -174,7 +174,7 @@ endif
 
 set background=dark
 let ayucolor="mirage"
-colorscheme monochrome
+colorscheme nord
 
 " Lightline (favorites themes: deus, solarized, palenight)
 let g:lightline = {
