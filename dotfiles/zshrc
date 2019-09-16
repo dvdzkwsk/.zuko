@@ -72,6 +72,11 @@ alias h="history"
 # [L]ist
 alias ll="ls -la -Gfh"
 alias ls="ls -Gfh"
+
+# [Y]arn
+alias yi="yarn install"
+alias ys="yarn start"
+alias yui="yarn upgrade-interactive"
 #}}}
 
 # Functions ------------------------------------------------ {{{
