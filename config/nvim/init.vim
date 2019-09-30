@@ -303,7 +303,7 @@ nmap <silent> gr <Plug>(coc-references)
 "
 " Language Configuration ----------------------------------- {{{
 " Go
-let g:go_auto_type_info=1  " show type info of variable below cursor
+let g:go_auto_type_info=1  " show type info of variable under cursor
 
 " Clojure
 autocmd FileType clojure nnoremap <buffer> <leader>e <Plug>FireplaceCountPrint
