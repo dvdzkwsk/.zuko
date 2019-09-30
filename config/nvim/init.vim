@@ -32,6 +32,9 @@ Plug 'mhinz/vim-signify'              " VCS (e.g. git) indicators in sidebar
 
 " Language Support
 Plug 'sheerun/vim-polyglot'           " Suite of language packages
+Plug 'tpope/vim-fireplace'            " Clojure integration
+Plug 'tpope/vim-classpath'            " ^^
+Plug 'bhurlow/vim-parinfer'           " Inferred parentheses for lisps
 Plug 'fatih/vim-go'                   " Advanced Go support (improves upon vim-polygot)
 
 " Theming
@@ -301,6 +304,9 @@ nmap <silent> gr <Plug>(coc-references)
 " Language Configuration ----------------------------------- {{{
 " Go
 let g:go_auto_type_info=1  " show type info of variable below cursor
+
+" Clojure
+autocmd FileType clojure nnoremap <buffer> <leader>e <Plug>FireplaceCountPrint
 "}}}
 
 " Mnemonics ------------------------------------------------ {{{
