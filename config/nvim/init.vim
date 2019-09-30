@@ -323,6 +323,7 @@ nmap <leader>cr <Plug>(coc-rename)
 xmap <leader>ca <Plug>(coc-codeaction-selected)
 nmap <leader>ca <Plug>(coc-codeaction-selected)
 nmap <leader>ca <Plug>(coc-codeaction)
+nmap <leader>cf <Plug>(coc-fix-current)
 
 " [F]ind
 nnoremap <Leader>fa :Ag<CR>
