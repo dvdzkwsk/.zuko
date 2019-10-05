@@ -57,9 +57,9 @@ set noswapfile                        " Don't create swap files
 set hidden                            " Allow unsaved buffers (i.e. switch buffers w/o saving current)
 set autoread                          " Automatically reload file changes outside of vim
 set expandtab                         " Convert tabs to spaces
-set tabstop=2                         " Number of spaces for a tab
-set softtabstop=2                     " ibid
-set shiftwidth=2                      " Number of spaces for a shift motion (e.g. indent)
+set tabstop=4                         " Number of spaces for a tab
+set softtabstop=4                     " ibid
+set shiftwidth=4                      " Number of spaces for a shift motion (e.g. indent)
 set shiftround                        " Round indents to multiples of shiftwidth
 set backspace=indent,eol,start        " Allow backspacing over these regions (nvim -> vim compat)
 set number                            " Show line numbers
