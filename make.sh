@@ -143,6 +143,7 @@ brew install fd               # better `find`
 brew install bat              # better `less` or `cat`
 brew install tig              # better `git`
 brew install diff-so-fancy    # better `git diff`
+brew install pstree           # `ps` as a tree
 
 # tmux
 brew install tmux
