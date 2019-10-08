@@ -105,6 +105,13 @@ function um {
     rg "$search" ~/wiki/um.md --ignore-case --after-context 1 "$@"
   fi
 }
+
+function hn {
+    curl https://quiethn.com | rg "<li><a href" > /tmp/quiethn
+    selected=$(cat /tmp/quiethn | rg "<li><a href" | sed 's/.*href=".*">//g' | sed 's/<\/a.*//g' | fzf)
+    link=$(cat /tmp/quiethn | rg "$selected" | sed 's/.*href="//g' | sed 's/["<].*//g')
+    open $link
+}
 #}}}
 
 # Externals ------------------------------------------------ {{{
