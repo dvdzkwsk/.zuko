@@ -23,6 +23,7 @@ Plug 'tpope/vim-commentary'           " Easier commenting
 Plug 'tpope/vim-repeat'               " Make '.' smarter
 Plug 'tpope/vim-unimpaired'           " More symmetrical mappings
 Plug 'tpope/vim-abolish'              " Smarter text manipulation and replacement
+Plug 'tpope/vim-dispatch'             " Asynchronous vim compiler
 Plug 'machakann/vim-sandwich'         " Intuitive surround commands
 Plug 'wellle/targets.vim'             " More, smarter text objects
 
