@@ -70,4 +70,12 @@ function groh! {
 function gec {
   nvim $(gst | rg 'both modified' | awk '{print $3}')
 }
+
+function gstat {
+  if [ -n "$1"]; then
+    git diff --stat $(git merge-base HEAD "$1")
+  else
+    git diff --stat $(git merge-base HEAD master)
+  fi
+}
 #}}}
