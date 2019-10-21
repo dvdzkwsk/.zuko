@@ -43,7 +43,7 @@ Plug 'itchyny/lightline.vim'          " Customizable status line
 Plug 'liuchengxu/space-vim-dark'
 Plug 'morhetz/gruvbox'
 Plug 'arcticicestudio/nord-vim'
-Plug 'davezuko/vim-monochrome'
+Plug 'arzg/vim-substrata'
 Plug 'ayu-theme/ayu-vim'
 
 call plug#end()
@@ -176,6 +176,8 @@ endif
 if has("termguicolors")
   set termguicolors
 endif
+
+let g:substrata_italic_functions=0
 
 set background=dark
 colorscheme gruvbox
