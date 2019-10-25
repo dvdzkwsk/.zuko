@@ -42,6 +42,7 @@ Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
 Plug 'itchyny/lightline.vim'          " Customizable status line
 Plug 'liuchengxu/space-vim-dark'
 Plug 'morhetz/gruvbox'
+Plug 'sainnhe/gruvbox-material'
 Plug 'arcticicestudio/nord-vim'
 Plug 'arzg/vim-substrata'
 Plug 'ayu-theme/ayu-vim'
