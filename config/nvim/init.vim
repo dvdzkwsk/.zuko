@@ -16,7 +16,7 @@ Plug 'jesseleite/vim-agriculture'     " Better :Rg and :Ag for fzf.vim
 Plug 'dense-analysis/ale'             " Asynchronous Lint Engine
 Plug 'scrooloose/nerdtree'            " File explorer
 Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between tmux and vim
-Plug 'neoclide/coc.nvim', {'tag': '*'}
+Plug 'neoclide/coc.nvim', {'branch':'release'}
 
 " Editing iMproved
 Plug 'tpope/vim-commentary'           " Easier commenting
