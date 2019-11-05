@@ -181,11 +181,11 @@ endif
 let g:substrata_italic_functions=0
 
 set background=dark
-colorscheme gruvbox
+colorscheme gruvbox-material
 
 " Lightline (favorites themes: nord, deus, solarized, palenight)
 let g:lightline = {
-\   'colorscheme': 'gruvbox',
+\   'colorscheme': 'default',
 \   'component': {
 \     'readonly': '%{&readonly?"\ue0a2":""}',
 \   },
