@@ -36,7 +36,7 @@ Plug 'sheerun/vim-polyglot'           " Suite of language packages
 Plug 'tpope/vim-fireplace'            " Clojure integration
 Plug 'tpope/vim-classpath'            " ^^
 Plug 'bhurlow/vim-parinfer'           " Inferred parentheses for lisps
-Plug 'fatih/vim-go', {'do': ':GoUpdateBinaries'}
+Plug 'fatih/vim-go'
 
 " Theming
 Plug 'itchyny/lightline.vim'          " Customizable status line
