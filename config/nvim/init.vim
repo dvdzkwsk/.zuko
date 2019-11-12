@@ -335,6 +335,9 @@ nmap <leader>cf <Plug>(coc-fix-current)
 nnoremap <Leader>fa :Ag<CR>
 nnoremap <Leader>ff :FZF<CR>
 nnoremap <Leader>fw :grep! "<cword>"<CR>
+" TODO: would be nice to filter marks to only show custom marks
+nnoremap <Leader>fm :Marks<CR>
+nnoremap <Leader>fc :BCommits<CR>
 
 " [G]it
 nnoremap <Leader>gs :Gstatus<CR>
