@@ -40,13 +40,14 @@ Plug 'bhurlow/vim-parinfer'           " Inferred parentheses for lisps
 Plug 'fatih/vim-go'
 
 " Theming
+" Commenting out my favorite themes that are currently unused
 Plug 'itchyny/lightline.vim'          " Customizable status line
-Plug 'liuchengxu/space-vim-dark'
-Plug 'morhetz/gruvbox'
 Plug 'sainnhe/gruvbox-material'
-Plug 'arcticicestudio/nord-vim'
-Plug 'arzg/vim-substrata'
-Plug 'ayu-theme/ayu-vim'
+" Plug 'liuchengxu/space-vim-dark'
+" Plug 'morhetz/gruvbox'
+" Plug 'arcticicestudio/nord-vim'
+" Plug 'arzg/vim-substrata'
+" Plug 'ayu-theme/ayu-vim'
 
 call plug#end()
 filetype plugin indent on
