@@ -98,11 +98,11 @@ function wiki {
 
 function um {
   if [ $# -eq 0 ]; then
-    $EDITOR ~/wiki/um.md
+    $EDITOR ~/wiki/um.txt
   else
     search="$1"
     shift
-    rg "$search" ~/wiki/um.md --ignore-case --after-context 1 "$@"
+    rg "$search" ~/wiki/um.txt --ignore-case --after-context 1 "$@"
   fi
 }
 
