@@ -64,7 +64,7 @@ set hidden                            " Allow unsaved buffers (i.e. switch buffe
 set autoread                          " Automatically reload file changes outside of vim
 set expandtab                         " Convert tabs to spaces
 set tabstop=4                         " Number of spaces for a tab
-set softtabstop=4                     " ibid
+set softtabstop=4                     " ^^
 set shiftwidth=4                      " Number of spaces for a shift motion (e.g. indent)
 set shiftround                        " Round indents to multiples of shiftwidth
 set backspace=indent,eol,start        " Allow backspacing over these regions (nvim -> vim compat)
@@ -76,12 +76,12 @@ set showcmd                           " Show when leader key has been pressed
 set wrap                              " Enable visual line wrapping
 set wrapmargin=0                      " Number of characters from the window edge to start wrapping
 set foldmethod=syntax                 " Fold based on language syntax
-set foldlevelstart=20                 " Automatically expand all folds (well, up to 20 levels)
+set foldlevelstart=20                 " Automatically expand all folds (up to 20 levels)
 set ignorecase                        " Ignore case when searching...
 set smartcase                         " ...except when search term starts with a capital
 set hlsearch                          " Highlight active search matches
 set incsearch                         " Show search/replace in real time
-set modeline                          " Enable modeline
+set modeline                          " Allow files to configure vim (see top of this file)
 set laststatus=2                      " Always show the status line
 set diffopt+=vertical                 " Split diffs vertically (left/right pane)
 set scrolloff=3                       " Number of rows to keep visible above/below scroll threshold
@@ -112,28 +112,25 @@ ca grep grep!
 "}}}
 
 " Plugin Configurations ------------------------------------ {{{
+" fzf
 let $FZF_DEFAULT_COMMAND='rg --files'
 
+" coc.vim
 " Enable tab completion with coc.vim
-
-" Implementation #1: <Tab> cycles through completion list. <Enter> confirms.
-" inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
-" autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-
-" Implementation #1: <Tab> confirms completion. Use <Arrow>s to cycle.
+" <Tab> confirms completion. Use <Arrow> keys to cycle.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 let g:coc_snippet_next = '<tab>'
 
+" ale
 let g:ale_fix_on_save=1
 let g:ale_linters = {
 \  'typescript': [],
@@ -149,7 +146,7 @@ let g:ale_fixers={
 \  'typescript.jsx': ['tslint', 'prettier'],
 \}
 
-let g:vimwiki_table_mappings=0
+" vimwiki
 let g:vimwiki_list=[
 \  {'path': '~/wiki/', 'syntax': 'markdown', 'ext': '.md'}
 \]
@@ -182,8 +179,7 @@ if has("termguicolors")
   set termguicolors
 endif
 
-let g:substrata_italic_functions=0
-
+" Color scheme
 set background=dark
 colorscheme gruvbox-material
 
@@ -217,16 +213,8 @@ let g:signify_sign_add='●'
 let g:signify_sign_change='●'
 let g:signify_sign_delete='-'
 
-" Fix vim-jsx not coloring closing tags properly. Seriously?
-" https://github.com/mxw/vim-jsx/issues/124
-hi link xmlEndTag xmlTag
-hi Tag        ctermfg=04
-hi xmlTag     ctermfg=04
-hi xmlTagName ctermfg=04
-hi xmlEndTag  ctermfg=04
-hi xmlTagName guifg=#59ACE5
-hi xmlTag     guifg=#59ACE5
-hi xmlEndTag  guifg=#2974a1
+" Disable italics when using the substrata theme
+let g:substrata_italic_functions=0
 "}}}
 
 " Keybindings ---------------------------------------------- {{{
@@ -293,20 +281,10 @@ xnoremap Q :normal @q<CR>
 " Don't show filenames when executing :Ag (aliased to `<leader>fa`)
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
-" Helpful mappings for coc.vim
-nmap <silent> <leader>dd <Plug>(coc-definition)
-nmap <silent> <leader>dr <Plug>(coc-references)
-nmap <silent> <leader>dj <Plug>(coc-implementation)
-
 " Quickly fuzzy search current directory
 nmap <Leader>/ <Plug>RgRawSearch
 vmap <Leader>/ <Plug>RgRawVisualSelection
 nmap <Leader>* <Plug>RgRawWordUnderCursor
-
-" Go to code
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
 "}}}
 "
 " Language Configuration ----------------------------------- {{{
@@ -345,17 +323,16 @@ nnoremap <Leader>fc :BCommits<CR>
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gb :Gbrowse<CR>
 nnoremap <Leader>gc :Gcommit<CR>
-nnoremap <Leader>gd :Gdiff<CR>
+
+" [G]o to
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " [P]roject
 nnoremap <Leader>pt :NERDTreeToggle<CR>
 nnoremap <Leader>pf :GFiles<CR>
 nnoremap <Leader>pb :NERDTreeFind<CR>
-
-" [V]im
-nnoremap <Leader>vc :e $MYVIMRC<CR>
-nnoremap <leader>vs :source $MYVIMRC<CR>
-nnoremap <leader>vi :PlugInstall<CR>
 
 " [W]indow
 nnoremap <Leader>w= <C-W>=
