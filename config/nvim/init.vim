@@ -350,6 +350,7 @@ nnoremap <Leader>gd :Gdiff<CR>
 " [P]roject
 nnoremap <Leader>pt :NERDTreeToggle<CR>
 nnoremap <Leader>pf :GFiles<CR>
+nnoremap <Leader>pb :NERDTreeFind<CR>
 
 " [V]im
 nnoremap <Leader>vc :e $MYVIMRC<CR>
