@@ -8,16 +8,13 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
 endif
 call plug#begin('~/.local/share/nvim/plugged')
 
-" Basics
+" Essentials
 Plug 'editorconfig/editorconfig-vim'  " Use .editorconfig settings when found
 Plug '/usr/local/opt/fzf'             " Import native FZF binary (brew install fzf)
 Plug 'junegunn/fzf.vim'               " FZF integration
 Plug 'jesseleite/vim-agriculture'     " Better :Rg and :Ag for fzf.vim
-Plug 'dense-analysis/ale'             " Asynchronous Lint Engine
 Plug 'scrooloose/nerdtree'            " File explorer
 Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between tmux and vim
-Plug 'junegunn/goyo.vim'              " Focus mode
-Plug 'neoclide/coc.nvim', {'branch':'release'}
 
 " Editing iMproved
 Plug 'tpope/vim-commentary'           " Easier commenting
@@ -28,9 +25,14 @@ Plug 'tpope/vim-dispatch'             " Asynchronous vim compiler
 Plug 'machakann/vim-sandwich'         " Intuitive surround commands
 Plug 'wellle/targets.vim'             " More, smarter text objects
 
-" Version Control
+" General Enhancements
+Plug 'junegunn/goyo.vim'              " Focus mode
+
+" Tools
 Plug 'tpope/vim-fugitive'             " Git integration
 Plug 'mhinz/vim-signify'              " VCS (e.g. git) indicators in sidebar
+Plug 'dense-analysis/ale'             " Asynchronous Lint Engine
+Plug 'neoclide/coc.nvim', {'branch':'release'}
 
 " Language Support
 Plug 'sheerun/vim-polyglot'           " Suite of language packages
