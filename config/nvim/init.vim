@@ -13,7 +13,6 @@ Plug 'editorconfig/editorconfig-vim'  " Use .editorconfig settings when found
 Plug '/usr/local/opt/fzf'             " Import native FZF binary (brew install fzf)
 Plug 'junegunn/fzf.vim'               " FZF integration
 Plug 'jesseleite/vim-agriculture'     " Better :Rg and :Ag for fzf.vim
-Plug 'scrooloose/nerdtree'            " File explorer
 Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between tmux and vim
 
 " Editing iMproved
@@ -328,11 +327,10 @@ nnoremap <Leader>gc :Gcommit<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gt :CocCommand explorer<CR>
 
 " [P]roject
-nnoremap <Leader>pt :NERDTreeToggle<CR>
 nnoremap <Leader>pf :GFiles<CR>
-nnoremap <Leader>pb :NERDTreeFind<CR>
 
 " [W]indow
 nnoremap <Leader>w= <C-W>=
