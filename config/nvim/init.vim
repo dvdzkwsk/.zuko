@@ -59,6 +59,7 @@ set ttimeoutlen=50                    " Reduce input delay when entering normal 
 set undofile                          " Remember undo history between sessions...
 set undodir=/tmp/.vim/undo            " ...and store it here
 set noswapfile                        " Don't create swap files
+set backupcopy=yes
 set hidden                            " Allow unsaved buffers (i.e. switch buffers w/o saving current)
 set autoread                          " Automatically reload file changes outside of vim
 set expandtab                         " Convert tabs to spaces
