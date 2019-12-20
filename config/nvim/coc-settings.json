@@ -24,7 +24,7 @@
     "typescript": ["javascript"],
     "typescriptreact": ["typescript", "javscriptreact"]
   },
-  "tsserver.enableJavascript": false,
+  "tsserver.enableJavascript": true,
   "typescript.updateImportsOnFileMove.enable": false,
   "javascript.updateImportsOnFileMove.enable": false
 }
