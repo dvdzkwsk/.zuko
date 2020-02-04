@@ -1,3 +1,6 @@
+# Enable for profiling ZSH performance
+# zmodload zsh/zprof
+
 # Main Settings -------------------------------------------- {{{
 set -o vi                             # Allow vi-like commands in bash
 ulimit -n 2000                        # Increase allowed open file limit
@@ -133,3 +136,6 @@ eval "$(hub alias -s)"
 eval "$(fasd --init auto)"
 eval "$(rbenv init -)"
 #}}}
+
+# Enable for profiling ZSH performance
+# zprof
