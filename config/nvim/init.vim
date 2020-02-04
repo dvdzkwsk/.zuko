@@ -197,11 +197,11 @@ endif
 
 " Color scheme
 set background=dark
-colorscheme gruvbox-material
+colorscheme night-owl
 
 " Lightline (favorites themes: nord, deus, solarized, palenight)
 let g:lightline = {
-\   'colorscheme': 'default',
+\   'colorscheme': 'nord',
 \   'component': {
 \     'readonly': '%{&readonly?"\ue0a2":""}',
 \   },
