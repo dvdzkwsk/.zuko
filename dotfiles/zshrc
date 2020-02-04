@@ -44,6 +44,11 @@ alias nvm="unalias nvm; [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/
 # Yarn ----------------------------------------------------- {{{
 export PATH=$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
 #}}}
+#
+# FZF ----------------------------------------------------- {{{
+# respect .gitignore
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+#}}}
 
 # Go ------------------------------------------------------- {{{
 export GOPATH="$HOME/projects/go"
@@ -68,9 +73,6 @@ alias journal="nvim ~/wiki/journal.txt"
 alias zrc="$EDITOR ~/.zshrc"
 alias zrcs="source ~/.zshrc"
 alias vrc="$EDITOR ~/.config/nvim/init.vim"
-
-# fzf that respects .gitignore
-alias fg="FZF_DEFAULT_COMMAND='rg --files --hidden' fzf"
 #}}}
 
 # Mnemonic Aliases ----------------------------------------- {{{
@@ -91,7 +93,9 @@ alias yui="yarn upgrade-interactive"
 # Functions ------------------------------------------------ {{{
 function ff {
   local files
-  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  files=$(fzf --preview 'bat --style=numbers --color=always {} | head -500' "$@")
+  # open in a tmux pane instead (currently broken):
+  # IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
