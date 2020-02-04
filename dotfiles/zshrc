@@ -78,7 +78,6 @@ alias vrc="$EDITOR ~/.config/nvim/init.vim"
 # Mnemonic Aliases ----------------------------------------- {{{
 # [H]istory
 alias history="history 1"
-alias h="history"
 
 # [L]ist
 alias ll="ls -la -Gfh"
@@ -91,6 +90,10 @@ alias yui="yarn upgrade-interactive"
 #}}}
 
 # Functions ------------------------------------------------ {{{
+function h {
+  $(history | cut -d' ' -f5- | awk '!x[$0]++' | fzf)
+}
+
 function ff {
   local files
   files=$(fzf --preview 'bat --style=numbers --color=always {} | head -500' "$@")
