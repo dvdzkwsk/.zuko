@@ -143,6 +143,9 @@ function! s:check_back_space() abort
 endfunction
 let g:coc_snippet_next = '<tab>'
 
+" polyglot
+let g:vim_markdown_frontmatter = 1
+
 " ale
 let g:ale_fix_on_save=1
 let g:ale_linters = {
