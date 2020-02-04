@@ -1,5 +1,4 @@
 source ~/.git_prompt.sh
-autoload colors && colors
 
 # GIT_PS1_SHOWDIRTYSTATE=0
 # GIT_PS1_SHOWUNTRACKEDFILES=0
