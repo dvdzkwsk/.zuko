@@ -10,7 +10,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " Essentials
 Plug 'editorconfig/editorconfig-vim'  " Use .editorconfig settings when found
-Plug '/usr/local/opt/fzf'             " Import native FZF binary (brew install fzf)
+" Awaiting homebrew update for popup window support in fzf
+" Plug '/usr/local/opt/fzf'             " Import native FZF binary (brew install fzf)
+Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'               " FZF integration
 Plug 'jesseleite/vim-agriculture'     " Better :Rg and :Ag for fzf.vim
 Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between tmux and vim
@@ -113,7 +115,18 @@ ca grep grep!
 
 " Plugin Configurations ------------------------------------ {{{
 " fzf
-let $FZF_DEFAULT_COMMAND='rg --files'
+let $FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git/'"
+
+" display results in a popup window
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6 } }
+
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
+
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 
 " coc.vim
 " Enable tab completion with coc.vim
@@ -282,7 +295,7 @@ xnoremap Q :normal @q<CR>
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 " Quickly fuzzy search current directory
-nmap <Leader>/ <Plug>RgRawSearch
+nnoremap <Leader>/ :Rg<CR>
 vmap <Leader>/ <Plug>RgRawVisualSelection
 nmap <Leader>* <Plug>RgRawWordUnderCursor
 "}}}
@@ -312,12 +325,13 @@ nmap <leader>ca <Plug>(coc-codeaction)
 nmap <leader>cf <Plug>(coc-fix-current)
 
 " [F]ind
-nnoremap <Leader>fa :Ag<CR>
-nnoremap <Leader>ff :FZF<CR>
+nnoremap <Leader>fa :Rg<CR>
+nnoremap <Leader>fb :Buffers<CR>
+nnoremap <Leader>ff :Files<CR>
 nnoremap <Leader>fw :grep! "<cword>"<CR>
+nnoremap <Leader>fc :BCommits<CR>
 " TODO: would be nice to filter marks to only show custom marks
 nnoremap <Leader>fm :Marks<CR>
-nnoremap <Leader>fc :BCommits<CR>
 
 " [G]it
 nnoremap <Leader>gs :Gstatus<CR>
