@@ -12,6 +12,8 @@ export VISUAL=nvim                    # Global default editor
 export EDITOR="$VISUAL"               # ibid
 export GPG_TTY=$(tty)
 export RANGER_LOAD_DEFAULT_RC=FALSE   # do not load default ranger config on top of ~/.config/ranger
+
+export WIKI="$HOME/Dropbox/wiki"
 #}}}
 
 # ZSH Settings --------------------------------------------- {{{
@@ -66,7 +68,6 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 alias size="stat -f%z"
 alias weather="curl wttr.in"
 alias diff="colordiff"
-alias journal="nvim ~/wiki/journal.txt"
 alias zrc="$EDITOR ~/.zshrc"
 alias zrcs="source ~/.zshrc"
 alias vrc="$EDITOR ~/.config/nvim/init.vim"
@@ -101,21 +102,21 @@ function ff {
 
 function wiki {
   if [ $# -eq 0 ]; then
-    $EDITOR ~/wiki/index.md
+    $EDITOR "$WIKI/index.md"
   else
     search="$1"
     shift
-    rg "$1" ~/wiki --after-context --ignore-case "$@"
+    rg "$1" $WIKI --after-context --ignore-case "$@"
   fi
 }
 
 function um {
   if [ $# -eq 0 ]; then
-    $EDITOR ~/wiki/um.txt
+    $EDITOR "$WIKI/um.txt"
   else
     search="$1"
     shift
-    rg "$search" ~/wiki/um.txt --ignore-case --after-context 1 "$@"
+    rg "$search" "$WIKI/um.txt" --ignore-case --after-context 1 "$@"
   fi
 }
 #}}}
