@@ -46,10 +46,9 @@ Plug 'fatih/vim-go'
 Plug 'itchyny/lightline.vim'          " Customizable status line
 Plug 'sainnhe/gruvbox-material'
 Plug 'liuchengxu/space-vim-dark'
-Plug 'morhetz/gruvbox'
 Plug 'arcticicestudio/nord-vim'
 Plug 'arzg/vim-substrata'
-Plug 'ayu-theme/ayu-vim'
+Plug 'arzg/vim-colors-xcode'
 Plug 'haishanh/night-owl.vim'
 
 call plug#end()
@@ -197,11 +196,11 @@ endif
 
 " Color scheme
 set background=dark
-colorscheme night-owl
+colorscheme xcodedark
 
 " Lightline (favorites themes: nord, deus, solarized, palenight)
 let g:lightline = {
-\   'colorscheme': 'nord',
+\   'colorscheme': 'one',
 \   'component': {
 \     'readonly': '%{&readonly?"\ue0a2":""}',
 \   },
