@@ -165,14 +165,6 @@ let g:ale_fixers={
 let g:vimwiki_list=[
 \  {'path': '~/wiki/', 'syntax': 'markdown', 'ext': '.md'}
 \]
-
-" vim-colors-xcode
-augroup vim-colors-xcode
-    autocmd!
-augroup END
-
-autocmd vim-colors-xcode ColorScheme * hi Comment        cterm=italic gui=italic
-autocmd vim-colors-xcode ColorScheme * hi SpecialComment cterm=italic gui=italic
 "}}}
 
 " Auto Commands -------------------------------------------- {{{
@@ -201,6 +193,24 @@ endif
 if has("termguicolors")
   set termguicolors
 endif
+
+" vim-colors-xcode settings
+let g:xcodelight_green_comments=0
+let g:xcodelight_emph_types=0
+let g:xcodelight_emph_funcs=0
+let g:xcodelight_emph_idents=0
+let g:xcodedark_green_comments=1
+let g:xcodedark_emph_types=0
+let g:xcodedark_emph_funcs=0
+let g:xcodedark_emph_idents=0
+let g:yats_host_keyword=1
+
+" italicize comments
+augroup vim-colors-xcode
+    autocmd!
+augroup END
+autocmd vim-colors-xcode ColorScheme * hi Comment        cterm=italic gui=italic
+autocmd vim-colors-xcode ColorScheme * hi SpecialComment cterm=italic gui=italic
 
 " Color scheme
 set background=dark
