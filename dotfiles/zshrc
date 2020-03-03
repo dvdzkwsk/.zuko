@@ -54,6 +54,10 @@ export GOPATH="$HOME/projects/go"
 export PATH=$GOPATH/bin:$PATH
 #}}}
 
+# Rust ----------------------------------------------------- {{{
+export PATH=$HOME/.cargo/env:$PATH
+#}}}
+
 # Ripgrep -------------------------------------------------- {{{
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 #}}}
