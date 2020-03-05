@@ -353,6 +353,7 @@ nnoremap <Leader>fw :grep! "<cword>"<CR>
 nnoremap <Leader>fc :BCommits<CR>
 " TODO: would be nice to filter marks to only show custom marks
 nnoremap <Leader>fm :Marks<CR>
+nnoremap <leader>fw :grep! "\b<C-R><C-W>\b"<CR>
 
 " [G]it
 nnoremap <Leader>gs :Gstatus<CR>
@@ -367,6 +368,9 @@ nmap <silent> gt :CocCommand explorer<CR>
 
 " [P]roject
 nnoremap <Leader>pf :GFiles<CR>
+
+" [R]eplace
+nnoremap <leader>rw :%s/\(<c-r>=expand("<cword>")<cr>\)/
 
 " [W]indow
 nnoremap <Leader>w= <C-W>=
