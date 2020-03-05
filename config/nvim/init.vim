@@ -155,6 +155,7 @@ let g:ale_fixers={
 \  'go': ['goimports'],
 \  'css': ['prettier'],
 \  'markdown': ['prettier'],
+\  'json': ['prettier'],
 \  'javascript': ['prettier'],
 \  'javascript.jsx': ['prettier'],
 \  'typescript': ['tslint', 'prettier'],
