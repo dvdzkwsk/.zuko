@@ -131,6 +131,7 @@ source ~/.git_aliases
 
 [ -f ~/.zsh_private ] && source ~/.zsh_private
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f $HOME/Library/Preferences/org.dystroy.broot/launcher/bash/br ] && source $HOME/Library/Preferences/org.dystroy.broot/launcher/bash/br
 
 eval "$(hub alias -s)"
 eval "$(fasd --init auto)"
