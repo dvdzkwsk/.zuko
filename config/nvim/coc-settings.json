@@ -10,10 +10,12 @@
   "explorer": {
       "width": 30,
       "sources": [
-          {"name": "buffer", "expand": true},
           {"name": "file", "expand": true}
       ],
-      "openAction.changeDirectory": false,
+      "keyMappings": {
+        "<cr>": ["expandable?", "expandOrCollapse", "open"]
+      },
+      "openAction.for.directory": "expandOrCollapse",
       "icon.enableNerdfont": true,
       "icon.enableVimDevions": false,
       "file.showHiddenFiles": true
