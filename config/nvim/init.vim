@@ -58,7 +58,7 @@ set ttimeoutlen=50                    " Reduce input delay when entering normal 
 set undofile                          " Remember undo history between sessions...
 set undodir=/tmp/.vim/undo            " ...and store it here
 set noswapfile                        " Don't create swap files
-set backupcopy=yes
+set backupcopy=yes                    " Fixes crontab
 set hidden                            " Allow unsaved buffers (i.e. switch buffers w/o saving current)
 set autoread                          " Automatically reload file changes outside of vim
 set expandtab                         " Convert tabs to spaces
@@ -169,7 +169,6 @@ let g:vimwiki_list=[
 " Auto Commands -------------------------------------------- {{{
 " Filetype configuration
 autocmd FileType vimwiki setlocal syntax=markdown
-autocmd BufNewFile,BufRead *.tsx set filetype=typescript.jsx
 autocmd BufNewFile,BufRead crontab.* set nobackup | set nowritebackup
 
 " Only show cursor line in active window
@@ -320,11 +319,14 @@ nmap <Leader>* <Plug>RgRawWordUnderCursor
 "}}}
 "
 " Language Configuration ----------------------------------- {{{
+" Clojure
+autocmd FileType clojure nnoremap <buffer> <leader>e <Plug>FireplaceCountPrint
+
 " Go
 let g:go_auto_type_info=1  " show type info of variable under cursor
 
-" Clojure
-autocmd FileType clojure nnoremap <buffer> <leader>e <Plug>FireplaceCountPrint
+" JavaScript / TypeScript
+autocmd BufNewFile,BufRead *.tsx set filetype=typescript.jsx
 "}}}
 
 " Mnemonics ------------------------------------------------ {{{
