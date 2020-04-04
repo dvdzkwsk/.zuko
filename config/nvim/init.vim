@@ -153,6 +153,7 @@ let g:ale_fixers={
 \  'go': ['goimports'],
 \  'css': ['prettier'],
 \  'markdown': ['prettier'],
+\  'rust': ['rustfmt'],
 \  'json': ['prettier'],
 \  'javascript': ['prettier'],
 \  'javascript.jsx': ['prettier'],
