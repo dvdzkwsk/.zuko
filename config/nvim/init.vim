@@ -160,11 +160,6 @@ let g:ale_fixers={
 \  'typescript': ['tslint', 'prettier'],
 \  'typescript.jsx': ['tslint', 'prettier'],
 \}
-
-" vimwiki
-let g:vimwiki_list=[
-\  {'path': '~/wiki/', 'syntax': 'markdown', 'ext': '.md'}
-\]
 "}}}
 
 " Auto Commands -------------------------------------------- {{{
