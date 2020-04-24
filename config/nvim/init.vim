@@ -23,6 +23,7 @@ Plug 'tpope/vim-abolish'              " Smarter text manipulation and replacemen
 Plug 'tpope/vim-dispatch'             " Asynchronous vim compiler
 Plug 'machakann/vim-sandwich'         " Intuitive surround commands
 Plug 'wellle/targets.vim'             " More, smarter text objects
+Plug 'mg979/vim-visual-multi'         " Multiple cursors
 
 " General Enhancements
 Plug 'junegunn/goyo.vim'              " Focus mode
@@ -160,6 +161,10 @@ let g:ale_fixers={
 \  'typescript': ['tslint', 'prettier'],
 \  'typescript.jsx': ['tslint', 'prettier'],
 \}
+
+" vim-visual-multi
+let g:VM_maps = {}
+let g:VM_maps['Find Under'] = '<C-d>'
 "}}}
 
 " Auto Commands -------------------------------------------- {{{
