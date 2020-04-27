@@ -24,6 +24,7 @@ Plug 'tpope/vim-dispatch'             " Asynchronous vim compiler
 Plug 'machakann/vim-sandwich'         " Intuitive surround commands
 Plug 'wellle/targets.vim'             " More, smarter text objects
 Plug 'mg979/vim-visual-multi'         " Multiple cursors
+Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
 
 " General Enhancements
 Plug 'junegunn/goyo.vim'              " Focus mode
@@ -331,6 +332,11 @@ autocmd BufNewFile,BufRead *.tsx set filetype=typescript.jsx
 "}}}
 
 " Mnemonics ------------------------------------------------ {{{
+nmap <Leader>as <Plug>(AerojumpSpace)
+nmap <Leader>ab <Plug>(AerojumpBolt)
+nmap <Leader>aa <Plug>(AerojumpFromCursorBolt)
+nmap <Leader>ad <Plug>(AerojumpDefault) " Boring mode
+
 " [B]uffer
 nnoremap <Leader><Tab> :b#<CR>
 nnoremap <Leader>bb :Buffers<CR>
