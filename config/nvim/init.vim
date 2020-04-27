@@ -332,7 +332,7 @@ autocmd BufNewFile,BufRead *.tsx set filetype=typescript.jsx
 "}}}
 
 " Mnemonics ------------------------------------------------ {{{
-nmap <Leader>as <Plug>(AerojumpSpace)
+" [A]ero
 nmap <Leader>ab <Plug>(AerojumpBolt)
 nmap <Leader>aa <Plug>(AerojumpFromCursorBolt)
 nmap <Leader>ad <Plug>(AerojumpDefault) " Boring mode
@@ -356,11 +356,10 @@ nmap <leader>cf <Plug>(coc-fix-current)
 nnoremap <Leader>fa :Rg<CR>
 nnoremap <Leader>fb :Buffers<CR>
 nnoremap <Leader>ff :Files<CR>
-nnoremap <Leader>fw :grep! "<cword>"<CR>
+nmap <Leader>fw <Plug>(AerojumpSpace)
 nnoremap <Leader>fc :BCommits<CR>
 " TODO: would be nice to filter marks to only show custom marks
 nnoremap <Leader>fm :Marks<CR>
-nnoremap <leader>fw :grep! "\b<C-R><C-W>\b"<CR>
 
 " [G]it
 nnoremap <Leader>gs :Gstatus<CR>
@@ -371,10 +370,14 @@ nnoremap <Leader>gc :Gcommit<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-nmap <silent> gt :CocCommand explorer<CR>
+
+" [G]rep
+" nnoremap <Leader>gw :grep! "<cword>"<CR>
+nnoremap <leader>gw :grep! "\b<C-R><C-W>\b"<CR>
 
 " [P]roject
 nnoremap <Leader>pf :GFiles<CR>
+nmap <silent> pt :CocCommand explorer<CR>
 
 " [R]eplace
 nnoremap <leader>rw :%s/\(<c-r>=expand("<cword>")<cr>\)/
