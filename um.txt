@@ -1,57 +1,177 @@
-# kill background processes when script exits @bash
-trap 'kill $(jobs -pr)' SIGINT SIGTERM EXIT
+-------------------------------------------------------------------------------
 
-# install coc-snippets @vim
-:CocInstall coc-snippets
-:CocInstall coc-ultisnips
+Kill background processes when script exits @bash
 
-See https://github.com/neoclide/coc-snippets#examples for mappings.
+    trap 'kill $(jobs -pr)' SIGINT SIGTERM EXIT
 
-If auto-complete inserts redundant text, it may be related to `snippets.autoTrigger` in coc-settings.json; try disabling it.
+-------------------------------------------------------------------------------
 
-# change coc.vim configuration @vim
-nvim ~/.config/nvim/coc-settings.json
+Install coc-snippets @vim
 
-# list coc.vim extensions @vim
-:CocList extensions
+    :CocInstall coc-snippets
+    :CocInstall coc-ultisnips
 
-# close all other buffers @vim
-:%bd|e#
+    See https://github.com/neoclide/coc-snippets#examples for mappings.
 
-# connect fireplace to nREPL @vim
-https://clojureverse.org/t/clojure-clojurescript-and-vim-a-beginners-perspective/1474/3
+    If auto-complete inserts redundant text, it may be related to `snippets.autoTrigger` in coc-settings.json; try disabling it.
 
-lein repl
-user=> (use 'figwheel-sidecar.repl-api)
-user=> (start-figwheel!)
+-------------------------------------------------------------------------------
 
-:Piggieback (figwheel-sidecar.repl-api/repl-env)
+Change coc.vim configuration @vim
 
-# debug or profile node script @node
-node --inspect index.js
-node --inspect-brk index.js
+    nvim ~/.config/nvim/coc-settings.json
 
-# find which physical screen a browser window is on @electron
-let winBounds = window.getBounds();
-let whichScreen = screen.getDisplayNearestPoint({x: winBounds.x, y: winBounds.y});
+-------------------------------------------------------------------------------
 
-# debug main process @electron
-lldb path/to/release.app
-run --remote-debugging-port=8315
+List coc.vim extensions @vim
 
-# hover state on wrong element after drag and drop @chrome
-https://bugs.chromium.org/p/chromium/issues/detail?id=410328
+    :CocList extensions
 
-# bad request (400) with no response body or 431 @node @express
-NodeJS decreased the allowed total header size from 80kb to 8kb. Before v12, exceeding this limit would cause the http module to respond with a 400 status code. With v12, it returns a more informative 431 status code.
+-------------------------------------------------------------------------------
 
-To increase this limit, use `node --max-header-size=[bytes] my-script.js` (defaults to 8192)
+Close all other buffers @vim
 
-# generate an SSH key
-https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+    :%bd|e#
 
-ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
-ssh-add -K ~/.ssh/id_rsa
+-------------------------------------------------------------------------------
 
-# debug ssh issues @git
-Add "LogLevel DEBUG3" to the desired host (or to Host *) in ~/.ssh/config
+Connect fireplace to nREPL @vim
+
+    https://clojureverse.org/t/clojure-clojurescript-and-vim-a-beginners-perspective/1474/3
+
+    lein repl
+    user=> (use 'figwheel-sidecar.repl-api)
+    user=> (start-figwheel!)
+
+    :Piggieback (figwheel-sidecar.repl-api/repl-env)
+
+-------------------------------------------------------------------------------
+
+Debug or profile node script @node
+
+    node --inspect index.js
+    node --inspect-brk index.js
+
+-------------------------------------------------------------------------------
+
+Find which physical screen a browser window is on @electron
+
+    let winBounds = window.getBounds();
+    let whichScreen = screen.getDisplayNearestPoint({x: winBounds.x, y: winBounds.y});
+
+-------------------------------------------------------------------------------
+
+Debug main process @electron
+
+    lldb path/to/release.app
+    run --remote-debugging-port=8315
+
+-------------------------------------------------------------------------------
+
+Hover state on wrong element after drag and drop @chrome
+
+    https://bugs.chromium.org/p/chromium/issues/detail?id=410328
+
+-------------------------------------------------------------------------------
+
+Bad request (400) with no response body or 431 @node @express
+
+    NodeJS decreased the allowed total header size from 80kb to 8kb. Before v12, exceeding this limit would cause the http module to respond with a 400 status code. With v12, it returns a more informative 431 status code.
+    To increase this limit, use `node --max-header-size=[bytes] my-script.js` (defaults to 8192)
+
+-------------------------------------------------------------------------------
+
+Generate an SSH key
+
+    https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
+    ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+    ssh-add -K ~/.ssh/id_rsa
+
+-------------------------------------------------------------------------------
+
+Debug SSH issues @git
+
+    Add "LogLevel DEBUG3" to the desired host (or to Host *) in ~/.ssh/config
+
+-------------------------------------------------------------------------------
+
+Convert lookup table to function with correct type checking @typescript
+
+    interface ILookup {
+        foo(): number
+        bar(a: number): string
+    }
+    const lookup: ILookup = {
+        foo: () => 1,
+        bar: (_a: number) => "baz"
+    }
+
+    function subscribe<K extends keyof ILookup>(id: K, ...args: Parameters<ILookup[K]>): ReturnType<ILookup[K]> {
+        return lookup[id as any](...args)
+    }
+    subscribe("foo") // inferred as number
+    subscribe("bar", 1) // inferred as string
+
+-------------------------------------------------------------------------------
+
+Human readable file size
+
+    du -sh <file>
+
+-------------------------------------------------------------------------------
+
+Non-greedy regex in vim
+
+    Instead of .* use .{-} (or escaped .\{-} if not in \v mode)
+
+-------------------------------------------------------------------------------
+
+Install fira mono font
+
+    https://gist.github.com/muammar/a5ffb635eb7f532346a8e777b847f8a7
+
+-------------------------------------------------------------------------------
+
+nginx configuration location (OSX)
+
+    $EDITOR /usr/local/etc/nginx/nginx.conf
+
+-------------------------------------------------------------------------------
+
+Restart nginx w/ homebrew
+
+    brew services restart nginx
+
+-------------------------------------------------------------------------------
+
+Minimize window on Mac
+
+    cmd + m
+
+-------------------------------------------------------------------------------
+
+Profile/debug vim performance @vim
+
+    :profile start profile.log
+    :profile func *
+    :profile file *
+
+    :profile stop
+    :e profile.log
+
+-------------------------------------------------------------------------------
+
+Generate a GPG Key
+
+    gpg --full-generate-key
+    gpg --list-secret-keys --keyid-format LONG
+    gpg --armor --export [KEY]
+
+-------------------------------------------------------------------------------
+
+List GPG Keys
+
+    gpg --list-secret-keys --keyid-format LONG
+
+-------------------------------------------------------------------------------
