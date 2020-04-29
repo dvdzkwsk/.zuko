@@ -346,11 +346,11 @@ nnoremap <Leader>bf :ALEFix<CR>
 " [C]oc
 nnoremap <Leader>cc :CocConfig<CR>
 nnoremap <Leader>cs :CocCommand snippets.editSnippets<CR>
-nmap <leader>cr <Plug>(coc-rename)
-xmap <leader>ca <Plug>(coc-codeaction-selected)
-nmap <leader>ca <Plug>(coc-codeaction-selected)
-nmap <leader>ca <Plug>(coc-codeaction)
-nmap <leader>cf <Plug>(coc-fix-current)
+nmap <Leader>cr <Plug>(coc-rename)
+xmap <Leader>ca <Plug>(coc-codeaction-selected)
+nmap <Leader>ca <Plug>(coc-codeaction-selected)
+nmap <Leader>ca <Plug>(coc-codeaction)
+nmap <Leader>cf <Plug>(coc-fix-current)
 
 " [F]ind
 nnoremap <Leader>fa :Rg<CR>
@@ -370,6 +370,7 @@ nnoremap <Leader>gc :Gcommit<CR>
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gt :CocCommand explorer<CR>
 
 " [G]rep
 " nnoremap <Leader>gw :grep! "<cword>"<CR>
@@ -377,10 +378,9 @@ nnoremap <leader>gw :grep! "\b<C-R><C-W>\b"<CR>
 
 " [P]roject
 nnoremap <Leader>pf :GFiles<CR>
-nmap <silent> pt :CocCommand explorer<CR>
 
 " [R]eplace
-nnoremap <leader>rw :%s/\(<c-r>=expand("<cword>")<cr>\)/
+nnoremap <Leader>rw :%s/\(<c-r>=expand("<cword>")<cr>\)/
 
 " [W]indow
 nnoremap <Leader>w= <C-W>=
