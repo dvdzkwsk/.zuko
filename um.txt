@@ -175,3 +175,9 @@ List GPG Keys
     gpg --list-secret-keys --keyid-format LONG
 
 -------------------------------------------------------------------------------
+
+Debug SSH problems with git
+
+GIT_SSH_COMMAND="ssh -vvv" git <command>
+
+-------------------------------------------------------------------------------
