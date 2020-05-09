@@ -181,3 +181,9 @@ Debug SSH problems with git
 GIT_SSH_COMMAND="ssh -vvv" git <command>
 
 -------------------------------------------------------------------------------
+
+Filename too long when running git clone on Windows
+
+git config --system core.longpaths true
+
+-------------------------------------------------------------------------------
