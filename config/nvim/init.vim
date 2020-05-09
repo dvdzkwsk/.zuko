@@ -10,8 +10,8 @@ call plug#begin('~/.local/share/nvim/plugged')
 
 " Essentials
 Plug 'editorconfig/editorconfig-vim'  " Use .editorconfig settings when found
-Plug '/usr/local/opt/fzf'             " Import native FZF binary (brew install fzf)
-Plug 'junegunn/fzf.vim'               " FZF integration
+Plug 'junegunn/fzf'                   " FZF binary
+Plug 'junegunn/fzf.vim'               " FZF <-> Vim integration
 Plug 'jesseleite/vim-agriculture'     " Better :Rg and :Ag for fzf.vim
 Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between tmux and vim
 
