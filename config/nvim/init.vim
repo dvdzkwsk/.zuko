@@ -146,11 +146,15 @@ let g:coc_snippet_next = '<tab>'
 let g:vim_markdown_frontmatter = 1
 
 " ale
+let g:ale_lint_on_enter=0
+let g:ale_lint_on_save=0
 let g:ale_fix_on_save=1
 let g:ale_linters = {
+\  'javascript': [],
 \  'typescript': [],
 \  'typescript.jsx': [],
 \}
+
 let g:ale_fixers={
 \  'go': ['goimports'],
 \  'css': ['prettier'],
