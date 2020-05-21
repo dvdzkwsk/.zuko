@@ -150,6 +150,8 @@ let g:ale_lint_on_enter=0
 let g:ale_lint_on_save=0
 let g:ale_fix_on_save=1
 let g:ale_linters = {
+\  'vim': [],
+\  'css': [],
 \  'javascript': [],
 \  'typescript': [],
 \  'typescript.jsx': [],
@@ -163,8 +165,8 @@ let g:ale_fixers={
 \  'json': ['prettier'],
 \  'javascript': ['prettier'],
 \  'javascript.jsx': ['prettier'],
-\  'typescript': ['tslint', 'prettier'],
-\  'typescript.jsx': ['tslint', 'prettier'],
+\  'typescript': ['prettier'],
+\  'typescript.jsx': ['prettier'],
 \}
 
 " vim-visual-multi
