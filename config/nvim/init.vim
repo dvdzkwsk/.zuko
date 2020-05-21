@@ -148,7 +148,7 @@ let g:vim_markdown_frontmatter = 1
 " ale
 let g:ale_lint_on_enter=0
 let g:ale_lint_on_save=0
-let g:ale_fix_on_save=1
+let g:ale_fix_on_save=0
 let g:ale_linters = {
 \  'vim': [],
 \  'css': [],
@@ -342,12 +342,12 @@ autocmd BufNewFile,BufRead *.tsx set filetype=typescript.jsx
 nmap <Leader>ab <Plug>(AerojumpBolt)
 nmap <Leader>aa <Plug>(AerojumpFromCursorBolt)
 nmap <Leader>ad <Plug>(AerojumpDefault) " Boring mode
+nnoremap <Leader>af :ALEFix<CR>
 
 " [B]uffer
 nnoremap <Leader><Tab> :b#<CR>
 nnoremap <Leader>bb :Buffers<CR>
 nnoremap <Leader>bo :%bd\|e#<CR>
-nnoremap <Leader>bf :ALEFix<CR>
 
 " [C]oc
 nnoremap <Leader>cc :CocConfig<CR>
