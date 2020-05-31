@@ -11,7 +11,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 " Essentials
 Plug 'editorconfig/editorconfig-vim'  " Use .editorconfig settings when found
 Plug 'junegunn/fzf'                   " FZF binary
-Plug 'junegunn/fzf.vim'               " FZF <-> Vim integration
+Plug 'junegunn/fzf.vim'               " FZF integration
 Plug 'jesseleite/vim-agriculture'     " Better :Rg and :Ag for fzf.vim
 Plug 'christoomey/vim-tmux-navigator' " Seamlessly navigate between tmux and vim
 
@@ -152,6 +152,7 @@ let g:ale_fix_on_save=0
 let g:ale_linters = {
 \  'vim': [],
 \  'css': [],
+\  'html': [],
 \  'javascript': [],
 \  'typescript': [],
 \  'typescript.jsx': [],
