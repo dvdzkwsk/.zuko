@@ -13,7 +13,7 @@
           {"name": "file", "expand": true}
       ],
       "keyMappings": {
-        "<cr>": ["expandable?", "expandOrCollapse", "open"]
+        "<cr>": ["expandable?", ["expanded?", "collapse", "expand"], "open"]
       },
       "openAction.for.directory": "expandOrCollapse",
       "icon.enableNerdfont": true,
