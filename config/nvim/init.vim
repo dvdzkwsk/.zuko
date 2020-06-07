@@ -24,7 +24,7 @@ Plug 'tpope/vim-dispatch'             " Asynchronous vim compiler
 Plug 'machakann/vim-sandwich'         " Intuitive surround commands
 Plug 'wellle/targets.vim'             " More, smarter text objects
 Plug 'mg979/vim-visual-multi'         " Multiple cursors
-Plug 'ripxorip/aerojump.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'ripxorip/aerojump.nvim'
 
 " General Enhancements
 Plug 'junegunn/goyo.vim'              " Focus mode
