@@ -1,15 +1,31 @@
 {
-  "editor.formatOnSave": true,
-  "editor.minimap.enabled": false,
-  "editor.tabSize": 2,
-  "editor.renderIndentGuides": false,
   "explorer.confirmDelete": false,
-  "terminal.external.osxExec": "iterm.app",
-  "workbench.colorTheme": "Nord",
-  "gitlens.codeLens.enabled": false,
-  "gitlens.hovers.enabled": false,
-  "gitlens.blame.heatmap.enabled": false,
-  "gitlens.currentLine.enabled": false,
-  "workbench.editor.labelFormat": "short",
-  "javascript.updateImportsOnFileMove.enabled": "always"
+  "workbench.startupEditor": "newUntitledFile",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.minimap.enabled": false,
+  "files.associations": {
+    "*.css": "postcss"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "window.zoomLevel": 0,
+  "window.restoreWindows": "none",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\cmd.exe"
 }
+
