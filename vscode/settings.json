@@ -1,14 +1,28 @@
 {
+  "workbench.colorTheme": "Noctis Obscuro",
+  "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\cmd.exe",
+  "window.zoomLevel": 0,
+  "window.restoreWindows": "none",
   "explorer.confirmDelete": false,
-  "workbench.startupEditor": "newUntitledFile",
+  "editor.minimap.enabled": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "editor.minimap.enabled": false,
+  "git.enableSmartCommit": true,
+  "gitlens.currentLine.enabled": false,
+  "gitlens.hovers.currentLine.over": "line",
+  "gitlens.codeLens.enabled": false,
   "files.associations": {
     "*.css": "postcss"
   },
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[json]": {
@@ -17,15 +31,7 @@
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "window.zoomLevel": 0,
-  "window.restoreWindows": "none",
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "typescript.updateImportsOnFileMove.enabled": "always",
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\cmd.exe"
 }
-
