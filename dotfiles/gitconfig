@@ -1,0 +1,22 @@
+[user]
+  name = David Zukowski
+  email = david@zuko.me
+  username = davezuko
+  signingkey = C49E7D3BADE89C4D
+[core]
+  excludesfile = ~/.gitignore
+  pager = diff-so-fancy | less --tabs=4 -RFX
+[color]
+  ui = auto
+[hub]
+  protocol = ssh
+[push]
+  default = current
+[url "ssh://git@github.com/"]
+  insteadOf = https://github.com/
+[commit]
+  gpgsign = true
+[init]
+	defaultBranch = master
+[pull]
+	ff = only
