@@ -12,6 +12,9 @@ end
 return require('packer').startup(function()
   use {'wbthomason/packer.nvim'}
   use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate'}
+
+  -- developer experience
+  -- use {'glepnir/dashboard-nvim'}
   use {'tpope/vim-dispatch', opt=true, cmd={'Dispatch', 'Make', 'Focus', 'Start'}}
   use {'nvim-telescope/telescope.nvim', requires={'nvim-lua/plenary.nvim'}}
 
@@ -20,8 +23,10 @@ return require('packer').startup(function()
   use {'lewis6991/gitsigns.nvim', requires={'nvim-lua/plenary.nvim'}}
 
   -- themes
+  use {'glepnir/galaxyline.nvim', branch='main'}
   use {'kyazdani42/nvim-web-devicons', opt=true}
   use {'EdenEast/nightfox.nvim'}
+  require('statusline')
 
   -- configuration
   require('gitsigns').setup()
