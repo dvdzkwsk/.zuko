@@ -26,9 +26,6 @@ Plug 'wellle/targets.vim'             " More, smarter text objects
 Plug 'mg979/vim-visual-multi'         " Multiple cursors
 Plug 'ripxorip/aerojump.nvim'
 
-" General Enhancements
-Plug 'junegunn/goyo.vim'              " Focus mode
-
 " Tools
 Plug 'tpope/vim-fugitive'             " Git integration
 Plug 'mhinz/vim-signify'              " VCS (e.g. git) indicators in sidebar
@@ -37,9 +34,6 @@ Plug 'neoclide/coc.nvim', {'branch':'release'}
 
 " Language Support
 Plug 'sheerun/vim-polyglot'           " Suite of language packages
-Plug 'tpope/vim-fireplace'            " Clojure integration
-Plug 'tpope/vim-classpath'            " ^^
-Plug 'bhurlow/vim-parinfer'           " Inferred parentheses for lisps
 Plug 'fatih/vim-go'
 
 " Theming
