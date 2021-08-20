@@ -17,6 +17,7 @@ return require('packer').startup(function()
   -- use {'glepnir/dashboard-nvim'}
   use {'tpope/vim-dispatch', opt=true, cmd={'Dispatch', 'Make', 'Focus', 'Start'}}
   use {'nvim-telescope/telescope.nvim', requires={'nvim-lua/plenary.nvim'}}
+  use {'neovim/nvim-lspconfig'}
 
   -- version control
   use {'sindrets/diffview.nvim'}
@@ -26,8 +27,15 @@ return require('packer').startup(function()
   use {'glepnir/galaxyline.nvim', branch='main'}
   use {'kyazdani42/nvim-web-devicons', opt=true}
   use {'EdenEast/nightfox.nvim'}
+  use {'maaslalani/nordbuddy'}
   require('statusline')
 
   -- configuration
   require('gitsigns').setup()
+  require('nordbuddy').colorscheme({
+    underline_option = 'none',
+    italic = false,
+    italic_comments = false,
+    minimal_mode = false
+  })
 end)

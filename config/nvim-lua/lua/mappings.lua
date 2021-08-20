@@ -48,6 +48,9 @@ map('n', '<Leader>fg', '<cmd>Telescope live_grep<cr>', {noremap=true})
 map('n', '<Leader>fb', '<cmd>Telescope buffers<cr>', {noremap=true})
 map('n', '<Leader>fh', '<cmd>Telescope help_tags<cr>', {noremap=true})
 
+-- [g]if
+map('n', '<Leader>gd', '<cmd>DiffviewOpen<cr>', {noremap=true})
+
 -- [r]eplace
 map('n', '<Leader>rw', ':%s/<c-r>=expand("<cword>")<cr>/', {noremap=true})
 

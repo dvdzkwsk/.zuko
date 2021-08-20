@@ -1,6 +1,5 @@
 vim.cmd [[packadd nvim-web-devicons]]
 local gl = require 'galaxyline'
-local utils = require 'utils'
 local condition = require 'galaxyline.condition'
 local diagnostic = require 'galaxyline.provider_diagnostic'
 
@@ -22,19 +21,29 @@ local colors = {
 }
 
 -- Local helper functions
+local function is_buffer_empty()
+    -- Check whether the current buffer is empty
+    return vim.fn.empty(vim.fn.expand '%:t') == 1
+end
+
+local function has_width_gt(cols)
+    -- Check if the windows width is greater than a given number of columns
+    return vim.fn.winwidth(0) / 2 > cols
+end
+
 local buffer_not_empty = function()
-    return not utils.is_buffer_empty()
+    return not is_buffer_empty()
 end
 
 local checkwidth = function()
-    return utils.has_width_gt(35) and buffer_not_empty()
+    return has_width_gt(35) and buffer_not_empty()
 end
 
 local is_file = function()
     return vim.bo.buftype ~= 'nofile'
 end
 
-local function has_value(tab, val)
+local has_value = function(tab, val)
     for _, value in ipairs(tab) do
         if value[1] == val then
             return true
@@ -185,7 +194,7 @@ gls.left[1] = {
             local alias = aliases[vim.fn.mode():byte()]
             local mode
             if alias ~= nil then
-                if utils.has_width_gt(35) then
+                if has_width_gt(35) then
                     mode = alias
                 else
                     mode = alias:sub(1, 1)
@@ -236,7 +245,7 @@ gls.left[4] = {
         provider = get_current_file_name,
         condition = buffer_not_empty,
         highlight = { colors.fg, colors.section_bg },
-        separator = '',
+        separator = ' ',
         separator_highlight = { colors.section_bg, colors.bg },
     },
 }
@@ -373,7 +382,7 @@ gls.right[6] = {
     GitRoot = {
         provider = { GetGitRoot },
         condition = function()
-            return utils.has_width_gt(50) and condition.check_git_workspace
+            return has_width_gt(50) and condition.check_git_workspace
         end,
         -- icon = '  ',
         highlight = { colors.fg, colors.bg },
@@ -386,7 +395,7 @@ gls.right[6] = {
 gls.right[7] = {
     PerCent = {
         provider = 'LinePercent',
-        separator = ' ',
+        separator = ' ',
         separator_highlight = { colors.blue, colors.bg },
         highlight = { colors.darkgrey, colors.blue },
     },
@@ -415,7 +424,7 @@ gls.short_line_left[2] = {
         provider = get_current_file_name,
         condition = buffer_not_empty,
         highlight = { colors.fg, colors.section_bg },
-        separator = '',
+        separator = ' ',
         separator_highlight = { colors.section_bg, colors.bg },
     },
 }
