@@ -46,3 +46,8 @@ Issues with True Color? See https://bruinsslot.jp/post/how-to-enable-true-color-
 
 Make sure `node` is not installed via brew, and delete `/usr/local/bin/npm` if it exists. This often gets re-created after a brew update, it seems.
 
+## Neovim
+
+```sh
+npm install -g typescript-language-server diagnostic-languageserver eslint_d
+```

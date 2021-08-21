@@ -1,6 +1,6 @@
 local map = vim.api.nvim_set_keymap
 
--- map the Leader key
+-- space as leader key
 map('n', '<Space>', '', {})
 vim.g.mapleader = ' '
 
@@ -11,7 +11,7 @@ map('n', 'Up', 'g<Up>', {noremap=true})
 map('n', 'Down', 'g<Down>', {noremap=true})
 map('n', 'Down', 'g<Down>', {noremap=true})
 
--- save by double tapping <Esc>
+-- quickly save by double tapping <Esc>
 map('', '<Esc><Esc>', ':w<CR>', {noremap=true})
 
 -- clear search highlights with <Esc>
@@ -38,6 +38,19 @@ map('n', '*', '*<c-o>', {noremap=true})
 map('v', '>', '>gv', {noremap=true})
 map('v', '<', '<gv', {noremap=true})
 
+-- switch to previous buffer
+map('n', '<Leader><Tab>', ':b#<CR>', {noremap=true})
+
+-- quickfix list
+map('n', '<Leader>q', '<cmd>Telescope lsp_document_diagnostics<cr>', {noremap=true})
+
+-- open code action list
+map('n', '<Leader>ca', '<cmd>Telescope lsp_code_actions<cr>', {noremap=true})
+map('v', '<Leader>ca', '<cmd>Telescope lsp_range_code_actions<cr>', {noremap=true})
+
+-- search command history (same keybinding as in shell)
+map('n', '<C-R>', '<cmd>lua require("telescope.builtin").command_history()<cr>', {noremap=true})
+
 -- easily switch between windows with ctrl + direction
 map('n', '<C-h>', '<C-W>h', {noremap=true})
 map('n', '<C-j>', '<C-W>j', {noremap=true})
@@ -48,27 +61,37 @@ map('n', '<C-Up>', '<C-W>k', {noremap=true})
 map('n', '<C-Down>', '<C-W>j', {noremap=true})
 map('n', '<C-Right>', '<C-W>l', {noremap=true})
 
+-- [a]le
+map('n', '<Leader>af', '<cmd>ALEFix<cr>', {noremap=true})
+
 -- [b]uffer
--- switch to previous buffer
-map('n', '<Leader><Tab>', ':b#<CR>', {noremap=true})
 -- close all but the current buffer
-map('n', '<Leader>bo', ':%bd|e#<CR>', {noremap=true})
+map('n', '<Leader>bo', ':%bd|e#<cr>', {noremap=true})
 map('n', '<Leader>bq', '<cmd>Telescope lsp_document_diagnostics<cr>', {noremap=true})
 map('n', '<Leader>bs', '<cmd>Telescope lsp_document_symbols<cr>', {noremap=true})
 
 -- [f]ind
-map('n', '<Leader>ff', '<cmd>Telescope find_files<cr>', {noremap=true})
-map('n', '<Leader>fg', '<cmd>Telescope live_grep<cr>', {noremap=true})
-map('n', '<Leader>fb', '<cmd>Telescope buffers<cr>', {noremap=true})
-map('n', '<Leader>fd', '<cmd>Telescope lsp_definitions<cr>', {noremap=true})
-map('n', '<Leader>fi', '<cmd>Telescope lsp_implementations<cr>', {noremap=true})
-map('n', '<Leader>fr', '<cmd>Telescope lsp_references<cr>', {noremap=true})
-map('n', '<Leader>fq', '<cmd>Telescope lsp_document_diagnostics<cr>', {noremap=true})
-map('n', '<Leader>fs', '<cmd>Telescope lsp_document_symbols<cr>', {noremap=true})
-map('n', '<Leader>fa', '<cmd>Telescope lsp_actions<cr>', {noremap=true})
+map('n', '<Leader>fa', '<cmd>lua require("telescope.builtin").lsp_code_actions()<cr>', {noremap=true})
+map('n', '<Leader>fb', '<cmd>lua require("telescope.builtin").buffers()<cr>', {noremap=true})   
+map('n', '<Leader>fd', '<cmd>lua require("telescope.builtin").lsp_definitions()<cr>', {noremap=true})
+map('n', '<Leader>ff', '<cmd>lua require("telescope.builtin").find_files()<cr>', {noremap=true})
+map('n', '<Leader>fg', '<cmd>lua require("telescope.builtin").live_grep()<cr>', {noremap=true})
+map('n', '<Leader>fi', '<cmd>lua require("telescope.builtin").lsp_implementations()<cr>', {noremap=true})
+map('n', '<Leader>fm', '<cmd>lua require("telescope.builtin").marks()<cr>', {noremap=true})
+map('n', '<Leader>fq', '<cmd>lua require("telescope.builtin").lsp_document_diagnostics()<cr>', {noremap=true})
+map('n', '<Leader>fr', '<cmd>lua require("telescope.builtin").lsp_references()<cr>', {noremap=true})
+map('n', '<Leader>fs', '<cmd>lua require("telescope.builtin").lsp_document_symbols()<cr>', {noremap=true})
+map('n', '<Leader>ft', '<cmd>lua require("telescope.builtin").file_browser()<cr>', {noremap=true})
+map('n', '<Leader>fv', '<cmd>lua require("telescope.builtin").find_files()<cr>', {noremap=true})
 
--- [g]if
+-- [g]it
+map('n', '<Leader>gb', '<cmd>lua require("telescope.builtin").git_bcommits()<cr>', {noremap=true})
+map('n', '<Leader>gc', '<cmd>lua require("telescope.builtin").git_commits()<cr>', {noremap=true})
 map('n', '<Leader>gd', '<cmd>DiffviewOpen<cr>', {noremap=true})
+map('n', '<Leader>gs', '<cmd>lua require("telescope.builtin").git_status()<cr>', {noremap=true})
+
+-- [h]op
+map('n', '<Leader><Leader>', '<cmd>lua require("hop").hint_words()<cr>', {noremap=true})
 
 -- [r]eplace
 map('n', '<Leader>rw', ':%s/<c-r>=expand("<cword>")<cr>/', {noremap=true})

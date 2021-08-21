@@ -1,359 +1,174 @@
-vim.cmd [[packadd nvim-web-devicons]]
-local gl = require 'galaxyline'
-local condition = require 'galaxyline.condition'
-local diagnostic = require 'galaxyline.provider_diagnostic'
+-- https://github.com/bartoszmaka/dotfiles/blob/master/vim/lua/plugins/galaxyline.lua
 
-local gls = gl.section
-gl.short_line_list = { 'packer', 'NvimTree', 'Outline', 'LspTrouble' }
+local vim = vim
+local galaxyline = require('galaxyline')
 
-local colors = {
-    bg = '#282c34',
-    fg = '#abb2bf',
-    section_bg = '#38393f',
-    blue = '#61afef',
-    green = '#98c379',
-    purple = '#c678dd',
-    orange = '#e5c07b',
-    red = '#e06c75',
-    yellow = '#e5c07b',
-    darkgrey = '#2c323d',
-    middlegrey = '#8791A5',
+local section = galaxyline.section
+
+local onedark = {
+        black = '#0c0e15',
+          bg0 = '#1a212e',
+          bg1 = '#21283b',
+          bg2 = '#283347',
+          bg3 = '#2a324a',
+         bg_d = '#141b24',
+      bg_blue = '#54b0fd',
+    bg_yellow = '#f2cc81',
+           fg = '#93a4c3',
+       purple = '#c75ae8',
+        green = '#8bcd5b',
+       orange = '#dd9046',
+         blue = '#41a7fc',
+       yellow = '#efbd5d',
+         cyan = '#34bfd0',
+          red = '#f65866',
+         grey = '#455574',
+    dark_cyan = '#1b6a73',
+     dark_red = '#992525',
+  dark_yellow = '#8f610d',
+  dark_purple = '#862aa1',
+    diff_add  = '#27341c',
+  diff_delete = '#331c1e',
+  diff_change = '#102b40',
+    diff_text = '#1c4a6e'
 }
 
--- Local helper functions
-local function is_buffer_empty()
-    -- Check whether the current buffer is empty
-    return vim.fn.empty(vim.fn.expand '%:t') == 1
-end
-
-local function has_width_gt(cols)
-    -- Check if the windows width is greater than a given number of columns
-    return vim.fn.winwidth(0) / 2 > cols
-end
+local colors = {
+  bg = onedark.bg0,
+  bg_inactive = onedark.bg3,
+  fg = onedark.fg,
+  fg_focus = '#f8f8f2',
+  section_bg = onedark.bg0,
+  yellow = onedark.bg_yellow,
+  cyan = onedark.cyan,
+  green = onedark.green,
+  orange = onedark.orange,
+  magenta = onedark.purple,
+  blue = onedark.blue,
+  red = onedark.red,
+  black = onedark.black,
+}
 
 local buffer_not_empty = function()
-    return not is_buffer_empty()
-end
-
-local checkwidth = function()
-    return has_width_gt(35) and buffer_not_empty()
-end
-
-local is_file = function()
-    return vim.bo.buftype ~= 'nofile'
-end
-
-local has_value = function(tab, val)
-    for _, value in ipairs(tab) do
-        if value[1] == val then
-            return true
-        end
-    end
-    return false
+  return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
 end
 
 local mode_color = function()
-    local mode_colors = {
-        [110] = colors.green,
-        [105] = colors.blue,
-        [99] = colors.green,
-        [116] = colors.blue,
-        [118] = colors.purple,
-        [22] = colors.purple,
-        [86] = colors.purple,
-        [82] = colors.red,
-        [115] = colors.red,
-        [83] = colors.red,
-    }
+  local mode_colors = {
+    n = colors.green,
+    i = colors.blue,
+    c = colors.orange,
+    V = colors.magenta,
+    [''] = colors.magenta,
+    v = colors.magenta,
+    R = colors.red,
+  }
 
-    local color = mode_colors[vim.fn.mode():byte()]
-    if color ~= nil then
-        return color
-    else
-        return colors.purple
-    end
+  local color = mode_colors[vim.fn.mode()]
+
+  if color == nil then
+    color = colors.red
+  end
+
+  return color
 end
 
-local function file_readonly()
-    if vim.bo.filetype == 'help' then
-        return ''
-    end
-    if vim.bo.readonly == true then
-        return '  '
-    end
-    return ''
-end
-
-local function get_current_file_name()
-    local file = vim.fn.expand '%:t'
-    if vim.fn.empty(file) == 1 then
-        return ''
-    end
-    if string.len(file_readonly()) ~= 0 then
-        return file .. file_readonly()
-    end
-    if vim.bo.modifiable then
-        if vim.bo.modified then
-            return file .. '  '
-        end
-    end
-    return file .. ' '
-end
-
-local function split(str, sep)
-    local res = {}
-    local n = 1
-    for w in str:gmatch('([^' .. sep .. ']*)') do
-        res[n] = res[n] or w -- only set once (so the blank after a string is ignored)
-        if w == '' then
-            n = n + 1
-        end -- step forwards on a blank but not a string
-    end
-    return res
-end
-
--- local function trailing_whitespace()
---     local trail = vim.fn.search('\\s$', 'nw')
---     if trail ~= 0 then
---         return '  '
---     else
---         return nil
---     end
--- end
-
--- local function tab_indent()
---     local tab = vim.fn.search('^\\t', 'nw')
---     if tab ~= 0 then
---         return ' → '
---     else
---         return nil
---     end
--- end
-
--- local function buffers_count()
---     local buffers = {}
---     for _, val in ipairs(vim.fn.range(1, vim.fn.bufnr('$'))) do
---         if vim.fn.bufexists(val) == 1 and vim.fn.buflisted(val) == 1 then
---             table.insert(buffers, val)
---         end
---     end
---     return #buffers
--- end
-
-local function get_basename(file)
-    return file:match '^.+/(.+)$'
-end
-
-local GetGitRoot = function()
-    local git_dir = require('galaxyline.provider_vcs').get_git_dir()
-    if not git_dir then
-        return ''
-    end
-
-    local git_root = git_dir:gsub('/.git/?$', '')
-    return get_basename(git_root)
-end
-
-local LspStatus = function()
-    if #vim.lsp.get_active_clients() > 0 then
-        return require('lsp-status').status()
-    end
-    return ''
-end
-
-local LspCheckDiagnostics = function()
-    if
-        #vim.lsp.get_active_clients() > 0
-        and diagnostic.get_diagnostic_error() == nil
-        and diagnostic.get_diagnostic_warn() == nil
-        and diagnostic.get_diagnostic_info() == nil
-        and require('lsp-status').status() == ' '
-    then
-        return ' '
-    end
-    return ''
-end
-
--- Left side
-gls.left[1] = {
-    ViMode = {
-        provider = function()
-            local aliases = {
-                [110] = 'NORMAL',
-                [105] = 'INSERT',
-                [99] = 'COMMAND',
-                [116] = 'TERMINAL',
-                [118] = 'VISUAL',
-                [22] = 'V-BLOCK',
-                [86] = 'V-LINE',
-                [82] = 'REPLACE',
-                [115] = 'SELECT',
-                [83] = 'S-LINE',
-            }
-            vim.api.nvim_command('hi GalaxyViMode guibg=' .. mode_color())
-            local alias = aliases[vim.fn.mode():byte()]
-            local mode
-            if alias ~= nil then
-                if has_width_gt(35) then
-                    mode = alias
-                else
-                    mode = alias:sub(1, 1)
-                end
-            else
-                mode = vim.fn.mode():byte()
-            end
-            return '  ' .. mode .. ' '
-        end,
-        highlight = { colors.bg, colors.bg, 'bold' },
-    },
-}
-gls.left[2] = {
-    FileIcon = {
-        provider = { function()
-            return '  '
-        end, 'FileIcon' },
-        condition = buffer_not_empty,
-        highlight = {
-            require('galaxyline.provider_fileinfo').get_file_icon,
-            colors.section_bg,
-        },
-    },
-}
-gls.left[3] = {
-    FilePath = {
-        provider = function()
-            local fp = vim.fn.fnamemodify(vim.fn.expand '%', ':~:.:h')
-            local tbl = split(fp, '/')
-            local len = #tbl
-
-            if len > 2 and not len == 3 and not tbl[0] == '~' then
-                return '…/' .. table.concat(tbl, '/', len - 1) .. '/' -- shorten filepath to last 2 folders
-                -- alternative: only 1 containing folder using vim builtin function
-                -- return '…/' .. vim.fn.fnamemodify(vim.fn.expand '%', ':p:h:t') .. '/'
-            else
-                return fp .. '/'
-            end
-        end,
-        condition = function()
-            return is_file() and checkwidth()
-        end,
-        highlight = { colors.middlegrey, colors.section_bg },
-    },
-}
-gls.left[4] = {
-    FileName = {
-        provider = get_current_file_name,
-        condition = buffer_not_empty,
-        highlight = { colors.fg, colors.section_bg },
-        separator = ' ',
-        separator_highlight = { colors.section_bg, colors.bg },
-    },
-}
-gls.right[1] = {
-    DiffAdd = {
-        provider = 'DiffAdd',
-        condition = checkwidth,
-        icon = '+',
-        highlight = { colors.green, colors.bg },
-        separator = ' ',
-        separator_highlight = { colors.section_bg, colors.bg },
-    },
-}
-gls.right[2] = {
-    DiffModified = {
-        provider = 'DiffModified',
-        condition = checkwidth,
-        icon = '~',
-        highlight = { colors.orange, colors.bg },
-    },
-}
-gls.right[3] = {
-    DiffRemove = {
-        provider = 'DiffRemove',
-        condition = checkwidth,
-        icon = '-',
-        highlight = { colors.red, colors.bg },
-    },
-}
-gls.right[4] = {
-    Space = {
-        provider = function()
-            return ' '
-        end,
-        highlight = { colors.section_bg, colors.bg },
-    },
-}
-gls.right[5] = {
-    GitBranch = {
-        provider = {
-            function()
-                return '  '
-            end,
-            'GitBranch',
-        },
-        condition = condition.check_git_workspace,
-        highlight = { colors.middlegrey, colors.bg },
-    },
-}
-gls.right[6] = {
-    GitRoot = {
-        provider = { GetGitRoot },
-        condition = function()
-            return has_width_gt(50) and condition.check_git_workspace
-        end,
-        -- icon = '  ',
-        highlight = { colors.fg, colors.bg },
-        separator = ' ',
-        separator_highlight = { colors.middlegrey, colors.bg },
-        -- separator = ' ',
-        -- separator_highlight = {colors.section_bg, colors.bg}
-    },
-}
-gls.right[7] = {
-    PerCent = {
-        provider = 'LinePercent',
-        separator = ' ',
-        separator_highlight = { colors.blue, colors.bg },
-        highlight = { colors.darkgrey, colors.blue },
-    },
+section.left[1] = {
+  ViMode = {
+    provider = function()
+      local alias = {
+        n = 'NORMAL',
+        i = 'INSERT',
+        c = 'COMMAND',
+        V = 'VISUAL',
+        [''] = 'VISUAL',
+        v = 'VISUAL',
+        R = 'REPLACE',
+      }
+      vim.api.nvim_command('hi GalaxyViMode gui=bold guibg='..mode_color())
+      local alias_mode = alias[vim.fn.mode()]
+      if alias_mode == nil then
+        alias_mode = vim.fn.mode()
+      end
+      return '  '..alias_mode..' '
+    end,
+    separator = ' ',
+    highlight = { colors.bg, colors.section_bg },
+    separator_highlight = {colors.bg, colors.section_bg },
+  },
 }
 
--- Short status line
-gls.short_line_left[1] = {
-    FileIcon = {
-        provider = { function()
-            return '  '
-        end, 'FileIcon' },
-        condition = function()
-            return buffer_not_empty and has_value(
-                gl.short_line_list,
-                vim.bo.filetype
-            )
-        end,
-        highlight = {
-            require('galaxyline.provider_fileinfo').get_file_icon,
-            colors.section_bg,
-        },
-    },
-}
-gls.short_line_left[2] = {
-    FileName = {
-        provider = get_current_file_name,
-        condition = buffer_not_empty,
-        highlight = { colors.fg, colors.section_bg },
-        separator = ' ',
-        separator_highlight = { colors.section_bg, colors.bg },
-    },
+section.left[2] = {
+  FileIcon = {
+    provider = 'FileIcon',
+    condition = buffer_not_empty,
+    highlight = { require('galaxyline.provider_fileinfo').get_file_icon_color, colors.section_bg },
+  },
 }
 
-gls.short_line_right[1] = {
-    BufferIcon = {
-        provider = 'BufferIcon',
-        highlight = { colors.yellow, colors.section_bg },
-        separator = '',
-        separator_highlight = { colors.section_bg, colors.bg },
-    },
+section.left[3] = {
+  FileName = {
+    provider = function ()
+      return vim.fn.expand('%f')
+    end,
+    condition = buffer_not_empty,
+    highlight = { colors.fg, colors.section_bg },
+    separator_highlight = {colors.fg, colors.section_bg },
+  }
 }
 
--- Force manual load so that nvim boots with a status line
-gl.load_galaxyline()
+section.right[1]= {
+  LineColumn = {
+    provider = function ()
+      vim.api.nvim_command('hi GalaxyLineColumn guibg='..mode_color())
+      local max_lines = vim.fn.line('$')
+      local line = vim.fn.line('.')
+      local column = vim.fn.col('.')
+      return string.format(" %3d/%d:%d ", line, max_lines, column)
+    end,
+    separator = ' ',
+    highlight = { colors.black, mode_color() },
+    separator_highlight = { colors.black, colors.section_bg },
+  }
+}
+
+section.short_line_left[1] = {
+  SpacerInactive = {
+    provider = function()
+      return '  '
+    end,
+    highlight = { colors.fg, colors.bg_inactive },
+    separator_highlight = {colors.fg, colors.bg_inactive },
+  }
+}
+
+section.short_line_left[2] = {
+  FileIconInactive = {
+    provider = 'FileIcon',
+    condition = buffer_not_empty,
+    separator = ' ',
+    highlight = { colors.fg, colors.bg_inactive },
+    separator_highlight = { require('galaxyline.provider_fileinfo').get_file_icon_color,  colors.bg_inactive },
+  }
+}
+section.short_line_left[3] = {
+  FileNameInactive = {
+    provider = function ()
+      return vim.fn.expand('%f')
+    end,
+    separator = ' ',
+    highlight = { colors.fg, colors.bg_inactive },
+    separator_highlight = { colors.fg, colors.bg_inactive },
+  }
+}
+
+section.short_line_right[1] = {
+  LineColumnInactive = {
+    provider = 'LineColumn',
+    separator = ' ',
+    highlight = { colors.fg, colors.bg_inactive },
+    separator_highlight = { colors.fg, colors.bg_inactive },
+  }
+}
+
+galaxyline.load_galaxyline()

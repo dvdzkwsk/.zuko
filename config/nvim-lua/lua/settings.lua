@@ -36,9 +36,17 @@ vim.opt.splitbelow=true                            -- open new horizontal splits
 vim.opt.mouse='a'                                  -- enable mouse interaction, for when all else fails
 vim.opt.lazyredraw=true                            -- better rendering performance
 vim.opt.ttyfast=true                               -- improve redraw speed (enabled by default in neovim)
-vim.opt.backspace= { "indent", "eol", "start" }    -- allow backspacing over these regions (nvim -> vim compat)
-vim.opt.diffopt:append { "vertical" }                      
-vim.opt.wildignore:append { "*.jpg", "*.jpeg", "*.png", "*.svg" }
+vim.opt.backspace={"indent", "eol", "start"}       -- allow backspacing over these regions (nvim -> vim compat)
+vim.opt.diffopt:append({"vertical"})
+vim.opt.wildignore:append({"*.jpg", "*.jpeg", "*.png", "*.svg"})
 
 -- fixes crontab (reference?)
 vim.opt.backupcopy='yes'    
+
+-- plugin configuration
+vim.cmd "let g:ale_lint_on_enter=0"
+vim.cmd "let g:ale_lint_on_save=0"
+vim.cmd "let g:ale_lint_on_insert_leave=0"
+vim.cmd "let g:ale_fix_on_save=0"
+vim.cmd "let g:ale_linters_explicit=1"
+vim.cmd "let g:ale_fixers={'javascript':['eslint'],'typescript':['eslint'],'typescriptreact':['eslint']}"
