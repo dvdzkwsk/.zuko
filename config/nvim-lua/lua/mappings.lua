@@ -49,14 +49,23 @@ map('n', '<C-Down>', '<C-W>j', {noremap=true})
 map('n', '<C-Right>', '<C-W>l', {noremap=true})
 
 -- [b]uffer
+-- switch to previous buffer
 map('n', '<Leader><Tab>', ':b#<CR>', {noremap=true})
+-- close all but the current buffer
 map('n', '<Leader>bo', ':%bd|e#<CR>', {noremap=true})
+map('n', '<Leader>bq', '<cmd>Telescope lsp_document_diagnostics<cr>', {noremap=true})
+map('n', '<Leader>bs', '<cmd>Telescope lsp_document_symbols<cr>', {noremap=true})
 
 -- [f]ind
 map('n', '<Leader>ff', '<cmd>Telescope find_files<cr>', {noremap=true})
 map('n', '<Leader>fg', '<cmd>Telescope live_grep<cr>', {noremap=true})
 map('n', '<Leader>fb', '<cmd>Telescope buffers<cr>', {noremap=true})
-map('n', '<Leader>fh', '<cmd>Telescope help_tags<cr>', {noremap=true})
+map('n', '<Leader>fd', '<cmd>Telescope lsp_definitions<cr>', {noremap=true})
+map('n', '<Leader>fi', '<cmd>Telescope lsp_implementations<cr>', {noremap=true})
+map('n', '<Leader>fr', '<cmd>Telescope lsp_references<cr>', {noremap=true})
+map('n', '<Leader>fq', '<cmd>Telescope lsp_document_diagnostics<cr>', {noremap=true})
+map('n', '<Leader>fs', '<cmd>Telescope lsp_document_symbols<cr>', {noremap=true})
+map('n', '<Leader>fa', '<cmd>Telescope lsp_actions<cr>', {noremap=true})
 
 -- [g]if
 map('n', '<Leader>gd', '<cmd>DiffviewOpen<cr>', {noremap=true})
@@ -64,9 +73,11 @@ map('n', '<Leader>gd', '<cmd>DiffviewOpen<cr>', {noremap=true})
 -- [r]eplace
 map('n', '<Leader>rw', ':%s/<c-r>=expand("<cword>")<cr>/', {noremap=true})
 
--- [w]indow
+-- [w]indow and [w]orkspace
 map('n', '<Leader>w=', '<C-W>=', {noremap=true})
 map('n', '<Leader>w<Up>', ':split<CR>', {noremap=true})
 map('n', '<Leader>w<Down>', ':split<CR>', {noremap=true})
 map('n', '<Leader>w<Left>', ':vsplit<CR>', {noremap=true})
 map('n', '<Leader>w<Right>', ':vsplit<CR>', {noremap=true})
+map('n', '<Leader>wd', '<cmd>Telescope lsp_workspace_diagnostics<cr>', {noremap=true})
+map('n', '<Leader>ws', '<cmd>Telescope lsp_workspace_symbols<cr>', {noremap=true})
