@@ -12,6 +12,7 @@ return require('packer').startup(function()
   -- developer experience
   use {'editorconfig/editorconfig-vim'}
   use {'neovim/nvim-lspconfig'}
+  use {'nvim-lua/completion-nvim'}
   use {'nvim-telescope/telescope.nvim', requires={'nvim-lua/plenary.nvim'}}
   use {'dense-analysis/ale', ft={'javascript', 'typescript', 'typescriptreact'}}
   use {'tpope/vim-commentary'}

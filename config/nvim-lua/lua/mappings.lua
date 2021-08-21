@@ -51,6 +51,23 @@ map('v', '<Leader>ca', '<cmd>Telescope lsp_range_code_actions<cr>', {noremap=tru
 -- search command history (same keybinding as in shell)
 map('n', '<C-R>', '<cmd>lua require("telescope.builtin").command_history()<cr>', {noremap=true})
 
+-- confirm autocomplete with <tab>
+local function feedkeys(s)
+  vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(s, true, true, true), 'n', true)
+end
+function expand_tab()
+  if vim.fn.pumvisible() == 1 then
+    if vim.fn.complete_info({"selected"})["selected"] == -1 then
+      vim.api.nvim_input("<C-n><Plug>(completion_confirm_completion)")
+    else
+      vim.api.nvim_input("<Plug>(completion_confirm_completion)")
+    end
+  else
+    feedkeys("<Tab>")
+  end
+end
+map('i', '<tab>', '<cmd>lua expand_tab()<cr>', {})
+
 -- easily switch between windows with ctrl + direction
 map('n', '<C-h>', '<C-W>h', {noremap=true})
 map('n', '<C-j>', '<C-W>j', {noremap=true})

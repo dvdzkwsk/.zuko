@@ -1,41 +1,10 @@
+-- https://github.com/neovim/nvim-lspconfig
+-- reference: https://raygervais.dev/articles/2021/3/neovim-lsp
 local nvim_lsp=require('lspconfig')
 
-local filetypes={
-  typescript="eslint",
-  typescriptreact="eslint",
-}
-
-local linters={
-  eslint={
-    sourceName="eslint",
-    command="eslint_d",
-    rootPatterns={"package.json"},
-    debounce=100,
-    args={"--stdin", "--stdin-filename", "%filepath", "--format", "json"},
-    parseJson={
-      errorsRoot="[0].messages",
-      line="line",
-      column="column",
-      endLine="endLine",
-      endColumn="endColumn",
-      message="${message} [${ruleId}]",
-      security="severity"
-    },
-    securities={[2]="error", [1]="warning"}
-  }
-}
-
-local formatters={
-  prettier={
-    command="prettier",
-    args={"--stdin-filepath", "%filepath"}
-  }
-}
-
-local servers={'tsserver'}
-
--- https://github.com/neovim/nvim-lspconfig
 local on_attach=function(client, bufnr)
+  require('completion').on_attach()
+
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -49,6 +18,9 @@ local on_attach=function(client, bufnr)
   --   vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]] 
   --   vim.api.nvim_command [[augroup END]] 
   -- end
+  if client.resolved_capabilities.document_formatting then
+    buf_set_keymap('n', '<leader>af', '<cmd>lua vim.lsp.buf.formatting()<cr>', {noremap=true, silent=true})
+  end
 
   -- see `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', {noremap=true, silent=true})
@@ -70,18 +42,6 @@ local on_attach=function(client, bufnr)
   -- buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', {noremap=true, silent=true})
 end
 
--- setup diagnostics
--- nvim_lsp.diagnosticls.setup({
---   on_attach=on_attach,
---   filetypes=vim.tbl_keys(filetypes),
---   init_options={
---     filetypes=filetypes,
---     linters=linters,
---     formatters=formatters,
---     formatFiletypes=formatFiletypes
---   }
--- })
-
 -- setup typescript language server
 nvim_lsp.tsserver.setup({
   on_attach=function(client)
@@ -91,13 +51,10 @@ nvim_lsp.tsserver.setup({
   end
 })
 
--- setup language servers and map buffer-local keybindings when the
--- language server attaches
+-- configure servers only when a language server attaches
+local servers={'tsserver', 'gopls'}
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
+  nvim_lsp[lsp].setup({
     on_attach=on_attach,
-    flags={
-      debounce_text_changes=150,
-    }
-  }
+  })
 end

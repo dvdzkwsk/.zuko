@@ -40,6 +40,13 @@ vim.opt.backspace={"indent", "eol", "start"}       -- allow backspacing over the
 vim.opt.diffopt:append({"vertical"})
 vim.opt.wildignore:append({"*.jpg", "*.jpeg", "*.png", "*.svg"})
 
+-- better completion experience
+vim.opt.completeopt={"menuone","noinsert","noselect"}
+
+-- avoid showing message extra message when using completion
+vim.cmd 'set shortmess+=c'
+-- vim.opt.shortmess:append({"c"})
+
 -- fixes crontab (reference?)
 vim.opt.backupcopy='yes'    
 
