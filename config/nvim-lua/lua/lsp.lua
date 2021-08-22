@@ -51,8 +51,17 @@ nvim_lsp.tsserver.setup({
   end
 })
 
+
+nvim_lsp.cssls.setup({
+  on_attach=function(client)
+    -- disable built-in formatting so that we can use prettier instead
+    client.resolved_capabilities.document_formatting=false
+    on_attach(client)
+  end
+})
+
 -- configure servers only when a language server attaches
-local servers={'tsserver', 'gopls'}
+local servers={'tsserver', 'gopls', 'cssls'}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({
     on_attach=on_attach,

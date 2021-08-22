@@ -14,7 +14,7 @@ return require('packer').startup(function()
   use {'neovim/nvim-lspconfig'}
   use {'nvim-lua/completion-nvim'}
   use {'nvim-telescope/telescope.nvim', requires={'nvim-lua/plenary.nvim'}}
-  use {'dense-analysis/ale', ft={'javascript', 'typescript', 'typescriptreact'}}
+  use {'dense-analysis/ale', ft={'javascript', 'typescript', 'typescriptreact', 'css'}}
   use {'tpope/vim-commentary'}
   use {'tpope/vim-dispatch', opt=true, cmd={'Dispatch', 'Make', 'Focus', 'Start'}}
   use {'phaazon/hop.nvim', as='hop'}

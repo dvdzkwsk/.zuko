@@ -51,6 +51,9 @@ map('v', '<Leader>ca', '<cmd>Telescope lsp_range_code_actions<cr>', {noremap=tru
 -- search command history (same keybinding as in shell)
 map('n', '<C-R>', '<cmd>lua require("telescope.builtin").command_history()<cr>', {noremap=true})
 
+-- exit insert mode in terminal with <Esc>
+map('t', '<Esc>', '<C-\\><C-n>', {noremap=true})
+
 -- confirm autocomplete with <tab>
 local function feedkeys(s)
   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(s, true, true, true), 'n', true)
@@ -74,14 +77,15 @@ map('n', '<C-j>', '<C-W>j', {noremap=true})
 map('n', '<C-k>', '<C-W>k', {noremap=true})
 map('n', '<C-l>', '<C-W>l', {noremap=true})
 map('n', '<C-Left>', '<C-W>h', {noremap=true})
-map('n', '<C-Up>', '<C-W>k', {noremap=true})
-map('n', '<C-Down>', '<C-W>j', {noremap=true})
+map('n', '<C-Up>', '<C-W>j', {noremap=true})
+map('n', '<C-Down>', '<C-W>k', {noremap=true})
 map('n', '<C-Right>', '<C-W>l', {noremap=true})
 
 -- [a]le
 map('n', '<Leader>af', '<cmd>ALEFix<cr>', {noremap=true})
 
 -- [b]uffer
+map('n', '<Leader>bb', '<cmd>lua require("telescope.builtin").buffers()<cr>', {noremap=true})   
 -- close all but the current buffer
 map('n', '<Leader>bo', ':%bd|e#<cr>', {noremap=true})
 map('n', '<Leader>bq', '<cmd>Telescope lsp_document_diagnostics<cr>', {noremap=true})

@@ -45,10 +45,13 @@ vim.opt.completeopt={"menuone","noinsert","noselect"}
 
 -- avoid showing message extra message when using completion
 vim.cmd 'set shortmess+=c'
--- vim.opt.shortmess:append({"c"})
 
 -- fixes crontab (reference?)
-vim.opt.backupcopy='yes'    
+vim.opt.backupcopy='yes'
+
+-- only show cursor line in active window
+vim.api.nvim_exec([[ autocmd BufEnter * setlocal cursorline ]], false)
+vim.api.nvim_exec([[ autocmd BufLeave * setlocal nocursorline ]], false)
 
 -- plugin configuration
 vim.cmd "let g:ale_lint_on_enter=0"
@@ -56,4 +59,4 @@ vim.cmd "let g:ale_lint_on_save=0"
 vim.cmd "let g:ale_lint_on_insert_leave=0"
 vim.cmd "let g:ale_fix_on_save=0"
 vim.cmd "let g:ale_linters_explicit=1"
-vim.cmd "let g:ale_fixers={'javascript':['eslint'],'typescript':['eslint'],'typescriptreact':['eslint']}"
+vim.cmd "let g:ale_fixers={'javascript':['eslint'],'typescript':['eslint'],'typescriptreact':['eslint'],'css':['prettier']}"
