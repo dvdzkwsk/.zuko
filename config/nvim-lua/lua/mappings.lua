@@ -117,6 +117,9 @@ map('n', '<Leader><Leader>', '<cmd>lua require("hop").hint_words()<cr>', {norema
 -- [r]eplace
 map('n', '<Leader>rw', ':%s/<c-r>=expand("<cword>")<cr>/', {noremap=true})
 
+-- [p]roject
+map('n', '<Leader>pt', ':NvimTreeToggle<CR>', {noremap=true})
+
 -- [w]indow and [w]orkspace
 map('n', '<Leader>w=', '<C-W>=', {noremap=true})
 map('n', '<Leader>w<Up>', ':split<CR>', {noremap=true})

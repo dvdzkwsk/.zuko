@@ -9,27 +9,31 @@ return require('packer').startup(function()
   use {'wbthomason/packer.nvim'}
   use {'nvim-treesitter/nvim-treesitter', run=':TSUpdate'}
 
-  -- developer experience
+  -- ide fundamentals
   use {'editorconfig/editorconfig-vim'}
   use {'neovim/nvim-lspconfig'}
   use {'nvim-lua/completion-nvim'}
   use {'nvim-telescope/telescope.nvim', requires={'nvim-lua/plenary.nvim'}}
   use {'dense-analysis/ale', ft={'javascript', 'typescript', 'typescriptreact', 'css'}}
   use {'tpope/vim-commentary'}
-  use {'tpope/vim-dispatch', opt=true, cmd={'Dispatch', 'Make', 'Focus', 'Start'}}
-  use {'phaazon/hop.nvim', as='hop'}
+  use {'kyazdani42/nvim-tree.lua'}
+
+  -- themes
+  use {'kyazdani42/nvim-web-devicons'}
+  use {'glepnir/galaxyline.nvim', branch='main'}
+  use {'EdenEast/nightfox.nvim'}
+  use {'maaslalani/nordbuddy'}
 
   -- version control
   use {'sindrets/diffview.nvim'}
   use {'lewis6991/gitsigns.nvim', requires={'nvim-lua/plenary.nvim'}}
 
-  -- themes
-  use {'glepnir/galaxyline.nvim', branch='main'}
-  use {'kyazdani42/nvim-web-devicons'}
-  use {'EdenEast/nightfox.nvim'}
-  use {'maaslalani/nordbuddy'}
+  -- utilities
+  use {'tpope/vim-dispatch', opt=true, cmd={'Dispatch', 'Make', 'Focus', 'Start'}}
+  use {'phaazon/hop.nvim', as='hop'}
 
   -- configuration
+  require('nvim-tree').setup()
   require('gitsigns').setup()
   require('nordbuddy').colorscheme({
     underline_option = 'none',

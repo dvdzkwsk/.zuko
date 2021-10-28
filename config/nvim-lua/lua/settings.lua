@@ -1,5 +1,6 @@
 -- theme
-require('nightfox').set()
+-- https://github.com/edeneast/nightfox.nvim#lua
+require('nightfox').load("duskfox")
 
 -- global settings
 vim.opt.ttimeoutlen=50                             -- reduce input delay when entering normal mode
