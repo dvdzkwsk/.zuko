@@ -11,16 +11,8 @@ local on_attach=function(client, bufnr)
 
   -- enable completion triggered by <c-x><c-o>
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- format on save
-  -- if client.resolved_capabilities.document_formatting then
-  --   vim.api.nvim_command [[augroup Format]] 
-  --   vim.api.nvim_command [[autocmd! * <buffer>]] 
-  --   vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]] 
-  --   vim.api.nvim_command [[augroup END]] 
-  -- end
   
-  -- Enable formatting for eslint
+  -- use eslint to format js/ts files
   -- https://github.com/microsoft/vscode-eslint/pull/1307
   if client.name == 'tsserver' then
     client.resolved_capabilities.document_formatting = false
@@ -30,10 +22,15 @@ local on_attach=function(client, bufnr)
   end
 
   if client.resolved_capabilities.document_formatting then
-    buf_set_keymap('n', '<leader>af', '<cmd>lua vim.lsp.buf.formatting()<cr>', {noremap=true, silent=true})
+    -- format on save
+    vim.api.nvim_command [[augroup Format]]
+    vim.api.nvim_command [[autocmd! * <buffer>]]
+    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
+    vim.api.nvim_command [[augroup END]]
   end
 
   -- see `:help vim.lsp.*` for documentation on any of the below functions
+  buf_set_keymap('n', '<leader>af', '<cmd>lua vim.lsp.buf.formatting()<cr>', {noremap=true, silent=true})
   buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', {noremap=true, silent=true})
   buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', {noremap=true, silent=true})
   buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', {noremap=true, silent=true})
@@ -48,9 +45,8 @@ local on_attach=function(client, bufnr)
   buf_set_keymap('n', '<space>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', {noremap=true, silent=true})
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', {noremap=true, silent=true})
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', {noremap=true, silent=true})
-  -- buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', {noremap=true, silent=true})
+  buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', {noremap=true, silent=true})
   -- buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', {noremap=true, silent=true})
-  -- buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', {noremap=true, silent=true})
 end
 
 -- configure typescript language server
