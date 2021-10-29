@@ -1,4 +1,14 @@
 local map = vim.api.nvim_set_keymap
+local actions = require('telescope.actions')
+require('telescope').setup{
+  defaults = {
+    mappings = {
+      n = {
+        ["q"] = actions.close
+      },
+    },
+  }
+}
 
 -- space as leader key
 map('n', '<Space>', '', {})
@@ -80,9 +90,6 @@ map('n', '<C-Left>', '<C-W>h', {noremap=true})
 map('n', '<C-Up>', '<C-W>j', {noremap=true})
 map('n', '<C-Down>', '<C-W>k', {noremap=true})
 map('n', '<C-Right>', '<C-W>l', {noremap=true})
-
--- [a]le
-map('n', '<Leader>af', '<cmd>ALEFix<cr>', {noremap=true})
 
 -- [b]uffer
 map('n', '<Leader>bb', '<cmd>lua require("telescope.builtin").buffers()<cr>', {noremap=true})   

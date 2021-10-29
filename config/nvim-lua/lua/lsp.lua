@@ -1,5 +1,6 @@
--- https://github.com/neovim/nvim-lspconfig
--- reference: https://raygervais.dev/articles/2021/3/neovim-lsp
+-- references:
+--   https://github.com/neovim/nvim-lspconfig
+--   https://raygervais.dev/articles/2021/3/neovim-lsp
 local nvim_lsp=require('lspconfig')
 
 local on_attach=function(client, bufnr)
@@ -18,6 +19,16 @@ local on_attach=function(client, bufnr)
   --   vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]] 
   --   vim.api.nvim_command [[augroup END]] 
   -- end
+  
+  -- Enable formatting for eslint
+  -- https://github.com/microsoft/vscode-eslint/pull/1307
+  if client.name == 'tsserver' then
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+  elseif client.name == 'eslint' then
+    client.resolved_capabilities.document_formatting = true
+  end
+
   if client.resolved_capabilities.document_formatting then
     buf_set_keymap('n', '<leader>af', '<cmd>lua vim.lsp.buf.formatting()<cr>', {noremap=true, silent=true})
   end
@@ -42,16 +53,17 @@ local on_attach=function(client, bufnr)
   -- buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', {noremap=true, silent=true})
 end
 
--- setup typescript language server
+-- configure typescript language server
 nvim_lsp.tsserver.setup({
   on_attach=function(client)
-    -- disable built-in formatting so that we can use prettier instead
+    -- disable built-in formatting so that we can use eslint/prettier instead
     client.resolved_capabilities.document_formatting=false
     on_attach(client)
   end
 })
 
 
+-- configure css language server
 nvim_lsp.cssls.setup({
   on_attach=function(client)
     -- disable built-in formatting so that we can use prettier instead
@@ -60,8 +72,16 @@ nvim_lsp.cssls.setup({
   end
 })
 
+-- configure eslint language server
+nvim_lsp.eslint.setup({
+  on_attach=function(client)
+    -- TODO: why does this not work?
+    client.resolved_capabilities.document_formatting=true
+  end
+})
+
 -- configure servers only when a language server attaches
-local servers={'tsserver', 'gopls', 'cssls'}
+local servers={'tsserver', 'gopls', 'cssls', 'eslint'}
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup({
     on_attach=on_attach,

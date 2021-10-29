@@ -14,7 +14,6 @@ return require('packer').startup(function()
   use {'neovim/nvim-lspconfig'}
   use {'nvim-lua/completion-nvim'}
   use {'nvim-telescope/telescope.nvim', requires={'nvim-lua/plenary.nvim'}}
-  use {'dense-analysis/ale', ft={'javascript', 'typescript', 'typescriptreact', 'css'}}
   use {'tpope/vim-commentary'}
   use {'kyazdani42/nvim-tree.lua'}
 
@@ -35,10 +34,4 @@ return require('packer').startup(function()
   -- configuration
   require('nvim-tree').setup()
   require('gitsigns').setup()
-  require('nordbuddy').colorscheme({
-    underline_option = 'none',
-    italic = false,
-    italic_comments = false,
-    minimal_mode = false
-  })
 end)
