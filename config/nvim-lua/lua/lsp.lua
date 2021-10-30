@@ -49,6 +49,11 @@ local on_attach=function(client, bufnr)
   -- buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', {noremap=true, silent=true})
 end
 
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+vim.lsp.diagnostic.on_publish_diagnostics, {
+    update_in_insert = false,
+})
+
 -- configure typescript language server
 nvim_lsp.tsserver.setup({
   on_attach=function(client)

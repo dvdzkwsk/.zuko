@@ -35,6 +35,7 @@ return require('packer').startup(function()
 
   -- utilities
   use {'tpope/vim-dispatch', opt=true, cmd={'Dispatch', 'Make', 'Focus', 'Start'}}
+  use {'wellle/targets.vim'}
   use {'phaazon/hop.nvim', as='hop'}
 
   -- configuration
