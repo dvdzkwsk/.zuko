@@ -75,6 +75,7 @@ alias diff="colordiff"
 alias zrc="$EDITOR ~/.zshrc"
 alias zrcs="source ~/.zshrc"
 alias vrc="$EDITOR ~/.config/nvim/init.vim"
+alias p="pnpm"
 #}}}
 
 # Mnemonic Aliases ----------------------------------------- {{{
