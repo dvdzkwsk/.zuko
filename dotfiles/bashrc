@@ -1,0 +1,90 @@
+# Main Settings -------------------------------------------- {{{
+set -o vi                             # Allow vi-like commands in bash
+ulimit -n 2000                        # Increase allowed open file limit
+export HISTFILE=~/.histfile           # Where to save command history
+export HISTSIZE=500                   # Increase the default history size
+export SAVEHIST=500                   # ibid
+export HISTCONTROL=erasedups          # Remove duplicates in history
+export VISUAL=nvim                    # Global default editor
+export EDITOR="$VISUAL"               # ibid
+export GPG_TTY=$(tty)
+export RANGER_LOAD_DEFAULT_RC=FALSE   # do not load default ranger config on top of ~/.config/ranger
+#}}}
+
+# Node ----------------------------------------------------- {{{
+export N_PREFIX="$HOME/.n"
+export PATH=$N_PREFIX/bin:$PATH
+#}}}
+
+# Yarn ----------------------------------------------------- {{{
+export PATH=$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH
+#}}}
+#
+# FZF ----------------------------------------------------- {{{
+# respect .gitignore
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+#}}}
+
+# Go ------------------------------------------------------- {{{
+export GOPATH="$HOME/projects/go"
+export PATH=$GOPATH/bin:$PATH
+#}}}
+
+# Rust ----------------------------------------------------- {{{
+export PATH=$HOME/.cargo/bin:$PATH
+#}}}
+
+# Ripgrep -------------------------------------------------- {{{
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+#}}}
+
+# Sacrilegious Unix Replacements --------------------------- {{{
+alias cat="bat"
+#}}}
+
+# Aliases -------------------------------------------------- {{{
+alias ..="cd .."
+alias size="stat -f%z"
+alias weather="curl wttr.in"
+alias diff="colordiff"
+alias zrc="$EDITOR ~/.zshrc"
+alias zrcs="source ~/.zshrc"
+alias vrc="$EDITOR ~/.config/nvim/init.vim"
+#}}}
+
+# Mnemonic Aliases ----------------------------------------- {{{
+# [L]ist
+alias ll="ls -la -Gfh"
+alias ls="ls -Gfh"
+#}}}
+
+# Functions ------------------------------------------------ {{{
+function h {
+  $(history | cut -d' ' -f5- | awk '!x[$0]++' | fzf)
+}
+
+function ff {
+  local files
+  files=$(fzf --preview 'bat --style=numbers --color=always {} | head -500' "$@")
+  # open in a tmux pane instead (currently broken):
+  # IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+}
+#}}}
+
+# Externals ------------------------------------------------ {{{
+source ~/.zsh_prompt
+source ~/.git_aliases
+[ -f ~/.zsh_private ] && source ~/.zsh_private
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(hub alias -s)"
+eval "$(fasd --init auto)"
+# eval "$(rbenv init -)"
+
+if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+  __GIT_PROMPT_DIR=$(brew --prefix)/opt/bash-git-prompt/share
+  GIT_PROMPT_ONLY_IN_REPO=1
+  source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+fi
+#}}}
