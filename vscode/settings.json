@@ -1,10 +1,9 @@
 {
-  "workbench.colorTheme": "Noctis Obscuro",
   "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\cmd.exe",
-  "window.zoomLevel": 0,
   "window.restoreWindows": "none",
   "explorer.confirmDelete": false,
   "editor.minimap.enabled": false,
+  "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
@@ -16,6 +15,10 @@
     "*.css": "postcss"
   },
   "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.preferences.importModuleSpecifier": "shortest",
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -34,4 +37,28 @@
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "[go]": {
+    "editor.formatOnSave": false
+  },
+  "explorer.confirmDragAndDrop": false,
+  "go.vetOnSave": "off",
+  "go.buildOnSave": "off",
+  "go.autocompleteUnimportedPackages": true,
+  "go.formatTool": "goimports",
+  "go.useLanguageServer": true,
+  "go.lintOnSave": "off",
+  "editor.renderWhitespace": "none",
+  "editor.renderControlCharacters": false,
+  "workbench.editor.showTabs": true,
+  "workbench.editor.enablePreview": false,
+  "azure.resourceFilter": [
+    "72f988bf-86f1-41af-91ab-2d7cd011db47/37ca189d-a372-41dd-9dfc-4f776603c8c1"
+  ],
+  "go.toolsManagement.autoUpdate": true,
+  "vscode-edge-devtools.mirrorEdits": true,
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.colorTheme": "Code with a tan",
+  "security.workspace.trust.untrustedFiles": "open"
 }
