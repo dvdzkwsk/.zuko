@@ -1,13 +1,13 @@
 // Place your key bindings in this file to override the defaults
 [
-  {
-    "key": "ctrl+left",
-    "command": "cursorLineStart",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "ctrl+right",
-    "command": "cursorLineEnd",
-    "when": "textInputFocus"
-  }
+    {
+        "key": "ctrl+left",
+        "command": "cursorLineStart",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+right",
+        "command": "cursorLineEnd",
+        "when": "textInputFocus"
+    }
 ]
