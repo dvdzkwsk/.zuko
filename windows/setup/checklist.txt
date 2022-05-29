@@ -1,0 +1,92 @@
+- DO NOT create a user using a Microsoft account. Windows will generate your home folder name based on the first 5 characters in your email address. Instead, create a local user account with the desired folder name and then later connect it.
+- Connect the local Windows user to your Microsoft account.
+- Encrypt disk with bitlocker (required for work)
+	- Control Panel > System and Security > BitLocker Drive Encryption
+- Connect your work account
+	- Settings > Accounts > Access work or school
+- Backup system registry
+- Clean up the taskbar
+	- Settings > Personalization > Taskbar
+		- Taskbar items
+			- Search: off
+			- Task view: off
+			- Widgets: off
+			- Chat: off
+		- Taskbar behaviors
+			- Taskbar alignment: left
+- Disable Filter keys
+	- Settings > Accessibility > Keyboard > Filter keys
+
+- Fix keyboard repeat rate
+	- Source: https://superuser.com/questions/1058474/increase-keyboard-repeat-rate-beyond-control-panel-limits-in-windows-10
+	- Import registry_fast_keyboard_repeat.reg
+
+- Map CapsLock to Escape
+	- Source: https://superuser.com/questions/381296/mapping-caps-lock-to-escape-and-control-on-windows-7
+	- Import registry_map_capslock_to_escape.reg
+
+- Install latest graphics driver
+- Install Windows Terminal: https://docs.microsoft.com/en-us/windows/terminal/install
+- Install scoop: https://scoop.sh
+- Add scoop extras bucket: scoop bucket add extras
+- Install git: scoop install git
+- Install slack: scoop install slack
+- Install discord: scoop install discord
+- Install zoom: scoop install zoom
+- Install extras/vcredist2022: scoop install extras/vcredist2022
+- Install sudo: scoop install sudo
+- Install neovim: scoop install neovim
+- Install ripgrep: scoop install ripgrep
+- Install fzf: scoop install fzf
+- Install perl: scoop install perl
+- Install diff-so-fancy: scoop install diff-so-fancy
+- Install less: scoop install less
+- Install bat: scoop install bat
+- Install node: https://github.com/coreybutler/nvm-windows/releases
+	- The scoop installer fails when trying to install node, use the installer from Github instead.
+	- nvm install lts
+	- sudo nvm use lts (note that this must be run as administrator)
+- Install pnpm: scoop install pnpm
+- Install yarn: scoop install yarn
+- Install Signal: https://signal.org/download/
+	- Don't use scoop for this, it broke my scoop last time I tried.
+- Install 1Password: https://1password.com/downloads
+- Install Visual Studio Code: https://code.visualstudio.com
+- Generate an SSH key: https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+	- Add SSH key to Github
+	- Add SSH key to Azure Devops
+
+Microsoft Edge
+- Set distinct theme for home vs. work profile
+
+Git
+- Restore %userprofile%/.gitconfig: https://github.com/davezuko/.zuko/blob/master/dotfiles/gitconfig
+
+Windows Terminal
+- Restore settings: https://github.com/davezuko/.zuko/blob/master/windows/terminal/settings.json
+
+Visual Studio Code
+- Recommended extensions:
+	- ESLint
+	- Prettier
+	- Sublime Text Keymap and Settings Importer
+	- Gitlens
+	- Go
+	- Remote Development
+- Restore settings: https://github.com/davezuko/.zuko/blob/master/vscode/settings.json
+
+DCS
+- Install DCS World Open Beta: https://www.digitalcombatsimulator.com/en/downloads/world/
+- Install Thrustmaster T16000m drivers: https://support.thrustmaster.com/en/product/t-16000m-fcs-hotas-en/
+- Install TrackIR: https://www.naturalpoint.com/trackir/downloads/
+- Install SimpleRadio Standalone: http://dcssimpleradio.com/
+- Install reshade: https://reshade.me/
+	- Recommended presets: https://www.youtube.com/watch?v=UGxgD9GNVNw
+- F-16
+	- Import T.16000M profile: https://www.digitalcombatsimulator.com/en/files/3306444/
+
+Troubleshooting
+
+- scoop broke after installing a package and won't run anymore
+	- e.g. `bin\scoop.ps1 is not recognized as the name`
+	- Fix: https://github.com/ScoopInstaller/Scoop/issues/3050
