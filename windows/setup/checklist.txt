@@ -25,6 +25,10 @@
 	- Source: https://superuser.com/questions/381296/mapping-caps-lock-to-escape-and-control-on-windows-7
 	- Import registry_map_capslock_to_escape.reg
 
+- Fix long filepaths in git (this should already be in my gitconfig):
+	- Source: https://stackoverflow.com/questions/22575662/filename-too-long-in-git-for-windows
+	- git config --system core.longpaths true
+
 - Install latest graphics driver
 - Install Windows Terminal: https://docs.microsoft.com/en-us/windows/terminal/install
 - Install scoop: https://scoop.sh
