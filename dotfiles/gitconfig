@@ -1,22 +1,36 @@
 [user]
-  name = David Zukowski
-  email = david@zuko.me
-  username = davezuko
-  signingkey = C49E7D3BADE89C4D
+	name = David Zukowski
+	email = david@zuko.me
+	username = davezuko
 [core]
-  excludesfile = ~/.gitignore
-  pager = diff-so-fancy | less --tabs=4 -RFX
+	excludesfile = ~/.gitignore
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [color]
-  ui = auto
+	ui = auto
 [hub]
-  protocol = ssh
+	protocol = ssh
 [push]
-  default = current
+	default = current
 [url "ssh://git@github.com/"]
-  insteadOf = https://github.com/
+	insteadOf = https://github.com/
 [commit]
-  gpgsign = true
+	gpgsign = false
 [init]
 	defaultBranch = master
 [pull]
 	ff = only
+[alias]
+	am = commit --amend
+	bd = !git branch -D \"$(git branch -l | fzf -m)\"
+	cf = !git checkout \"$(git branch -l | fzf | sed 's/ //g')\"
+	co = checkout
+	cs = commit --ammend --no-edit
+	dc = diff --cached
+	l = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	last = !git log -1 HEAD
+	po = push origin
+	rc = rebase --continue
+	ri = rebase --interactive
+	roh = !git reset --hard origin/\"$(git rev-parse --abbrev-ref HEAD)\"
+	st = status
+	up = !git fetch && git pull
