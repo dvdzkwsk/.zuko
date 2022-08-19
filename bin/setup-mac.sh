@@ -122,20 +122,16 @@ brew upgrade
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 brew install coreutils
 
-# Install GNU `sed`, overwriting the built-in `sed`.
-brew install gnu-sed --with-default-names
-
-$(brew --prefix)/opt/fzf/install
 brew install hub
 brew install git-extras
 brew install zsh-completions
 brew install nvim             # dark vim
 brew install jq               # json explorer
 brew install gron             # json flattener
-brew install ranger           # terminal file explorer
 brew install tree             # print nice file trees
 brew install fasd             # easily jump to commonly-used directories
 brew install fzf              # general purpose fuzzy-finder
+$(brew --prefix)/opt/fzf/install
 brew install htop             # better `top`
 brew install tldr             # better `man`
 brew install ripgrep          # better `grep`
@@ -145,63 +141,24 @@ brew install tig              # better `git`
 brew install diff-so-fancy    # better `git diff`
 brew install pstree           # `ps` as a tree
 brew install up               # write pipes with instant live preview
-
-# tmux
-brew install tmux
-brew install reattach-to-user-namespace
-
-# python tools
-pip3 install argcomplete
-pip3 install --upgrade bsed
-#}}}
-
-# Programming --------------------------------------------- {{{
-brew install sbcl             # common lisp
-brew cask install java        # java (for clojure)
-brew install lumo             # clojurescript runtime
-brew install python3          # python 3
-brew install rbenv            # ruby version manager
 #}}}
 
 # Applications -------------------------------------------- {{{
 brew tap homebrew/cask-versions
-brew cask install iterm2
-brew cask install docker
-brew cask install dropbox
-brew cask install google-chrome
-brew cask install google-chrome-canary
-brew cask install brave
-brew cask install slack
-brew cask install flux
-brew cask install gpg-suite
+brew install iterm2 --cask
+brew install docker --cask
+brew install slack --cask
+brew install flux --cask
+brew install gpg-suite --cask
 #}}}
 
 # Fonts --------------------------------------------------- {{{
 brew tap caskroom/fonts
 brew tap homebrew/cask-fonts
-brew cask install font-source-code-pro
-brew cask install font-hack-nerd-font
+brew install font-source-code-pro --cask
+brew install font-hack-nerd-font --cask
 #}}}
 
-# Misc ------------------------------------------------ {{{
-if [ ! -d ~/.tmux/plugins/tpm ]; then
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-fi
-~/.tmux/plugins/tpm/scripts/install_plugins.sh
-
-# Enable python3 support for nvim
-pip3 install neovim
-
-# Intall custom terminfo that enables italics support
-tic ./config/xterm/xterm-256color-italic.terminfo
-#}}}
-
-# Dotfiles ------------------------------------------------ {{{
-./bin/install-dotfiles.sh
-#}}}
-
-# Templates ------------------------------------------------ {{{
-if [ ! -d ~/.config/templates ]; then
-  ln -s "${PWD}/templates" "${HOME}/.config"
-fi
+# Dotfiles --------------------------------------------------- {{{
+./setup-dotfiles.sh
 #}}}

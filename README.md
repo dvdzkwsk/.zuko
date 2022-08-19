@@ -4,7 +4,8 @@
 </div>
 
 ```sh
-git clone https://github.com/davezuko/.zuko && cd .zuko && chmod +x ./make.sh && ./make.sh
+# mac
+git clone https://github.com/davezuko/.zuko && cd .zuko && chmod +x ./bin/setup-mac.sh && ./bin/setup-mac.sh
 ```
 
 -   [Setup an SSH Config](http://nerderati.com/2011/03/17/simplify-your-life-with-an-ssh-config-file/)
@@ -26,10 +27,6 @@ git clone https://github.com/davezuko/.zuko && cd .zuko && chmod +x ./make.sh &&
 -   `Left Command` -> `Left Control`
 -   `Left Control` -> `Left Command`
 
-## Tmux
-
-Easily define layouts with http://cockpit.27ae60.com/
-
 ## ITerm2
 
 -   Disable `CMD + R` (avoid accidentally resetting the terminal, vim, et al.)
@@ -49,9 +46,3 @@ Issues with True Color? See https://bruinsslot.jp/post/how-to-enable-true-color-
 ### Tmux complains about nvm/npm
 
 Make sure `node` is not installed via brew, and delete `/usr/local/bin/npm` if it exists. This often gets re-created after a brew update, it seems.
-
-## Neovim
-
-```sh
-npm install -g typescript-language-server diagnostic-languageserver eslint_d
-```

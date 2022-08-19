@@ -24,11 +24,12 @@
 	bd = !git branch -D \"$(git branch -l | fzf -m)\"
 	cf = !git checkout \"$(git branch -l | fzf | sed 's/ //g')\"
 	co = checkout
-	cs = commit --ammend --no-edit
+	cs = commit --all --amend --no-edit
 	dc = diff --cached
 	l = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	last = !git log -1 HEAD
 	po = push origin
+	rb = rebase
 	rc = rebase --continue
 	ri = rebase --interactive
 	roh = !git reset --hard origin/\"$(git rev-parse --abbrev-ref HEAD)\"

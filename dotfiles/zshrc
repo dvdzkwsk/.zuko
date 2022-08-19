@@ -12,8 +12,6 @@ export VISUAL=nvim                    # Global default editor
 export EDITOR="$VISUAL"               # ibid
 export GPG_TTY=$(tty)
 export RANGER_LOAD_DEFAULT_RC=FALSE   # do not load default ranger config on top of ~/.config/ranger
-
-export WIKI="$HOME/Dropbox/wiki"
 #}}}
 
 # ZSH Settings --------------------------------------------- {{{
@@ -33,6 +31,10 @@ bindkey -M vicmd v edit-command-line
 bindkey '^R' history-incremental-search-backward
 
 fpath=(/usr/local/share/zsh-completions $fpath)
+#}}}
+
+# Prompt ----------------------------------------------------- {{{
+eval "$(starship init zsh)"
 #}}}
 
 # Node ----------------------------------------------------- {{{
@@ -75,7 +77,6 @@ alias diff="colordiff"
 alias zrc="$EDITOR ~/.zshrc"
 alias zrcs="source ~/.zshrc"
 alias vrc="$EDITOR ~/.config/nvim/init.vim"
-alias p="pnpm"
 #}}}
 
 # Mnemonic Aliases ----------------------------------------- {{{
@@ -85,11 +86,6 @@ alias history="history 1"
 # [L]ist
 alias ll="ls -la -Gfh"
 alias ls="ls -Gfh"
-
-# [Y]arn
-alias yi="yarn install"
-alias ys="yarn start"
-alias yui="yarn upgrade-interactive"
 #}}}
 
 # Functions ------------------------------------------------ {{{
@@ -104,30 +100,9 @@ function ff {
   # IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
   [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
-
-function wiki {
-  if [ $# -eq 0 ]; then
-    $EDITOR "$WIKI/index.md"
-  else
-    search="$1"
-    shift
-    rg "$1" $WIKI --after-context --ignore-case "$@"
-  fi
-}
-
-function um {
-  if [ $# -eq 0 ]; then
-    $EDITOR "$WIKI/um.txt"
-  else
-    search="$1"
-    shift
-    rg "$search" "$WIKI/um.txt" --ignore-case --after-context 1 "$@"
-  fi
-}
 #}}}
 
 # Externals ------------------------------------------------ {{{
-source ~/.zsh_prompt
 source ~/.git_aliases
 
 [ -f ~/.zsh_private ] && source ~/.zsh_private
@@ -136,7 +111,6 @@ source ~/.git_aliases
 
 eval "$(hub alias -s)"
 eval "$(fasd --init auto)"
-eval "$(rbenv init -)"
 #}}}
 
 # Enable for profiling ZSH performance
